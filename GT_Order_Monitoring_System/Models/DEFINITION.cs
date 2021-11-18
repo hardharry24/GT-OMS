@@ -45,5 +45,12 @@ namespace GT_Order_Monitoring_System.Models
             public const string PCS = "pcs";
             public const string ROLL = "roll";
         }
+
+        public class RESPONSE
+        {
+            public const int SUCCESS = 1;
+            public const int ERROR = 0;
+            public const int EXCEPTION = -1;
+        }
     }
 }
