@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.TabTitle = "Update Ship";
+    ViewBag.Title = "Ships";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using GT_Order_Monitoring_System.Entity;
+@model GT_Order_Monitoring_System.Entity.tbl_ship
+<div class="row">
+    <div class="col-xl-12">
+        <div class="breadcrumb-holder">
+            <h1 class="main-title float-left"><i class="fa fa-edit"></i> Update Ship</h1>
+            <ol class="breadcrumb float-right">
+                <li class="breadcrumb-item">Ship</li>
+                <li class="breadcrumb-item active">Update Ship</li>
+            </ol>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card mb-5">
+            <div class="card-header">
+                <a href="/Ship/Index"><i class="fa fa-reply" aria-hidden="true"></i> Back</a>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("Update", "Ship", FormMethod.Post))
+                {
+                    <div class="col-lg-12">
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <label>Ship (Via)&nbsp;</label>
+                                @Html.TextBoxFor(m => m.via, new { @class = "form-control", @required = "true" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <input class="btn btn-success" type="submit" name="Submit" value="UPDATE" />
+                            </div>
+                        </div>
+                        @if (ViewBag.errorMessage != "")
+                        {
+                            <div class="alert @(ViewBag.errorCode == "1" ? "alert-success": "alert-danger")">@ViewBag.errorMessage</div>
+                        }
+                        @* Hidden *@
+                        @Html.HiddenFor(m => m.id)
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

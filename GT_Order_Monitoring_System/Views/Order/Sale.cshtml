@@ -1,0 +1,296 @@
+﻿
+@{
+    ViewBag.TabTitle = "Sale Order";
+    ViewBag.Title = "Sale";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+@using GT_Order_Monitoring_System.Entity;
+@model GT_Order_Monitoring_System.Models.MyModel
+<div class="row">
+    <div class="col-xl-12">
+        <div class="breadcrumb-holder">
+            <h1 class="main-title float-left"><i class="fa fa-briefcase"></i> Sales Orders</h1>
+            <ol class="breadcrumb float-right">
+                <li class="breadcrumb-item">Sale</li>
+                <li class="breadcrumb-item active">Sales Orders</li>
+            </ol>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card mb-3">
+            <div class="card-header">
+                <span class="pull-right">
+                    <a href="/Order/Create" class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus" aria-hidden="true"></i> New Sale Order
+                    </a>
+                </span>
+
+                <!--Add Job Product Modal-->
+                <h3>
+                    <i class="fa-2x mr-2 fas fa-clipboard-list"></i> All Sales Order
+                </h3>
+                <hr />
+                <div class="form-group">
+                    <div class="col-lg-12">
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-12">
+                                    @using (Html.BeginForm("Sale", "Order", FormMethod.Post))
+                                    {
+                                        <div class="form-group form-inline">
+                                            <label>Job Product Search : &nbsp;</label> &nbsp;
+                                            <select name="a_criteria1" class="form-control select2-arrow">
+                                                <option value="prod_code" @(ViewBag.a_criteria1 == "prod_code" ? "selected" : "")>Product Code</option>
+                                                <option value="description" @(ViewBag.a_criteria1 == "description" ? "selected" : "")>Description</option>
+                                                <option value="customer_name" @(ViewBag.a_criteria1 == "customer_name" ? "selected" : "")>Customer Name</option>
+                                                <option value="category" @(ViewBag.a_criteria1 == "category" ? "selected" : "")>Category</option>
+                                                <option value="status" @(ViewBag.a_criteria1 == "status" ? "selected" : "")>Status</option>
+                                            </select>&nbsp;
+                                            <select name="a_criteria2" class="form-control select2-arrow">
+                                                <option value="Equals" @(ViewBag.a_criteria2 == "Equals" ? "selected" : "")>Equals</option>
+                                                <option value="Contains" @(ViewBag.a_criteria2 == "Contains" ? "selected" : "")>Contains</option>
+                                                <option value="Startswith" @(ViewBag.a_criteria2 == "Startswith" ? "selected" : "")>Starts with</option>
+                                                <option value="Endswith" @(ViewBag.a_criteria2 == "Endswith" ? "selected" : "")>Ends with</option>
+                                                <option value="IsGreaterthan" @(ViewBag.a_criteria2 == "IsGreaterthan" ? "selected" : "")>Is Greater than</option>
+                                                <option value="IsLessthan" @(ViewBag.a_criteria2 == "IsLessthan" ? "selected" : "")>Is Less than</option>
+                                            </select>&nbsp;
+                                            <input type="text" name="a_criteria3" value="@(ViewBag.a_criteria3 != "" ? ViewBag.a_criteria3 : "")" placeholder="Enter text here.." class="form-control" required />&nbsp;
+                                            <input type="submit" name="name" value="Search" class="btn btn-primary" />&nbsp;
+                                            <span>Total # of Records: <span class="@(Model.ListSalesOrderMaster.Count > 0 ? "badge badge-info" : "badge badge-danger")">@Model.ListSalesOrderMaster.Count</span></span>&nbsp;
+                                            <span>Unserved : @{ int countUnres = 0; foreach (var item in Model.ListSalesOrderMaster) { if (item.status.ToLower().Equals("unserved")) { countUnres++; } } }<span class="@(countUnres > 0 ? "badge badge-success" : "badge badge-danger")">@countUnres</span></span>&nbsp;
+                                            <span>Partial : @{ int countPartial = 0; foreach (var item in Model.ListSalesOrderMaster) { if (item.status.ToLower().Equals("partial")) { countPartial++; } } }<span class="@(countPartial > 0 ? "badge badge-primary" : "badge badge-danger")">@countPartial</span></span>&nbsp;
+                                            <span>Closed : @{ int countClosed = 0; foreach (var item in Model.ListSalesOrderMaster) { if (item.status.ToLower().Equals("closed")) { countClosed++; } } }<span class="@(countClosed > 0 ? "badge badge-danger" : "badge badge-danger")">@countClosed</span></span>&nbsp;
+                                            <span>Void : @{ int countVoid = 0; foreach (var item in Model.ListSalesOrderMaster) { if (item.status.ToLower().Equals("void")) { countVoid++; } } }<span class="@(countVoid > 0 ? "badge badge-warning" : "badge badge-danger")">@countVoid</span></span>
+
+
+                                        </div>
+
+                                                }
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-inline">
+                                        <label style="cursor:pointer"><input type="checkbox" id="ckTxtSearch" name="manualSearch" value="false" onchange="onCheckChange()">&nbsp; Manual Search</label>&nbsp;
+                                        <input type="text" id="txtSearch" name="a_criteria3" value="" placeholder="Enter search here.." class="form-control" onkeyup="onchangeSearch()" hidden />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="dataTable" class="table table-bordered table-hover display" style="width:100%">
+                        <thead>
+                            <tr id="tableHeader" style="background-color: #5ba2e6;color: white;">
+                                <th>PO #</th>
+                                <th>Customer Name</th>
+                                <th>Contact Person</th>
+                                <th>Date</th>
+                                <th>Delivery Date</th>
+                                <th>Status</th>
+                                <th>Term in days</th>
+                                <th>Notes</th>
+                                <th>Hold Type</th>
+                                <th>Hold Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>@{ int counter = 0; int countNull = 0; }
+                        @foreach (var objProd in Model.ListSalesOrderMaster.OrderBy(m=>m.po_id))
+                        {
+                            counter++;
+                            <tr id="tableRow">
+                                <td>@objProd.po_id</td>
+                                <td>
+                                    @{  var db = new GT_Billing_SystemEntities();
+                                        var custName = db.tbl_customer.Where(m => m.customer_id == objProd.customer_id).FirstOrDefault();
+
+                                        string customerName = custName.customer_name;
+                                        string customerContactPerson = custName.contact_person;
+                                        int StrLength1 = customerName.Length;
+
+
+                                        if (custName != null)
+                                        {
+                                            countNull++;
+                                        }
+
+
+                                    }
+                                    @if (StrLength1 > 30)
+                                    {
+                                        <div title="@customerName">@customerName.Substring(0, 21) (cont..)</div>
+                                    }
+                                    else
+                                    {
+                                        <div>@customerName.ToString()</div>
+                                    }
+                                </td>
+                                <td>
+                                    @{ int StrLength = customerContactPerson.Length; }
+                                    @if (StrLength > 21)
+                                    {
+                                        <div title="@customerContactPerson">@customerContactPerson.Substring(0, 21) (cont..)</div>
+                                    }
+                                    else
+                                    {
+                                        <div>@customerContactPerson.ToString()</div>
+                                    }
+                                </td>
+                                <td>@objProd.po_date.ToShortDateString()</td>
+                                <td>@objProd.delivery_date.Value.ToShortDateString()</td>
+                                <td>
+                                    @{  if (objProd.status == "Unserved")
+                                        { <span class="badge badge-success">@objProd.status</span> }
+                                        if (objProd.status == "Partial")
+                                        { <span class="badge badge-primary">@objProd.status</span> }
+                                        if (objProd.status == "Void")
+                                        { <span class="badge badge-danger">@objProd.status</span> }
+                                        if (objProd.status == "Closed")
+                                        { <span class="badge badge-warning">@objProd.status</span> }
+
+                                    }
+                                </td>
+                                <td>@objProd.terms</td>
+                                <td>
+                                    @{ int StrLength2 = objProd.notes.Length; }
+                                    @if (StrLength2 > 21)
+                                    {
+                                        <div title="@objProd.notes">@objProd.notes.Substring(0, 21) (cont..)</div>
+                                    }
+                                    else
+                                    {
+                                        <div>@objProd.notes.ToString()</div>
+                                    }
+                                </td>
+                                <td>@objProd.hold_type</td>
+                                <td>@objProd.holdstatus</td>
+                                <td>
+                                    <a href="#" data-toggle="modal" onclick="viewPOdetails(@objProd.po_id)" style="color: green;"> VIEW </a> | <a href="/Order/Update/@objProd.po_id"> UPDATE </a> | <a href="#" onclick="onDelete(@objProd.po_id)" style="color: red;"> VOID </a>
+                                </td>
+                            </tr>
+
+                                <div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_user" aria-hidden="true" id="modalViewDetails">
+                                    <div class="modal-dialog modal-xl">
+                                        <div class="modal-content">
+                                            <form action="#" method="post" enctype="multipart/form-data">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;Sale Order Detail</h5>
+                                                    <button type="button" class="close" data-dismiss="modal">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        <span class="sr-only">Close</span>
+                                                    </button>
+                                                </div>
+
+                                                <div class="modal-body" id="detailsBody">
+
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                </div>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                                                             }
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function viewPOdetails(id)
+    {
+        //var request = new XMLHttpRequest();
+        //request.open('GET', "/Order/Partial_PO_details?id=" + id, false);
+
+        //request.send();
+
+        jQuery.noConflict();
+
+        $.ajax({
+            cache: false,
+            type: "GET",
+            url: "/Order/Partial_PO_details?id=" + id,
+        success: function (data)
+        {
+            var result = $("#detailsBody"); // document.getElementById("detailsBody");
+            //result.innerHTML = data;
+            result.html('');
+            result.html(data);
+            $("#modalViewDetails").modal('toggle');
+            console.log(data);
+
+        },
+        error: function (xhr, ajaxOptions, thrownError)
+        {
+            swal('Please Contact Administrator','Error','error')
+        }
+    });
+
+    }
+
+    function onDelete(id) {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this record!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+      .then((willDelete) => {
+          if (willDelete) {
+
+              var request = new XMLHttpRequest();
+              request.open('POST', "/Order/Delete?id=" + id);
+
+              request.onreadystatechange = function () {
+                  if (this.readyState == 4 && this.status == 200) {
+                      console.log(this.responseText);
+                      //console.log(request.responseText);
+
+                      var resObj = JSON.parse(this.responseText);
+
+
+                      if (resObj.code == 1) {
+                          swal("Successfully Deleted!", {
+                              icon: "success",
+                              closeOnClickOutside: false
+                          }).then((ok) => {
+                              if (ok) {
+                                  window.location.href = "/Order/Sale";
+                              }
+                          });
+                      }
+                      else {
+                          swal(resObj.message, {
+                              icon: "error",
+                              closeOnClickOutside: false
+                          })
+
+                      }
+                  }
+              };
+
+              request.send();
+
+          }
+      });
+    }
+</script>

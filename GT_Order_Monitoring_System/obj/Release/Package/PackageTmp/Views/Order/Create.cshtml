@@ -1,0 +1,692 @@
+﻿
+@{
+    ViewBag.TabTitle = "Create Sale Order";
+    ViewBag.Title = "Sale";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var db = new GT_Billing_SystemEntities();
+}
+@using GT_Order_Monitoring_System.Entity;
+@model GT_Order_Monitoring_System.Models.MyModel
+<div class="row">
+    <div class="col-xl-12">
+        <div class="breadcrumb-holder">
+            <h1 class="main-title float-left"><i class="fa fa-plus-square-o"></i> Sales Order</h1>
+            <ol class="breadcrumb float-right">
+                <li class="breadcrumb-item">Order</li>
+                <li class="breadcrumb-item active">Sales Order</li>
+            </ol>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card mb-5">
+            <div class="card-header">
+                <a href="/Order/Sale"><i class="fa fa-reply" aria-hidden="true"></i> Back</a>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("Create", "Order", FormMethod.Post))
+                {
+                <div class="col-lg-12">
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <div class="form-group row">
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="tabCustInfo" data-toggle="tab" href="#contactInfo" >Customer Information</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#contactAgent">Agent Information</a>
+                                    </li>
+                                </ul>
+                                
+                                <a href="#" class="btn btn-primary float-right" style="margin-left: 100px;cursor: pointer;" data-toggle="modal" data-target="#modal_add_show_customer">Select Customer</a>
+                            </div>
+                            <div class="container-fluid">
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade show active" id="contactInfo">
+                                        <hr />
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
+                                                <label>Customer Name :</label>
+                                                <input id="cust_customer_name" class="form-control border-0" name="customer_name" disabled/>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label>Contact Person&nbsp;: </label>
+                                                <input id="cust_contact_person" class="form-control border-0" name="contact_person" disabled/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <label>Address&nbsp;: </label>
+                                                <input id="cust_address" class="form-control border-0" name="address" disabled/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
+                                                <label>Phone #&nbsp;: </label>
+                                                <input id="cust_phone_no" class="form-control border-0" name="phone_no" disabled/>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label>Fax #&nbsp;: </label>
+                                                <input id="cust_fax_no" class="form-control border-0" name="fax_no" disabled/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
+                                                <label>Email Add&nbsp;: </label>
+                                                <input id="cust_email_add" class="form-control border-0" name="email_add" disabled/>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label>Agent Code&nbsp;: </label>
+                                                <input id="cust_agent_code" class="form-control border-0" name="agent_code" disabled/>
+                                            </div>
+                                        </div>
+                                        <div hidden>
+                                            <input type="text" name="customer_id" value="" id="cust_customer_id" disabled/>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="contactAgent">
+                                        <hr />
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
+                                                <label>Agent Name&nbsp;: </label>
+                                                <input id="agent_agent_name" class="form-control border-0" name="agent_name" disabled/>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label>Agent Code&nbsp;: </label>
+                                                <input id="agent_agent_code" class="form-control border-0" name="agent_code" disabled/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <label>Address&nbsp;: </label>
+                                                <input id="agent_address" class="form-control border-0" name="address" disabled />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
+                                                <label>Phone #&nbsp;: </label>
+                                                <span id="phone_no" name="phone_no"></span>
+                                                <input id="agent_phone_no" class="form-control border-0" name="phone_no" disabled />
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label>Email Add&nbsp;: </label>
+                                                <input id="agent_email_add" class="form-control border-0" name="email_add" disabled />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
+                                                <label>Status&nbsp;: </label>
+                                                <input id="agent_status" class="form-control border-0" name="status" disabled />
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label>Total Agent Commission &nbsp;: </label>
+                                                <input id="agent_commission" class="form-control border-0" name="commission" disabled />
+                                            </div>
+                                        </div>
+                                        <div hidden>
+                                            <input type="text" name="agentId" value="" id="agent_agentId" />
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                           </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group row">
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="orderForm" data-toggle="tab" href="#contactInfo">Sales Order Form</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="container-fluid">
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade show active" id="orderForm">
+                                        <hr />
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label>Status :</label>
+                                                <input id="cust_customer_name" class="form-control border-0" name="customer_name" value="Unserved" disabled />
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label>Delivery Date&nbsp;: </label>
+                                                <input id="delivery_date" type="datetime-local" class="form-control" name="delivery_date" required/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label>Sales Area&nbsp;: </label>
+                                                <select class="form-control">
+                                                    <option value="none">******* SELECT *******</option>
+                                                    <option value="Local">Local</option>
+                                                    <option value="OutOfTown">Out Of Town</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label>P.O #&nbsp;: </label>
+                                                <input id="po_no" class="form-control" name="po_no" />
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label>Type&nbsp;: </label>
+                                                <select class="form-control">
+                                                    <option value="none">******* SELECT *******</option>
+                                                    <option value="PO">PO #</option>
+                                                    <option value="ReqJO">Request Job Order</option>
+                                                    <option value="Profing">Proofing</option>
+                                                    <option value="Temp">Temp</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label>P.O Delivery Date&nbsp;: </label>
+                                                <input id="po_delivery_date" type="datetime-local" class="form-control" name="po_delivery_date" required/>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label>Terms&nbsp;: <span class="success">( Days )</span></label>
+                                                <input type="number" id="terms" class="form-control" name="terms" required/>
+                                            </div>
+                                        </div>
+                                        <hr style="border: none; border-bottom: 2px solid black;">
+                                        <div class="form-group row">
+                                            <div class="col-sm-12 form-inline float-right">
+                                                <label class="font-weight-bold">TOTAL&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp; </label>
+                                                <input id="total" type="text" class="form-control" name="total" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*<input type="submit" name="name" value="SUBMiT" />
+                    <a href="#" data-toggle="modal" data-target="#modal_items">Add Item</a>*@
+
+                </div>
+                <hr style="border: none; border-bottom: 2px solid black;">
+                <div class="col-lg-12">
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <div class="form-group row">
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="tabCustInfo" data-toggle="tab"  href="#myItem">My Items</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="container-fluid">
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade show active" id="myItem">
+                                        <hr />
+                                        <span class="pull-right">
+                                            <a href="#" class="btn btn-primary"  data-toggle="modal" data-target="#modal_items">
+                                                <i class="fas fa-plus-square" aria-hidden="true"></i> Add Item
+                                            </a>
+                                        </span>
+                                         <div class="table-responsive">
+                                            <table id="dataTable" class="table table-bordered table-hover display" style="width:100% ; margin-top: 10px;">
+                                                <thead>
+                                                    <tr id="tableHeader">
+                                                        <th>Qty</th>
+                                                        <th>Unit</th>
+                                                        <th>Revision Code</th>
+                                                        <th>Product Code</th>
+                                                        <th>Description</th>
+                                                        <th>Price</th>
+                                                        <th>Disc</th>
+                                                        <th>Amount</th>
+                                                        <th>PC(s)/PCK</th>
+                                                        <th>Control Type</th>
+                                                        <th>Order #</th>
+                                                        <th>Product Category</th>
+                                                        <th>Order Status</th>
+                                                        <th>Allow Over Limit</th>
+                                                        <th>Plate No</th>
+                                                        <th>Revision Desc</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                </tbody>
+                                            </table>
+                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Display Customer Details-->
+<div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_show_customer" aria-hidden="true" id="modal_add_show_customer" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="#" method="post" enctype="multipart/form-data">
+
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-users"></i>&nbsp;Select Customer</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-lg-12" style="height: 300px;">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <label>Search Agents&nbsp;</label>
+                                    <input type="text" name="txtAgentSearch" id="txtAgentSearch" value="" placeholder="Search Here" onkeyup="onchangeSearchAgent()" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group row" style="height: 300px;">
+                                <div class="col-lg-12">
+                                    <table style="width: inherit;" id="tblAgents">
+                                        <tbody style="display: block; border: none; height: 230px; overflow-y: scroll">
+                                            @{ var listCustomer = db.tbl_customer.ToList();
+                                            }
+                                            @foreach (var item in listCustomer)
+                                            {
+                                                <tr>
+                                                    <td style="width: 84%;">@item.customer_name <input id="lblCustomerName@(item.customer_id)" value="@item.customer_name" hidden /></td>
+                                                    <td><div id="@item.customer_id" class="btn btn-primary" data-value="" onclick="SelectCustomer(@item.customer_id)" style="cursor:pointer;" data-dismiss="modal">Select</div></td>
+                                                </tr>
+                                            }
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<!--Modal Display Customer Details-->
+<div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_items" aria-hidden="true" id="modal_items" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <form action="#" method="post" enctype="multipart/form-data">
+
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-plus-square"></i>&nbsp;Product Item</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group row">
+                                <div class="col-lg-12" style="height: 450px;">
+                                    <div class="form-group row">
+                                        <ul class="nav nav-tabs">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="jobproduct" data-toggle="tab" href="#jobproduct">Job Product(s)</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="comproduct" data-toggle="tab" href="#comproduct">Commercial Products</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="container-fluid">
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane fade show active" id="jobproduct">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-12">
+                                                        <label>Search Item&nbsp;</label>
+                                                        <input type="text" name="txtAgentSearch" id="txtAgentSearch" value="" placeholder="Search Here" onkeyup="onchangeSearchAgent()" class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <table class="table table-hover table-bordered table-responsive" style="width: inherit;" id="tblAgents">
+                                                    <tbody style="display: block; border: none; height: 340px; overflow-y: scroll">
+                                                     <tr id="tableHeader">
+                                                         <th style="width: 50px;">Code</th>
+                                                         <th style="width: 70px;">Description</th>
+                                                         <th>Price</th>
+                                                         <th style="width: 95px;">Qty</th>
+                                                         <th>Unit</th>
+                                                         <th style="width: 95px;">Disc</th>
+                                                         <th style="width: 95px;">Amount</th>
+                                                         <th style="width: 95px;">PC(s)/PCK</th>
+                                                         <th>Type</th>
+                                                         <th>Order Status</th>
+                                                         <th style="text-align:center;">Action</th>
+                                                     </tr>
+                                                      @foreach (var item in Model.ListJobProduct)
+                                                      {
+		                                                    <tr>
+                                                                <td>
+                                                                    @{ int StrLengthCode = item.code.Length; }
+                                                                    @if (StrLengthCode > 5)
+                                                                    {
+                                                                        <div title="@item.code.ToString()">@item.code.Substring(0, 5) <span class="badge badge-success" style="cursor: pointer;" onclick="swal('@item.code.ToString()')">(cont..)</span></div>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <div>@item.code.ToString()</div>
+                                                                    }
+                                                                </td>
+                                                                <td>
+                                                                    @{ int StrLength = item.description.Length; }
+                                                                    @if (StrLength > 15)
+                                                                    {
+                                                                        <div title="@item.description.ToString()">@item.description.Substring(0, 15) <span class="badge badge-success" style="cursor: pointer;" onclick="swal('@item.description')">(cont..)</span></div>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <div>@item.description.ToString()</div>
+                                                                    }
+                                                                </td>
+                                                                <td><div class="btn btn-success" onclick="onViewPrices('@string.Format("{0:n2}", item.unit_price)','@string.Format("{0:n2}", item.unit_priceth)','@string.Format("{0:n2}", item.unit_pricepck)','@string.Format("{0:n2}", item.unit_pricekg)','@string.Format("{0:n2}", item.unit_priceroll)')"><i class="fa fa-info-circle"></i></div></td>
+                                                                <td><input  type="number" class="form-control" name="qty" id="qty@(item.id)" onkeyup="onKeyUpAmt('@item.id')"/></td>
+                                                                <td>
+                                                                    <select id="select-unit@(item.id)" onchange="onSelectUnit('@item.unit_price','@item.unit_priceth','@item.unit_pricepck','@item.unit_pricekg','@item.unit_priceroll','@item.id')" class="form-control">
+                                                                        <option value="0">Select</option>
+                                                                        <option value="pc">PC(s)</option>
+                                                                        <option value="th">TH</option>
+                                                                        <option value="pck">PCK(s)</option>
+                                                                        <option value="kg">KG(s)</option>
+                                                                        <option value="roll">ROLL(s)</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td><input id="disc@(item.id)" type="number" class="form-control" name="disc" onkeyup="onDisc('@item.unit_price', '@item.unit_priceth', '@item.unit_pricepck', '@item.unit_pricekg', '@item.unit_priceroll', '@item.id')" /></td>
+                                                                <td><input id="amt@(item.id)" type="text" class="form-control border-0" name="amt" value="0" readonly/></td>
+                                                                <td><input id="pckpck@(item.id)" type="number" class="form-control" name="pc-pck" /></td>
+                                                                <td>
+                                                                    <select id="typeselect@(item.id)" class="form-control">
+                                                                        <option value="0">Select</option>
+                                                                        <option value="L">L</option>
+                                                                        <option value="P">P</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select id="statusselect@(item.id)" class="form-control">
+                                                                        <option value="0">Select</option>
+                                                                        <option value="New">New</option>
+                                                                        <option value="Repeat">Repeat</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td><a href="#" class="btn btn-success" title="Add Item"><i class="fa fa-plus-square" onclick="onAddItem('@item.id','Job')"></i></a></td>
+                                                            </tr>
+	                                                   }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane fade" id="comproduct">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-12">
+                                                        <label>Search Item&nbsp;</label>
+                                                        <input type="text" name="txtAgentSearch" id="txtAgentSearch" value="" placeholder="Search Here" onkeyup="onchangeSearchAgent()" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript"> 
+    function SelectCustomer(custId)
+    {
+        var url = "/Order/GetCustomer?id=" + custId;
+        
+
+        var request = new XMLHttpRequest();
+        // POST to any url
+        request.open('GET', url, false);
+
+        request.send();
+
+        var resObj = JSON.parse(request.response);
+
+        var res_tbl_agent = resObj.tbl_agent;
+        var res_tbl_customer = resObj.tbl_customer;
+
+        console.log(res_tbl_agent);
+
+        //set Value Agent Info
+        document.getElementById("agent_agent_name").value = res_tbl_agent.agent_name;
+        document.getElementById("agent_agent_code").value = res_tbl_agent.agent_code;
+        document.getElementById("agent_address").value = res_tbl_agent.address;
+        document.getElementById("agent_phone_no").value = res_tbl_agent.phone_no;
+        document.getElementById("agent_email_add").value = res_tbl_agent.email_add;
+        document.getElementById("agent_status").value = res_tbl_agent.status;
+        document.getElementById("agent_commission").value = res_tbl_agent.commission;
+        document.getElementById("agent_agentId").value = res_tbl_agent.id;
+
+        //set Value Agent Info
+        document.getElementById("cust_customer_name").value = res_tbl_customer.customer_name;
+        document.getElementById("cust_contact_person").value = res_tbl_customer.contact_person;
+        document.getElementById("cust_address").value = res_tbl_customer.address;
+        document.getElementById("cust_phone_no").value = res_tbl_customer.phone_no;
+        document.getElementById("cust_email_add").value = res_tbl_customer.email_add;
+        document.getElementById("cust_fax_no").value = res_tbl_customer.fax_no;
+        document.getElementById("cust_agent_code").value = res_tbl_customer.agent_code;
+        document.getElementById("cust_customer_id").value = res_tbl_customer.customer_id;
+    }
+
+    function onViewPrices(unit_price, unit_priceth, unit_pricepck, unit_pricekg, unit_priceroll)
+    {
+        var details = "Unit Price :  " + unit_price + "\n\n" +
+                      "Unit Priceth :  " + unit_priceth + "\n\n" +
+                      "Unit Pricepck :  " + unit_pricepck + "\n\n" +
+                      "Unit Pricekg :  " + unit_pricekg + "\n\n" +
+                      "Unit Priceroll : " + unit_priceroll;
+
+        swal({
+            title: "Product Prices",
+            text: details,
+            icon: "info"
+        });
+    }
+
+    function onSelectUnit(unit_price, unit_priceth, unit_pricepck, unit_pricekg, unit_priceroll, id)
+    {
+        var totalAmt = 0;
+
+        var qty = document.getElementById("qty"+id).value;
+        var selectElement = document.getElementById("select-unit"+id).value;
+        console.log(qty);
+        console.log(unit_price);
+
+        if (qty <= 0)
+        {
+            swal({
+                title: "Please input valid quantity",
+                text: "Error",
+                icon: "error"
+            });
+
+            document.getElementById("amt"+id).value = 0;
+        }
+
+        if (selectElement == "pc") {
+            totalAmt = parseFloat(qty) * parseFloat(unit_price)
+            document.getElementById("amt"+id).value = totalAmt;
+        }
+        else if (selectElement == "th") {
+            totalAmt = parseFloat(qty) * parseFloat(unit_priceth)
+            document.getElementById("amt"+id).value = totalAmt;
+        }
+        else if (selectElement == "pck") {
+            totalAmt = parseFloat(qty) * parseFloat(unit_pricepck)
+            document.getElementById("amt"+id).value = totalAmt;
+        }
+        else if (selectElement == "kg") {
+            totalAmt = parseFloat(qty) * parseFloat(unit_pricekg)
+            document.getElementById("amt"+id).value = totalAmt;
+        }
+        else if (selectElement == "roll") {
+            totalAmt = parseFloat(qty) * parseFloat(unit_priceroll)
+            document.getElementById("amt"+id).value = totalAmt;
+        }
+        else
+        {
+            document.getElementById("amt"+id).value = 0;
+        }
+    }
+
+    function onKeyUpAmt(id)
+    {
+        document.getElementById("select-unit" + id).value = 0;
+        document.getElementById("amt" + id).value = 0;
+    }
+
+    function onDisc(unit_price, unit_priceth, unit_pricepck, unit_pricekg, unit_priceroll, id)
+    {
+        //Toda
+    }
+
+    function onAddItem(itemId, prodType)
+    {
+        console.log("Add Item "+itemId);
+        //typeselect*statusselect*disc
+        var unit = document.getElementById("select-unit" + itemId).value;
+        var disc = document.getElementById("disc" + itemId).value;
+        var qty = document.getElementById("qty"+itemId).value;
+        var pckpck = document.getElementById("pckpck"+itemId).value;
+        var typeselect = document.getElementById("typeselect" + itemId).value;
+        var status = document.getElementById("statusselect" + itemId).value
+
+        //to do validation
+        var request = new XMLHttpRequest();
+        request.open('POST', "/Order/AddItem", false);
+
+        var formData = new FormData();
+        formData.append("itemId", itemId);
+        formData.append("unit", unit);
+        formData.append("qty", qty);
+        formData.append("disc", disc);
+        formData.append("pckpck", pckpck);
+        formData.append("type", typeselect);
+        formData.append("status", status);
+        formData.append("prodType", prodType);
+
+    
+        request.send(formData);
+
+        var resObj = JSON.parse(request.response);
+        //console.log(request.response);
+
+        //Set Total
+        document.getElementById("total").value = resObj.total;
+
+
+
+        var listItem = resObj.ListItems;
+
+        listItem.forEach(fetchItem);
+
+
+        swal("Item AddedSuccessfully!", {
+            icon: "success",
+            closeOnClickOutside: false
+        }).then((ok) => {
+            if (ok) {
+                //Clear textbox
+
+                document.getElementById("select-unit" + itemId).value = 0;
+                document.getElementById("disc" + itemId).value = 0;
+                document.getElementById("qty" + itemId).value = 0;
+                document.getElementById("pckpck" + itemId).value = 0;
+                document.getElementById("typeselect" + itemId).value = 0;
+                document.getElementById("statusselect" + itemId).value = 0;
+                document.getElementById("amt" + itemId).value = 0;
+            }
+        });
+
+        
+
+    }
+
+    function fetchItem(item, index)
+    {
+        var tableRef = document.getElementById('dataTable');
+
+
+        var rowCount = tableRef.rows.length;
+
+        $("#dataTable tableAdded").remove();
+
+       
+
+        var row = tableRef.insertRow(tableRef.rows.length - index);
+       // row.attr("id", "tableAdded")
+        var qty = row.insertCell(0);
+        var unit = row.insertCell(1);
+        var revcode = row.insertCell(2);
+        var prodCode = row.insertCell(3);
+        var desc = row.insertCell(4);
+        var price = row.insertCell(5);
+        var disc = row.insertCell(6);
+        var amount = row.insertCell(7);
+        var pcspck = row.insertCell(8);
+        var ctltype = row.insertCell(9);
+        var orderno = row.insertCell(10);
+        var prodCategory = row.insertCell(11);
+        var status = row.insertCell(12);
+        var allowOverLimit = row.insertCell(13);
+        var plateno = row.insertCell(13);
+        var revdesc = row.insertCell(14);
+        var action = row.insertCell(16);
+
+        qty.innerHTML = item.qty;
+        unit.innerHTML = item.unit;
+        revcode.innerHTML = item.revision_code;
+        prodCode.innerHTML =item.prod_code;
+        desc.innerHTML = item.description;
+        price.innerHTML = item.price;
+        disc.innerHTML = item.disc;
+        amount.innerHTML = item.amount;
+        pcspck.innerHTML = item.pcsperpack;
+        ctltype.innerHTML = item.control_type;
+        orderno.innerHTML = item.order_no;
+        prodCategory.innerHTML = item.product_category;
+        status.innerHTML = item.order_status;
+        allowOverLimit.innerHTML = item.overlimit;
+        plateno.innerHTML = item.plate_no;
+        revdesc.innerHTML = item.revision_desc;
+        action.innerHTML = "<button class='btn btn-danger'><i class='fa fa-trash'></i></button>";
+    }
+</script>

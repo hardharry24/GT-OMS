@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "PrintSaleOrder";
+    Layout = null;
+}
+@model GT_Order_Monitoring_System.Models.MyModel
+<link href="~/Content/print/documentStyle.css" rel="stylesheet" />
+<!-- Bootstrap CSS -->
+<link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+<!-- Font Awesome CSS -->
+<link href="~/Content/assets/font-awesome/css/all.css" rel="stylesheet" type="text/css" />
+
+<!-- Custom CSS -->
+<link href="~/Content/assets/css/style.css" rel="stylesheet" type="text/css" />
+
+<!-- BEGIN CSS for this page -->
+<link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/chart.js/Chart.min.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/datatables/datatables.min.css" />
+<link href="~/Content/assets/css/custom/loader.css" rel="stylesheet" />
+
+@*<h2>Print Polybag</h2>*@
+<br /><br />
+
+<page size="A4">
+    <div class="col-12 row" style="text-align: center;">
+        <label style="font-size: 35px; margin-left: auto; margin-right: auto; margin-top: 50px;" class="font-weight-bold">PACKING LIST</label>
+     </div>
+    <div class="col-12 row">
+          <table border="0" style="width: 100%; margin-top: 30px; margin-left: 50px; margin-right:  40px; font-size: 12px;">
+              <tr>
+                  <td  style="width: 50%">Sold By: &nbsp;&nbsp;<label class="font-weight-bold"> GT INDUSTRIAL DEVELOPMENT</label></td>
+                  <td colspan="2" style="width: 50%">Sold To: <label class="font-weight-bold">@Model.Customer.customer_name</label></td>
+              </tr>
+              <tr>
+                  <td>Address: <label class="font-weight-bold">2nd Floor Grand Orchard Bldg, Basak San Nicolas, Cebu City</label></td>
+                  @*<td>Address:</td>*@
+                  <td colspan="2">Address: <label class="font-weight-bold">@Model.Customer.address</label></td>
+              </tr>
+              <tr>
+                  <td>Delivery Date: <label class="font-weight-bold">@Model.PoMaster.delivery_date.Value.ToShortDateString()</label></td>
+                  <td>Ref. No: <label class="font-weight-bold">@Model.PoMaster.po_no</label></td>
+                  <td><label class="font-weight-bold">S.O No:</label> @Model.ListSalesOrderDetails.Sum(m => m.amount)</td>
+              </tr>
+     </table>
+        <br />
+
+        <div class="col-12 row">
+            <br />
+                <table border="1" style="border: 1px solid black; border-radius: 10px;   margin-top: 10px; margin-left: 50px; margin-right:  10px; padding: 10px; width: 100%;font-size: 12px;">
+                    <tr style="text-align: center;padding: 10px; border: 1px solid black;">
+                        <th style="padding: 10px">Quantity</th>
+                        <th style="padding: 10px">Unit</th>
+                        <th style="padding: 10px">Description</th>
+                        <th style="padding: 10px">Amount</th>
+                    </tr>
+                  @foreach (var item in Model.ListSalesOrderDetails)
+                  {
+                    <tr style="text-align: center;">
+                        <td style="padding: 5px">@item.qty</td>
+                        <td style="padding: 5px">@item.unit</td>
+                        <td style="padding: 5px">@item.description</td>
+                        <td style="padding: 5px">@item.amount</td>
+                    </tr>
+                  }
+                </table>
+            
+        </div>
+        
+        <div class="col-12 row" style="margin-top: 30%;margin-left: 40px; ">
+
+            <table  style="width: 100%; margin-right: 50px; border-top: 1px solid black;">
+                <tr>
+                    <td>Remarks: <label>@Model.PoMaster.notes</label></td>
+                </tr>
+            </table>
+            <br /><br />
+            <div class="col-6" style="margin-top: 20px;">
+                <div class="row">
+                    Prepared by:
+                </div>
+                <div class="row" style="margin-top: 50px;">
+                    <br />
+                    <label>PRINT NAME AND SIGNATURE</label>
+                </div>
+            </div>
+            <div class="col-6"  style="margin-top: 20px;">
+                <div class="row">
+                    Noted by:
+                </div>
+                <div class="row" style="margin-top: 50px;">
+                    <br />
+                    <label>PRINT NAME AND SIGNATURE</label>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+   
+</page>

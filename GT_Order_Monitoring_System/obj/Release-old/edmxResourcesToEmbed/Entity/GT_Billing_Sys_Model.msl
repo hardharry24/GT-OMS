@@ -1,0 +1,522 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GT_Billing_SystemModelStoreContainer" CdmEntityContainer="GT_Billing_SystemEntities">
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="GT_Billing_SystemModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="GT_Billing_SystemModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="GT_Billing_SystemModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="GT_Billing_SystemModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GT_Billing_SystemModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="GT_Billing_SystemModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GT_Billing_SystemModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="GT_Billing_SystemModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="GT_Billing_SystemModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="sp_billing_search_customer" FunctionName="GT_Billing_SystemModel.Store.sp_billing_search_customer">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GT_Billing_SystemModel.sp_billing_search_customer_Result">
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="contact_person" ColumnName="contact_person" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phone_no" ColumnName="phone_no" />
+          <ScalarProperty Name="fax_no" ColumnName="fax_no" />
+          <ScalarProperty Name="email_add" ColumnName="email_add" />
+          <ScalarProperty Name="agent_code" ColumnName="agent_code" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+          <ScalarProperty Name="over_" ColumnName="over_" />
+          <ScalarProperty Name="credit_limit" ColumnName="credit_limit" />
+          <ScalarProperty Name="credit_terms" ColumnName="credit_terms" />
+          <ScalarProperty Name="business_style" ColumnName="business_style" />
+          <ScalarProperty Name="tin_no" ColumnName="tin_no" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_billing_search_job_product" FunctionName="GT_Billing_SystemModel.Store.sp_billing_search_job_product">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GT_Billing_SystemModel.sp_billing_search_job_product_Result">
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="unit_price" ColumnName="unit_price" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="datelast_order" ColumnName="datelast_order" />
+          <ScalarProperty Name="noofdays_inactive" ColumnName="noofdays_inactive" />
+          <ScalarProperty Name="unit_priceth" ColumnName="unit_priceth" />
+          <ScalarProperty Name="unit_pricepck" ColumnName="unit_pricepck" />
+          <ScalarProperty Name="unit_pricekg" ColumnName="unit_pricekg" />
+          <ScalarProperty Name="unit_priceroll" ColumnName="unit_priceroll" />
+          <ScalarProperty Name="plate_no" ColumnName="plate_no" />
+          <ScalarProperty Name="revision_code" ColumnName="revision_code" />
+          <ScalarProperty Name="revision_desc" ColumnName="revision_desc" />
+          <ScalarProperty Name="prod_code" ColumnName="prod_code" />
+          <ScalarProperty Name="revision_id" ColumnName="revision_id" />
+          <ScalarProperty Name="revision_status" ColumnName="revision_status" />
+          <ScalarProperty Name="plastic_category" ColumnName="plastic_category" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_billing_search_commercial_product" FunctionName="GT_Billing_SystemModel.Store.sp_billing_search_commercial_product">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GT_Billing_SystemModel.sp_billing_search_commercial_product_Result">
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="unit_price" ColumnName="unit_price" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="unit_priceth" ColumnName="unit_priceth" />
+          <ScalarProperty Name="unit_pricepck" ColumnName="unit_pricepck" />
+          <ScalarProperty Name="unit_pricekg" ColumnName="unit_pricekg" />
+          <ScalarProperty Name="unit_priceroll" ColumnName="unit_priceroll" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dtproperties">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.dtproperties">
+        <MappingFragment StoreEntitySet="dtproperties">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="lvalue" ColumnName="lvalue" />
+          <ScalarProperty Name="uvalue" ColumnName="uvalue" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="property" ColumnName="property" />
+          <ScalarProperty Name="objectid" ColumnName="objectid" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_agent">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.tbl_agent">
+        <MappingFragment StoreEntitySet="tbl_agent">
+          <ScalarProperty Name="commission" ColumnName="commission" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="email_add" ColumnName="email_add" />
+          <ScalarProperty Name="phone_no" ColumnName="phone_no" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="agent_code" ColumnName="agent_code" />
+          <ScalarProperty Name="agent_name" ColumnName="agent_name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_agent_detail">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.tbl_agent_detail">
+        <MappingFragment StoreEntitySet="tbl_agent_detail">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="si_type" ColumnName="si_type" />
+          <ScalarProperty Name="si_no" ColumnName="si_no" />
+          <ScalarProperty Name="agent_code" ColumnName="agent_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_commercial_product">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.tbl_commercial_product">
+        <MappingFragment StoreEntitySet="tbl_commercial_product">
+          <ScalarProperty Name="unit_priceroll" ColumnName="unit_priceroll" />
+          <ScalarProperty Name="unit_pricekg" ColumnName="unit_pricekg" />
+          <ScalarProperty Name="unit_pricepck" ColumnName="unit_pricepck" />
+          <ScalarProperty Name="unit_priceth" ColumnName="unit_priceth" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="unit_price" ColumnName="unit_price" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_commercial_produnit">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.tbl_commercial_produnit">
+        <MappingFragment StoreEntitySet="tbl_commercial_produnit">
+          <ScalarProperty Name="unitprice" ColumnName="unitprice" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="code" ColumnName="code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_commission_detail">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.tbl_commission_detail">
+        <MappingFragment StoreEntitySet="tbl_commission_detail">
+          <ScalarProperty Name="si_type" ColumnName="si_type" />
+          <ScalarProperty Name="si_no" ColumnName="si_no" />
+          <ScalarProperty Name="comm_no" ColumnName="comm_no" />
+          <ScalarProperty Name="comm_id" ColumnName="comm_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_commission_master">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.tbl_commission_master">
+        <MappingFragment StoreEntitySet="tbl_commission_master">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="agent_code" ColumnName="agent_code" />
+          <ScalarProperty Name="comm_date" ColumnName="comm_date" />
+          <ScalarProperty Name="comm_no" ColumnName="comm_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_counterreceipt_detail">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.tbl_counterreceipt_detail">
+        <MappingFragment StoreEntitySet="tbl_counterreceipt_detail">
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="adjustment" ColumnName="adjustment" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="satus" ColumnName="satus" />
+          <ScalarProperty Name="particulars" ColumnName="particulars" />
+          <ScalarProperty Name="si_date" ColumnName="si_date" />
+          <ScalarProperty Name="si_type" ColumnName="si_type" />
+          <ScalarProperty Name="si_no" ColumnName="si_no" />
+          <ScalarProperty Name="cr_no" ColumnName="cr_no" />
+          <ScalarProperty Name="invoice_id" ColumnName="invoice_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_counterreceipt_master">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.tbl_counterreceipt_master">
+        <MappingFragment StoreEntitySet="tbl_counterreceipt_master">
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="agent_code" ColumnName="agent_code" />
+          <ScalarProperty Name="totalamount" ColumnName="totalamount" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="cr_date" ColumnName="cr_date" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="cr_no" ColumnName="cr_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_customer">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.tbl_customer">
+        <MappingFragment StoreEntitySet="tbl_customer">
+          <ScalarProperty Name="tin_no" ColumnName="tin_no" />
+          <ScalarProperty Name="business_style" ColumnName="business_style" />
+          <ScalarProperty Name="credit_terms" ColumnName="credit_terms" />
+          <ScalarProperty Name="credit_limit" ColumnName="credit_limit" />
+          <ScalarProperty Name="over_" ColumnName="over_" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="agent_code" ColumnName="agent_code" />
+          <ScalarProperty Name="email_add" ColumnName="email_add" />
+          <ScalarProperty Name="fax_no" ColumnName="fax_no" />
+          <ScalarProperty Name="phone_no" ColumnName="phone_no" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="contact_person" ColumnName="contact_person" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_invoice_detail">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.tbl_invoice_detail">
+        <MappingFragment StoreEntitySet="tbl_invoice_detail">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="disc" ColumnName="disc" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="invoice_id" ColumnName="invoice_id" />
+          <ScalarProperty Name="item_id" ColumnName="item_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_job_product">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.tbl_job_product">
+        <MappingFragment StoreEntitySet="tbl_job_product">
+          <ScalarProperty Name="plastic_category" ColumnName="plastic_category" />
+          <ScalarProperty Name="revision_status" ColumnName="revision_status" />
+          <ScalarProperty Name="revision_id" ColumnName="revision_id" />
+          <ScalarProperty Name="prod_code" ColumnName="prod_code" />
+          <ScalarProperty Name="revision_desc" ColumnName="revision_desc" />
+          <ScalarProperty Name="revision_code" ColumnName="revision_code" />
+          <ScalarProperty Name="plate_no" ColumnName="plate_no" />
+          <ScalarProperty Name="unit_priceroll" ColumnName="unit_priceroll" />
+          <ScalarProperty Name="unit_pricekg" ColumnName="unit_pricekg" />
+          <ScalarProperty Name="unit_pricepck" ColumnName="unit_pricepck" />
+          <ScalarProperty Name="unit_priceth" ColumnName="unit_priceth" />
+          <ScalarProperty Name="noofdays_inactive" ColumnName="noofdays_inactive" />
+          <ScalarProperty Name="datelast_order" ColumnName="datelast_order" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="unit_price" ColumnName="unit_price" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_job_produnit">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.tbl_job_produnit">
+        <MappingFragment StoreEntitySet="tbl_job_produnit">
+          <ScalarProperty Name="unitprice" ColumnName="unitprice" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="code" ColumnName="code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_payment_bank">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.tbl_payment_bank">
+        <MappingFragment StoreEntitySet="tbl_payment_bank">
+          <ScalarProperty Name="branch" ColumnName="branch" />
+          <ScalarProperty Name="bank_name" ColumnName="bank_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_payment_check">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.tbl_payment_check">
+        <MappingFragment StoreEntitySet="tbl_payment_check">
+          <ScalarProperty Name="balance" ColumnName="balance" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+          <ScalarProperty Name="check_date" ColumnName="check_date" />
+          <ScalarProperty Name="check_no" ColumnName="check_no" />
+          <ScalarProperty Name="branch" ColumnName="branch" />
+          <ScalarProperty Name="bank_name" ColumnName="bank_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_payment_detail">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.tbl_payment_detail">
+        <MappingFragment StoreEntitySet="tbl_payment_detail">
+          <ScalarProperty Name="adjustment_type" ColumnName="adjustment_type" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="payment" ColumnName="payment" />
+          <ScalarProperty Name="adjustment" ColumnName="adjustment" />
+          <ScalarProperty Name="si_amount" ColumnName="si_amount" />
+          <ScalarProperty Name="si_date" ColumnName="si_date" />
+          <ScalarProperty Name="si_type" ColumnName="si_type" />
+          <ScalarProperty Name="si_no" ColumnName="si_no" />
+          <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+          <ScalarProperty Name="invoice_id" ColumnName="invoice_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_payment_master">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.tbl_payment_master">
+        <MappingFragment StoreEntitySet="tbl_payment_master">
+          <ScalarProperty Name="amt_applied" ColumnName="amt_applied" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="payment_form" ColumnName="payment_form" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+          <ScalarProperty Name="or_date" ColumnName="or_date" />
+          <ScalarProperty Name="or_type" ColumnName="or_type" />
+          <ScalarProperty Name="or_no" ColumnName="or_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_payment_pmo">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.tbl_payment_pmo">
+        <MappingFragment StoreEntitySet="tbl_payment_pmo">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+          <ScalarProperty Name="pmo_date" ColumnName="pmo_date" />
+          <ScalarProperty Name="acct_no" ColumnName="acct_no" />
+          <ScalarProperty Name="branch" ColumnName="branch" />
+          <ScalarProperty Name="bank_name" ColumnName="bank_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_returnslip_detail">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.tbl_returnslip_detail">
+        <MappingFragment StoreEntitySet="tbl_returnslip_detail">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="disc" ColumnName="disc" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="rs_no" ColumnName="rs_no" />
+          <ScalarProperty Name="item_no" ColumnName="item_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_returnslip_master">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.tbl_returnslip_master">
+        <MappingFragment StoreEntitySet="tbl_returnslip_master">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="si_type" ColumnName="si_type" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="totalamount" ColumnName="totalamount" />
+          <ScalarProperty Name="rs_date" ColumnName="rs_date" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="si_no" ColumnName="si_no" />
+          <ScalarProperty Name="rs_no" ColumnName="rs_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_sales_invoice">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.tbl_sales_invoice">
+        <MappingFragment StoreEntitySet="tbl_sales_invoice">
+          <ScalarProperty Name="dr_no_copy" ColumnName="dr_no_copy" />
+          <ScalarProperty Name="adjustment_type" ColumnName="adjustment_type" />
+          <ScalarProperty Name="adjustment" ColumnName="adjustment" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="agent_commission" ColumnName="agent_commission" />
+          <ScalarProperty Name="agent_percent" ColumnName="agent_percent" />
+          <ScalarProperty Name="agent_code" ColumnName="agent_code" />
+          <ScalarProperty Name="totalamount" ColumnName="totalamount" />
+          <ScalarProperty Name="tax" ColumnName="tax" />
+          <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+          <ScalarProperty Name="ppa" ColumnName="ppa" />
+          <ScalarProperty Name="handling" ColumnName="handling" />
+          <ScalarProperty Name="freight" ColumnName="freight" />
+          <ScalarProperty Name="bill_no" ColumnName="bill_no" />
+          <ScalarProperty Name="vge_no" ColumnName="vge_no" />
+          <ScalarProperty Name="vessel" ColumnName="vessel" />
+          <ScalarProperty Name="via" ColumnName="via" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="due_date" ColumnName="due_date" />
+          <ScalarProperty Name="si_date" ColumnName="si_date" />
+          <ScalarProperty Name="terms" ColumnName="terms" />
+          <ScalarProperty Name="sales_area" ColumnName="sales_area" />
+          <ScalarProperty Name="po_no" ColumnName="po_no" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="control_no" ColumnName="control_no" />
+          <ScalarProperty Name="invoice_id" ColumnName="invoice_id" />
+          <ScalarProperty Name="si_type" ColumnName="si_type" />
+          <ScalarProperty Name="si_no" ColumnName="si_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_user">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.tbl_user">
+        <MappingFragment StoreEntitySet="tbl_user">
+          <ScalarProperty Name="acc_level" ColumnName="acc_level" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="code" ColumnName="code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pbcatedt">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.pbcatedt">
+        <MappingFragment StoreEntitySet="pbcatedt">
+          <ScalarProperty Name="pbe_work" ColumnName="pbe_work" />
+          <ScalarProperty Name="pbe_flag" ColumnName="pbe_flag" />
+          <ScalarProperty Name="pbe_seqn" ColumnName="pbe_seqn" />
+          <ScalarProperty Name="pbe_cntr" ColumnName="pbe_cntr" />
+          <ScalarProperty Name="pbe_type" ColumnName="pbe_type" />
+          <ScalarProperty Name="pbe_edit" ColumnName="pbe_edit" />
+          <ScalarProperty Name="pbe_name" ColumnName="pbe_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pbcatfmt">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.pbcatfmt">
+        <MappingFragment StoreEntitySet="pbcatfmt">
+          <ScalarProperty Name="pbf_cntr" ColumnName="pbf_cntr" />
+          <ScalarProperty Name="pbf_type" ColumnName="pbf_type" />
+          <ScalarProperty Name="pbf_frmt" ColumnName="pbf_frmt" />
+          <ScalarProperty Name="pbf_name" ColumnName="pbf_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pbcatvld">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.pbcatvld">
+        <MappingFragment StoreEntitySet="pbcatvld">
+          <ScalarProperty Name="pbv_msg" ColumnName="pbv_msg" />
+          <ScalarProperty Name="pbv_cntr" ColumnName="pbv_cntr" />
+          <ScalarProperty Name="pbv_type" ColumnName="pbv_type" />
+          <ScalarProperty Name="pbv_vald" ColumnName="pbv_vald" />
+          <ScalarProperty Name="pbv_name" ColumnName="pbv_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_avail_list">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.tbl_avail_list">
+        <MappingFragment StoreEntitySet="tbl_avail_list">
+          <ScalarProperty Name="group_code" ColumnName="group_code" />
+          <ScalarProperty Name="avail_id" ColumnName="avail_id" />
+          <ScalarProperty Name="id_code" ColumnName="id_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_transactions">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.tbl_transactions">
+        <MappingFragment StoreEntitySet="tbl_transactions">
+          <ScalarProperty Name="trans_action" ColumnName="trans_action" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="trans_type" ColumnName="trans_type" />
+          <ScalarProperty Name="trans_number" ColumnName="trans_number" />
+          <ScalarProperty Name="trans_name" ColumnName="trans_name" />
+          <ScalarProperty Name="trans_date" ColumnName="trans_date" />
+          <ScalarProperty Name="trans_id" ColumnName="trans_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_job_product_customer">
+      <EntityTypeMapping TypeName="GT_Billing_SystemModel.vw_job_product_customer">
+        <MappingFragment StoreEntitySet="vw_job_product_customer">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="plastic_category" ColumnName="plastic_category" />
+          <ScalarProperty Name="revision_status" ColumnName="revision_status" />
+          <ScalarProperty Name="revision_id" ColumnName="revision_id" />
+          <ScalarProperty Name="prod_code" ColumnName="prod_code" />
+          <ScalarProperty Name="revision_desc" ColumnName="revision_desc" />
+          <ScalarProperty Name="revision_code" ColumnName="revision_code" />
+          <ScalarProperty Name="plate_no" ColumnName="plate_no" />
+          <ScalarProperty Name="unit_priceroll" ColumnName="unit_priceroll" />
+          <ScalarProperty Name="unit_pricekg" ColumnName="unit_pricekg" />
+          <ScalarProperty Name="unit_pricepck" ColumnName="unit_pricepck" />
+          <ScalarProperty Name="unit_priceth" ColumnName="unit_priceth" />
+          <ScalarProperty Name="noofdays_inactive" ColumnName="noofdays_inactive" />
+          <ScalarProperty Name="datelast_order" ColumnName="datelast_order" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="unit_price" ColumnName="unit_price" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_billing_search_agent" FunctionName="GT_Billing_SystemModel.Store.sp_billing_search_agent">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GT_Billing_SystemModel.sp_billing_search_agent_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="agent_name" ColumnName="agent_name" />
+          <ScalarProperty Name="agent_code" ColumnName="agent_code" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phone_no" ColumnName="phone_no" />
+          <ScalarProperty Name="email_add" ColumnName="email_add" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="commission" ColumnName="commission" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

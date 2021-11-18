@@ -1,0 +1,238 @@
+﻿
+@{
+    ViewBag.TabTitle = "Create Job Product";
+    ViewBag.Title = "JobProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+@using GT_Order_Monitoring_System.Entity
+@model GT_Order_Monitoring_System.Entity.tbl_job_product
+<div class="row">
+    <div class="col-xl-12">
+        <div class="breadcrumb-holder">
+            <h1 class="main-title float-left">Create Job Product</h1>
+            <ol class="breadcrumb float-right">
+                <li class="breadcrumb-item">Product</li>
+                <li class="breadcrumb-item active">Create Job Products</li>
+            </ol>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card mb-5">
+            <div class="card-header">
+                <a href="/Job/JobProduct"><i class="fa fa-reply" aria-hidden="true"></i> Back</a>
+            </div>
+            <div class="card-body">
+                <div class="col-lg-12">
+                    @using (Html.BeginForm("Create", "Job", FormMethod.Post))
+                    {
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <label>Customer &nbsp;</label> <div class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal_add_show_customer" style="cursor: pointer;"><i class="fa fa-search"></i></div>
+                                @Html.TextBoxFor(m => m.customer_id, new { @id = "JobProduct_customer_id", @class = "form-control", @hidden = "true", @required = "true" })
+                                <input class="form-control" name="customer_name" id="customer_name" type="text" value="@(ViewBag.SelectedCustomer != "" ? ViewBag.SelectedCustomer : "")" readonly />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label>Code &nbsp;</label>
+                                @Html.TextBoxFor(m => m.code, new { @class = "form-control", @required = "true" })
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Product Code &nbsp;</label>
+                                @Html.TextBoxFor(m => m.prod_code, new { @class = "form-control", @required = "true" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <label>Description &nbsp;</label>
+                                @Html.TextBoxFor(m => m.description, new { @class = "form-control", @required = "true" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label>Unit Price &nbsp;</label>
+                                @Html.TextBoxFor(m => m.unit_price, new { @class = "form-control", @type = "number", @required = "true" })
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Unit Priceth &nbsp;</label>
+                                @Html.TextBoxFor(m => m.unit_priceth, new { @class = "form-control", @type = "number", @required = "true" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label>Unit Pricepck &nbsp;</label>
+                                @Html.TextBoxFor(m => m.unit_pricepck, new { @class = "form-control", @type = "number", @required = "true" })
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Unit Pricekg &nbsp;</label>
+                                @Html.TextBoxFor(m => m.unit_pricekg, new { @class = "form-control", @type = "number", @required = "true" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label>Date Last Order&nbsp;</label>
+                                @Html.TextBoxFor(m => m.datelast_order, new { @class = "form-control", @type = "datetime-local", @required = "true" })
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Number of Days Inaactive &nbsp;</label>
+                                @Html.TextBoxFor(m => m.noofdays_inactive, new { @class = "form-control", @type = "number", @required = "true" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label>Status&nbsp;</label>
+                                @Html.DropDownListFor(m => m.status, new SelectList(new List<Object> { new { value = "Active", text = "Active" }, new { value = "Inactive", text = "Inactive" } }, "value", "text"), new { @class = "form-control" })
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Plastic Category &nbsp;</label>
+                                @Html.DropDownListFor(m => m.plastic_category, new SelectList(new List<Object> { new { value = "Plain", text = "Plain" }, new { value = "Printed", text = "Printed" } }, "value", "text"), new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <input class="btn btn-success" type="submit" name="Submit" value="SUBMIT" />
+                            </div>
+                        </div>
+                        if (ViewBag.errorMessage != "")
+                        {
+                            <div class="alert @(ViewBag.errorCode == "1" ? "alert-success": "alert-danger")">@ViewBag.errorMessage</div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Display Customer Details-->
+<div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_show_customer" aria-hidden="true" id="modal_add_show_customer">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="#" method="post" enctype="multipart/form-data">
+
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-users"></i>&nbsp;Select Customer</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-lg-12" style="height: 300px;">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <label>Search Agents&nbsp;</label>
+                                    <input type="text" name="txtAgentSearch" id="txtAgentSearch" value="" placeholder="Search Here" onkeyup="onchangeSearchAgent()" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group row" style="height: 300px;">
+                                <div class="col-lg-12">
+                                    <table style="width: inherit;" id="tblAgents">
+                                        <tbody style="display: block; border: none; height: 230px; overflow-y: scroll">
+                                            @{ var listCustomer = (IEnumerable<tbl_customer>)Session["ListCustomer"];
+                                            }
+                                            @foreach (var item in listCustomer)
+                                            {
+                                                <tr>
+                                                    <td style="width: 84%;">@item.customer_name <input id="lblCustomerName@(item.customer_id)" value="@item.customer_name" hidden /></td>
+                                                    <td><div id="@item.customer_id" class="btn btn-primary" data-value="" onclick="selectedCustomer('@item.customer_id')" style="cursor:pointer;" data-dismiss="modal">Select</div></td>
+                                                </tr>
+                                            }
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+<!--Modal Display Code-->
+<div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_show_code" aria-hidden="true" id="modal_add_show_code">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="#" method="post" enctype="multipart/form-data">
+
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-users"></i>&nbsp;Select Code</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-lg-12" style="height: 300px;">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <label>Search Agents&nbsp;</label>
+                                    <input type="text" name="txtAgentSearch" id="txtAgentSearch" value="" placeholder="Search Here" onkeyup="onchangeSearchAgent()" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group row" style="height: 300px;">
+                                <div class="col-lg-12">
+                                    <table style="width: inherit;" id="tblAgents">
+                                        <tbody style="display: block; border: none; height: 230px; overflow-y: scroll">
+
+                                            @foreach (var item in listCustomer)
+                                            {
+                                                <tr>
+                                                    <td style="width: 84%;">@item.customer_name <input id="lblCustomerName@(item.customer_id)" value="@item.customer_name" hidden /></td>
+                                                    <td><div id="@item.customer_id" class="btn btn-primary" data-value="" onclick="selectedCustomer('@item.customer_id')" style="cursor:pointer;" data-dismiss="modal">Select</div></td>
+                                                </tr>
+                                            }
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/Content/assets/js/customer.js"></script>
+<script type="text/javascript">
+    function selectedCustomer(id)
+    {
+        document.getElementById("JobProduct_customer_id").value = id;
+        console.log(id);
+
+        var custName = document.getElementById("lblCustomerName" + id).value;
+        console.log(custName);
+
+        document.getElementById("customer_name").value = custName;
+
+    }
+   
+</script>

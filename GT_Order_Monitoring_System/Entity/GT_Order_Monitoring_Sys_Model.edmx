@@ -1,0 +1,2517 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GT_Order_Monitoring_SystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="dtproperties">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="property" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="objectid" Type="int" />
+          <Property Name="property" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="value" Type="nvarchar" MaxLength="255" />
+          <Property Name="uvalue" Type="nvarchar" MaxLength="255" />
+          <Property Name="lvalue" Type="varbinary(max)" />
+          <Property Name="version" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'gtplasti_oms.gtplasti_oms.pbcatcol' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="pbcatcol">
+          <Property Name="pbc_tnam" Type="nchar" MaxLength="30" />
+          <Property Name="pbc_tid" Type="int" />
+          <Property Name="pbc_ownr" Type="nchar" MaxLength="30" />
+          <Property Name="pbc_cnam" Type="nchar" MaxLength="30" />
+          <Property Name="pbc_cid" Type="smallint" />
+          <Property Name="pbc_labl" Type="nvarchar" MaxLength="254" />
+          <Property Name="pbc_lpos" Type="smallint" />
+          <Property Name="pbc_hdr" Type="nvarchar" MaxLength="254" />
+          <Property Name="pbc_hpos" Type="smallint" />
+          <Property Name="pbc_jtfy" Type="smallint" />
+          <Property Name="pbc_mask" Type="nvarchar" MaxLength="31" />
+          <Property Name="pbc_case" Type="smallint" />
+          <Property Name="pbc_hght" Type="smallint" />
+          <Property Name="pbc_wdth" Type="smallint" />
+          <Property Name="pbc_ptrn" Type="nvarchar" MaxLength="31" />
+          <Property Name="pbc_bmap" Type="nchar" MaxLength="1" />
+          <Property Name="pbc_init" Type="nvarchar" MaxLength="254" />
+          <Property Name="pbc_cmnt" Type="nvarchar" MaxLength="254" />
+          <Property Name="pbc_edit" Type="nvarchar" MaxLength="31" />
+          <Property Name="pbc_tag" Type="nvarchar" MaxLength="254" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'gtplasti_oms.gtplasti_oms.pbcatedt' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="pbcatedt">
+          <Key>
+            <PropertyRef Name="pbe_name" />
+            <PropertyRef Name="pbe_type" />
+            <PropertyRef Name="pbe_seqn" />
+          </Key>
+          <Property Name="pbe_name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="pbe_edit" Type="nvarchar" MaxLength="254" />
+          <Property Name="pbe_type" Type="smallint" Nullable="false" />
+          <Property Name="pbe_cntr" Type="int" />
+          <Property Name="pbe_seqn" Type="smallint" Nullable="false" />
+          <Property Name="pbe_flag" Type="int" />
+          <Property Name="pbe_work" Type="nchar" MaxLength="32" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'gtplasti_oms.gtplasti_oms.pbcatfmt' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="pbcatfmt">
+          <Key>
+            <PropertyRef Name="pbf_name" />
+            <PropertyRef Name="pbf_frmt" />
+            <PropertyRef Name="pbf_type" />
+          </Key>
+          <Property Name="pbf_name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="pbf_frmt" Type="nvarchar" MaxLength="254" Nullable="false" />
+          <Property Name="pbf_type" Type="smallint" Nullable="false" />
+          <Property Name="pbf_cntr" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'gtplasti_oms.gtplasti_oms.pbcattbl' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="pbcattbl">
+          <Property Name="pbt_tnam" Type="nchar" MaxLength="30" />
+          <Property Name="pbt_tid" Type="int" />
+          <Property Name="pbt_ownr" Type="nchar" MaxLength="30" />
+          <Property Name="pbd_fhgt" Type="smallint" />
+          <Property Name="pbd_fwgt" Type="smallint" />
+          <Property Name="pbd_fitl" Type="nchar" MaxLength="1" />
+          <Property Name="pbd_funl" Type="nchar" MaxLength="1" />
+          <Property Name="pbd_fchr" Type="smallint" />
+          <Property Name="pbd_fptc" Type="smallint" />
+          <Property Name="pbd_ffce" Type="nchar" MaxLength="32" />
+          <Property Name="pbh_fhgt" Type="smallint" />
+          <Property Name="pbh_fwgt" Type="smallint" />
+          <Property Name="pbh_fitl" Type="nchar" MaxLength="1" />
+          <Property Name="pbh_funl" Type="nchar" MaxLength="1" />
+          <Property Name="pbh_fchr" Type="smallint" />
+          <Property Name="pbh_fptc" Type="smallint" />
+          <Property Name="pbh_ffce" Type="nchar" MaxLength="32" />
+          <Property Name="pbl_fhgt" Type="smallint" />
+          <Property Name="pbl_fwgt" Type="smallint" />
+          <Property Name="pbl_fitl" Type="nchar" MaxLength="1" />
+          <Property Name="pbl_funl" Type="nchar" MaxLength="1" />
+          <Property Name="pbl_fchr" Type="smallint" />
+          <Property Name="pbl_fptc" Type="smallint" />
+          <Property Name="pbl_ffce" Type="nchar" MaxLength="32" />
+          <Property Name="pbt_cmnt" Type="nvarchar" MaxLength="254" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'gtplasti_oms.gtplasti_oms.pbcatvld' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="pbcatvld">
+          <Key>
+            <PropertyRef Name="pbv_name" />
+            <PropertyRef Name="pbv_vald" />
+            <PropertyRef Name="pbv_type" />
+          </Key>
+          <Property Name="pbv_name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="pbv_vald" Type="nvarchar" MaxLength="254" Nullable="false" />
+          <Property Name="pbv_type" Type="smallint" Nullable="false" />
+          <Property Name="pbv_cntr" Type="int" />
+          <Property Name="pbv_msg" Type="nvarchar" MaxLength="254" />
+        </EntityType>
+        <EntityType Name="tbl_control_local_detail">
+          <Key>
+            <PropertyRef Name="item_code" />
+          </Key>
+          <Property Name="item_code" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="control_no" Type="bigint" Nullable="false" />
+          <Property Name="qty" Type="bigint" Nullable="false" />
+          <Property Name="unit" Type="nvarchar" MaxLength="10" />
+          <Property Name="description" Type="nvarchar" MaxLength="100" />
+          <Property Name="control_type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="20" />
+          <Property Name="ModifiedTime" Type="datetime2" Precision="0" />
+        </EntityType>
+        <EntityType Name="tbl_control_local_master">
+          <Key>
+            <PropertyRef Name="control_no" />
+            <PropertyRef Name="control_type" />
+          </Key>
+          <Property Name="control_no" Type="bigint" Nullable="false" />
+          <Property Name="control_date" Type="datetime2" Precision="6" Nullable="false" />
+          <Property Name="customer_id" Type="bigint" Nullable="false" />
+          <Property Name="order_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="po_no" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="truck_no" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="20" />
+          <Property Name="control_type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="notes" Type="nvarchar" MaxLength="1000" />
+          <Property Name="trip" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ModifiedTime" Type="datetime2" Precision="0" />
+        </EntityType>
+        <EntityType Name="tbl_control_local_packing">
+          <Key>
+            <PropertyRef Name="packing_id" />
+          </Key>
+          <Property Name="packing_id" Type="bigint" Nullable="false" />
+          <Property Name="item_code" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="code" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="qtyinpcs" Type="bigint" Nullable="false" />
+          <Property Name="qtyinkgs" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="20" />
+          <Property Name="order_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="qtyinrolls" Type="bigint" />
+        </EntityType>
+        <EntityType Name="tbl_control_outoftown_detail">
+          <Key>
+            <PropertyRef Name="item_code" />
+          </Key>
+          <Property Name="item_code" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="control_no" Type="bigint" Nullable="false" />
+          <Property Name="qty" Type="bigint" Nullable="false" />
+          <Property Name="volume" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="unit" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="control_type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tbl_control_outoftown_master">
+          <Key>
+            <PropertyRef Name="control_no" />
+            <PropertyRef Name="control_type" />
+          </Key>
+          <Property Name="control_no" Type="bigint" Nullable="false" />
+          <Property Name="control_date" Type="datetime2" Precision="6" Nullable="false" />
+          <Property Name="shippers_id" Type="bigint" Nullable="false" />
+          <Property Name="consignees_id" Type="bigint" Nullable="false" />
+          <Property Name="order_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="po_no" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="via" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="truck_no" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="control_type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="notes" Type="nvarchar" MaxLength="1000" />
+          <Property Name="trip" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ship_value" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="freight" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tbl_control_outoftown_packing">
+          <Key>
+            <PropertyRef Name="packing_id" />
+          </Key>
+          <Property Name="packing_id" Type="bigint" Nullable="false" />
+          <Property Name="item_code" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="code" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="qtyinpcs" Type="bigint" Nullable="false" />
+          <Property Name="qtyinkgs" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="20" />
+          <Property Name="order_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="qtyinrolls" Type="bigint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'gtplasti_oms.gtplasti_oms.tbl_control_summary' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_control_summary">
+          <Key>
+            <PropertyRef Name="control_date" />
+            <PropertyRef Name="total_bdls" />
+            <PropertyRef Name="total_rolls" />
+            <PropertyRef Name="total_pcks" />
+            <PropertyRef Name="total_kgs" />
+            <PropertyRef Name="category" />
+          </Key>
+          <Property Name="control_date" Type="datetime2" Precision="6" Nullable="false" />
+          <Property Name="total_bdls" Type="bigint" Nullable="false" />
+          <Property Name="total_rolls" Type="bigint" Nullable="false" />
+          <Property Name="total_pcks" Type="bigint" Nullable="false" />
+          <Property Name="total_kgs" Type="bigint" Nullable="false" />
+          <Property Name="category" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_customer">
+          <Key>
+            <PropertyRef Name="customer_id" />
+          </Key>
+          <Property Name="customer_id" Type="bigint" Nullable="false" />
+          <Property Name="customer_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="contact_person" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="100" />
+          <Property Name="phone_no" Type="nvarchar" MaxLength="20" />
+          <Property Name="fax_no" Type="nvarchar" MaxLength="20" />
+          <Property Name="email_add" Type="nvarchar" MaxLength="100" />
+          <Property Name="agent_code" Type="nvarchar" MaxLength="10" />
+          <Property Name="status" Type="nvarchar" MaxLength="10" />
+          <Property Name="balance" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="over_" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="credit_limit" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="credit_terms" Type="int" />
+          <Property Name="business_style" Type="nvarchar" MaxLength="50" />
+          <Property Name="tin_no" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_customer_temp">
+          <Key>
+            <PropertyRef Name="customer_id" />
+          </Key>
+          <Property Name="customer_id" Type="bigint" Nullable="false" />
+          <Property Name="customer_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="contact_person" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="phone_no" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="fax_no" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="email_add" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" />
+          <Property Name="balance" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="over_" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="credit_limit" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="credit_terms" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_delivery_detail">
+          <Key>
+            <PropertyRef Name="detail_id" />
+          </Key>
+          <Property Name="detail_id" Type="bigint" Nullable="false" />
+          <Property Name="control_no" Type="bigint" Nullable="false" />
+          <Property Name="customer_id" Type="bigint" Nullable="false" />
+          <Property Name="bdls" Type="bigint" />
+          <Property Name="pcks" Type="bigint" />
+          <Property Name="weight" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="delivery_id" Type="bigint" Nullable="false" />
+          <Property Name="control_type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="control_cat" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="rolls" Type="bigint" />
+          <Property Name="status" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_delivery_master">
+          <Key>
+            <PropertyRef Name="delivery_id" />
+          </Key>
+          <Property Name="delivery_id" Type="bigint" Nullable="false" />
+          <Property Name="delivery_date" Type="datetime2" Precision="6" Nullable="false" />
+          <Property Name="truck_no" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="trip" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="gross" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="tare" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="notes" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'gtplasti_oms.gtplasti_oms.tbl_holdjoborder' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_holdjoborder">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="type" />
+            <PropertyRef Name="job_type" />
+            <PropertyRef Name="jo_no" />
+            <PropertyRef Name="customer_id" />
+            <PropertyRef Name="product_code" />
+            <PropertyRef Name="description" />
+            <PropertyRef Name="status" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="type" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="job_type" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="jo_no" Type="bigint" Nullable="false" />
+          <Property Name="customer_id" Type="int" Nullable="false" />
+          <Property Name="product_code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="status" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="released_by" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'gtplasti_oms.gtplasti_oms.tbl_laminated_design' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_laminated_design">
+          <Key>
+            <PropertyRef Name="design_id" />
+            <PropertyRef Name="design_code" />
+            <PropertyRef Name="prod_code" />
+          </Key>
+          <Property Name="design_id" Type="bigint" Nullable="false" />
+          <Property Name="design_code" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="prod_code" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="255" />
+          <Property Name="bottom_fold" Type="bigint" />
+          <Property Name="left_fold" Type="bigint" />
+          <Property Name="right_fold" Type="bigint" />
+          <Property Name="inner_dim_width" Type="bigint" />
+          <Property Name="inner_dim_length" Type="bigint" />
+          <Property Name="outer_dim_width" Type="bigint" />
+          <Property Name="outer_dim_length" Type="bigint" />
+          <Property Name="no_of_colors" Type="bigint" />
+          <Property Name="front_print" Type="nvarchar" MaxLength="50" />
+          <Property Name="back_print" Type="nvarchar" MaxLength="50" />
+          <Property Name="sealing_type" Type="nvarchar" MaxLength="20" />
+          <Property Name="opening_portion" Type="nvarchar" MaxLength="20" />
+          <Property Name="top_seal_width" Type="bigint" />
+          <Property Name="bottom_seal_width" Type="bigint" />
+          <Property Name="side_seal_width" Type="bigint" />
+          <Property Name="center_seal_width" Type="bigint" />
+          <Property Name="tear_knotch" Type="nchar" MaxLength="10" />
+          <Property Name="punch_whole" Type="nchar" MaxLength="10" />
+          <Property Name="status" Type="nchar" MaxLength="10" />
+          <Property Name="customer_id" Type="bigint" />
+          <Property Name="print_style" Type="nvarchar" MaxLength="20" />
+          <Property Name="design_date" Type="datetime2" Precision="6" />
+        </EntityType>
+        <EntityType Name="tbl_laminated_jo">
+          <Key>
+            <PropertyRef Name="jo_no" />
+          </Key>
+          <Property Name="jo_no" Type="bigint" Nullable="false" />
+          <Property Name="jo_date" Type="datetime2" Precision="6" Nullable="false" />
+          <Property Name="delivery_date" Type="datetime2" Precision="6" />
+          <Property Name="po_no" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="customer_id" Type="bigint" Nullable="false" />
+          <Property Name="code" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ptype_substrate" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ptype_laminant" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="bottom_fold" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="left_fold" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="right_fold" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="inner_dim_width" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="inner_dim_length" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="outer_dim_width" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="outer_dim_length" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="thickness_substrate" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="thickness_laminant" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="plastic_category" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="print_style" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="no_of_colors" Type="bigint" Nullable="false" />
+          <Property Name="front_print" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="back_print" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="weight_per_pc" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="checking_based" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ordered_qty" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="unit" Type="nchar" MaxLength="10" />
+          <Property Name="subtrate_inputted_qty" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="laminant_inputted_qty" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="sealing_type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="opening_portion" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="remarks" Type="nvarchar" MaxLength="100" />
+          <Property Name="status" Type="nchar" MaxLength="10" />
+          <Property Name="changespecs_no" Type="bigint" />
+          <Property Name="created_by" Type="nvarchar" MaxLength="20" />
+          <Property Name="changed_by" Type="nvarchar" MaxLength="20" />
+          <Property Name="top_seal_width" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="bottom_seal_width" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="side_seal_width" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="center_seal_width" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="date_last_edit" Type="datetime2" Precision="6" />
+          <Property Name="tear_knotch" Type="nchar" MaxLength="10" />
+          <Property Name="punch_whole" Type="nchar" MaxLength="10" />
+          <Property Name="product_category" Type="nvarchar" MaxLength="10" />
+          <Property Name="ptype_barrier" Type="nvarchar" MaxLength="50" />
+          <Property Name="approved_by" Type="nvarchar" MaxLength="50" />
+          <Property Name="verified_by" Type="nvarchar" MaxLength="50" />
+          <Property Name="noted_by" Type="nvarchar" MaxLength="50" />
+          <Property Name="approved_path" Type="nvarchar" MaxLength="200" />
+          <Property Name="verified_path" Type="nvarchar" MaxLength="200" />
+          <Property Name="noted_path" Type="nvarchar" MaxLength="200" />
+          <Property Name="prepared_path" Type="nvarchar" MaxLength="200" />
+          <Property Name="order_status" Type="nchar" MaxLength="10" />
+          <Property Name="invoice_no" Type="bigint" />
+          <Property Name="plate_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="revision_code" Type="nvarchar" MaxLength="20" />
+          <Property Name="prod_code" Type="nvarchar" MaxLength="50" />
+          <Property Name="date_faxed" Type="datetime2" Precision="6" />
+          <Property Name="finished_form" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'gtplasti_oms.gtplasti_oms.tbl_order_mainntenance' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tbl_order_mainntenance">
+          <Property Name="p_type" Type="nvarchar" MaxLength="20" />
+          <Property Name="checking_based" Type="nvarchar" MaxLength="20" />
+          <Property Name="plastic_type" Type="nvarchar" MaxLength="20" />
+          <Property Name="plastic_category" Type="nvarchar" MaxLength="20" />
+          <Property Name="print_style" Type="nvarchar" MaxLength="20" />
+          <Property Name="sealing_type" Type="nvarchar" MaxLength="20" />
+          <Property Name="opening_portion" Type="nvarchar" MaxLength="20" />
+        </EntityType>-->
+        <EntityType Name="tbl_po_detail">
+          <Key>
+            <PropertyRef Name="item_id" />
+          </Key>
+          <Property Name="item_id" Type="bigint" Nullable="false" />
+          <Property Name="qty" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="unit" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="code" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="disc" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="po_id" Type="bigint" Nullable="false" />
+          <Property Name="pcsperpack" Type="bigint" />
+          <Property Name="remqty" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="overqty" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="overlimit" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="control_type" Type="nvarchar" MaxLength="20" />
+          <Property Name="order_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="product_category" Type="nvarchar" MaxLength="10" />
+          <Property Name="order_status" Type="nchar" MaxLength="10" />
+          <Property Name="plate_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="revision_code" Type="nvarchar" MaxLength="20" />
+          <Property Name="revision_desc" Type="nvarchar" MaxLength="100" />
+          <Property Name="prod_code" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_po_master">
+          <Key>
+            <PropertyRef Name="po_no" />
+            <PropertyRef Name="customer_id" />
+            <PropertyRef Name="po_id" />
+          </Key>
+          <Property Name="po_no" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="po_date" Type="datetime2" Precision="6" Nullable="false" />
+          <Property Name="terms" Type="bigint" Nullable="false" />
+          <Property Name="notes" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="customer_id" Type="bigint" Nullable="false" />
+          <Property Name="po_id" Type="bigint" Nullable="false" />
+          <Property Name="control" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="void_by" Type="nvarchar" MaxLength="50" />
+          <Property Name="delivery_date" Type="datetime2" Precision="6" />
+          <Property Name="hold_type" Type="nchar" MaxLength="10" />
+          <Property Name="holdstatus" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'gtplasti_oms.gtplasti_oms.tbl_polybags_design' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbl_polybags_design">
+          <Key>
+            <PropertyRef Name="design_id" />
+            <PropertyRef Name="design_code" />
+            <PropertyRef Name="prod_code" />
+          </Key>
+          <Property Name="design_id" Type="bigint" Nullable="false" />
+          <Property Name="design_code" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="prod_code" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="255" />
+          <Property Name="ptype" Type="nvarchar" MaxLength="20" />
+          <Property Name="plastic_color" Type="nvarchar" MaxLength="20" />
+          <Property Name="bottom_fold" Type="bigint" />
+          <Property Name="left_fold" Type="bigint" />
+          <Property Name="right_fold" Type="bigint" />
+          <Property Name="width" Type="bigint" />
+          <Property Name="length" Type="bigint" />
+          <Property Name="print_style" Type="nvarchar" MaxLength="50" />
+          <Property Name="no_of_colors" Type="bigint" />
+          <Property Name="front_print" Type="nvarchar" MaxLength="50" />
+          <Property Name="back_print" Type="nvarchar" MaxLength="50" />
+          <Property Name="customer_id" Type="bigint" />
+          <Property Name="design_date" Type="datetime2" Precision="6" />
+        </EntityType>
+        <EntityType Name="tbl_polybags_jo">
+          <Key>
+            <PropertyRef Name="jo_no" />
+          </Key>
+          <Property Name="jo_no" Type="bigint" Nullable="false" />
+          <Property Name="jo_date" Type="datetime2" Precision="6" Nullable="false" />
+          <Property Name="delivery_date" Type="datetime2" Precision="6" />
+          <Property Name="customer_id" Type="bigint" Nullable="false" />
+          <Property Name="po_no" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="code" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ptype" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="plastic_color" Type="nvarchar" MaxLength="50" />
+          <Property Name="bottom_fold" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="left_fold" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="right_fold" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="width" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="length" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="thickness_single" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="thickness_tube" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="thickness_fold" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="weight_per_pc" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="checking_based" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="plastic_type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="plastic_category" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="print_style" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="no_of_colors" Type="bigint" Nullable="false" />
+          <Property Name="front_print" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="back_print" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ordered_qty" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="unit" Type="nchar" MaxLength="10" />
+          <Property Name="inputted_qty" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="remarks" Type="nvarchar" MaxLength="500" />
+          <Property Name="status" Type="nchar" MaxLength="10" />
+          <Property Name="changespecs_no" Type="bigint" />
+          <Property Name="created_by" Type="nvarchar" MaxLength="20" />
+          <Property Name="changed_by" Type="nvarchar" MaxLength="20" />
+          <Property Name="date_last_edit" Type="datetime2" Precision="6" />
+          <Property Name="product_category" Type="nvarchar" MaxLength="10" />
+          <Property Name="approved_by" Type="nvarchar" MaxLength="50" />
+          <Property Name="verified_by" Type="nvarchar" MaxLength="50" />
+          <Property Name="noted_by" Type="nvarchar" MaxLength="50" />
+          <Property Name="approved_path" Type="nvarchar" MaxLength="200" />
+          <Property Name="verified_path" Type="nvarchar" MaxLength="200" />
+          <Property Name="noted_path" Type="nvarchar" MaxLength="200" />
+          <Property Name="prepared_path" Type="nvarchar" MaxLength="200" />
+          <Property Name="order_status" Type="nchar" MaxLength="10" />
+          <Property Name="invoice_no" Type="bigint" />
+          <Property Name="plate_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="revision_code" Type="nvarchar" MaxLength="20" />
+          <Property Name="prod_code" Type="nvarchar" MaxLength="50" />
+          <Property Name="date_faxed" Type="datetime2" Precision="6" />
+        </EntityType>
+        <EntityType Name="tbl_requisition_detail">
+          <Key>
+            <PropertyRef Name="rf_detail_id" />
+          </Key>
+          <Property Name="rf_detail_id" Type="bigint" Nullable="false" />
+          <Property Name="rf_id" Type="bigint" Nullable="false" />
+          <Property Name="rf_no" Type="bigint" Nullable="false" />
+          <Property Name="item_id" Type="bigint" Nullable="false" />
+          <Property Name="qty" Type="bigint" Nullable="false" />
+          <Property Name="unit" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="pcsperpack" Type="bigint" Nullable="false" />
+          <Property Name="remqty" Type="bigint" Nullable="false" />
+          <Property Name="overqty" Type="bigint" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_requisition_master">
+          <Key>
+            <PropertyRef Name="rf_id" />
+          </Key>
+          <Property Name="rf_id" Type="bigint" Nullable="false" />
+          <Property Name="rf_no" Type="bigint" Nullable="false" />
+          <Property Name="rf_type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="po_no" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="po_id" Type="bigint" Nullable="false" />
+          <Property Name="po_date" Type="datetime2" Precision="6" Nullable="false" />
+          <Property Name="customer_id" Type="bigint" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="requiested_by" Type="nvarchar" MaxLength="100" />
+          <Property Name="approved_by" Type="nvarchar" MaxLength="100" />
+          <Property Name="remarks" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tbl_return_detail">
+          <Key>
+            <PropertyRef Name="ret_detail_id" />
+          </Key>
+          <Property Name="ret_detail_id" Type="bigint" Nullable="false" />
+          <Property Name="rs_no" Type="bigint" Nullable="false" />
+          <Property Name="qty" Type="bigint" Nullable="false" />
+          <Property Name="unit" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="item_code" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="control_type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_return_master">
+          <Key>
+            <PropertyRef Name="rs_no" />
+          </Key>
+          <Property Name="rs_no" Type="bigint" Nullable="false" />
+          <Property Name="control_no" Type="bigint" Nullable="false" />
+          <Property Name="po_no" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="invoice_no" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="customer_id" Type="bigint" Nullable="false" />
+          <Property Name="control_category" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="date_returned" Type="datetime2" Precision="6" Nullable="false" />
+          <Property Name="notes" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="control_type" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="return_slip_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="control_date" Type="datetime2" Precision="6" />
+        </EntityType>
+        <EntityType Name="tbl_return_packing">
+          <Key>
+            <PropertyRef Name="ret_packing_id" />
+          </Key>
+          <Property Name="ret_packing_id" Type="bigint" Nullable="false" />
+          <Property Name="ret_detail_id" Type="bigint" Nullable="false" />
+          <Property Name="code" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="qtyinpcs" Type="bigint" Nullable="false" />
+          <Property Name="qtyinkgs" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="packing_id" Type="bigint" Nullable="false" />
+          <Property Name="unit_price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="qtyinrolls" Type="bigint" />
+        </EntityType>
+        <EntityType Name="tbl_ship">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="via" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_truck">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="truck_no" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_user">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="acc_level" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="access" Type="int" Nullable="false" />
+          <Property Name="img" Type="nvarchar" MaxLength="100" />
+          <Property Name="signature_path" Type="nvarchar" MaxLength="200" />
+          <Property Name="width" Type="bigint" />
+          <Property Name="height" Type="bigint" />
+          <Property Name="y" Type="bigint" />
+        </EntityType>
+        <Association Name="tbl_control_local_detail$FK_tbl_control_local_detail_tbl_control_local_master">
+          <End Role="tbl_control_local_master" Type="Self.tbl_control_local_master" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_control_local_detail" Type="Self.tbl_control_local_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_control_local_master">
+              <PropertyRef Name="control_no" />
+              <PropertyRef Name="control_type" />
+            </Principal>
+            <Dependent Role="tbl_control_local_detail">
+              <PropertyRef Name="control_no" />
+              <PropertyRef Name="control_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tbl_control_local_packing$FK_tbl_control_local_packing_tbl_control_local_detail">
+          <End Role="tbl_control_local_detail" Type="Self.tbl_control_local_detail" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_control_local_packing" Type="Self.tbl_control_local_packing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_control_local_detail">
+              <PropertyRef Name="item_code" />
+            </Principal>
+            <Dependent Role="tbl_control_local_packing">
+              <PropertyRef Name="item_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tbl_control_outoftown_detail$FK_tbl_control_outoftown_detail_tbl_control_outoftown_master">
+          <End Role="tbl_control_outoftown_master" Type="Self.tbl_control_outoftown_master" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_control_outoftown_detail" Type="Self.tbl_control_outoftown_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_control_outoftown_master">
+              <PropertyRef Name="control_no" />
+              <PropertyRef Name="control_type" />
+            </Principal>
+            <Dependent Role="tbl_control_outoftown_detail">
+              <PropertyRef Name="control_no" />
+              <PropertyRef Name="control_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tbl_control_outoftown_packing$FK_tbl_control_outoftown_packing_tbl_control_outoftown_detail">
+          <End Role="tbl_control_outoftown_detail" Type="Self.tbl_control_outoftown_detail" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_control_outoftown_packing" Type="Self.tbl_control_outoftown_packing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_control_outoftown_detail">
+              <PropertyRef Name="item_code" />
+            </Principal>
+            <Dependent Role="tbl_control_outoftown_packing">
+              <PropertyRef Name="item_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tbl_delivery_detail$FK_tbl_delivery_detail_tbl_delivery_master">
+          <End Role="tbl_delivery_master" Type="Self.tbl_delivery_master" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_delivery_detail" Type="Self.tbl_delivery_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_delivery_master">
+              <PropertyRef Name="delivery_id" />
+            </Principal>
+            <Dependent Role="tbl_delivery_detail">
+              <PropertyRef Name="delivery_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tbl_return_detail$FK_tbl_return_detail_tbl_return_master">
+          <End Role="tbl_return_master" Type="Self.tbl_return_master" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_return_detail" Type="Self.tbl_return_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_return_master">
+              <PropertyRef Name="rs_no" />
+            </Principal>
+            <Dependent Role="tbl_return_detail">
+              <PropertyRef Name="rs_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tbl_return_packing$FK_tbl_return_packing_tbl_return_detail">
+          <End Role="tbl_return_detail" Type="Self.tbl_return_detail" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbl_return_packing" Type="Self.tbl_return_packing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_return_detail">
+              <PropertyRef Name="ret_detail_id" />
+            </Principal>
+            <Dependent Role="tbl_return_packing">
+              <PropertyRef Name="ret_detail_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_oms_search_ship" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="criteria1" Type="nvarchar" Mode="In" />
+          <Parameter Name="criteria2" Type="nvarchar" Mode="In" />
+          <Parameter Name="criteria3" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_oms_search_truck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="criteria1" Type="nvarchar" Mode="In" />
+          <Parameter Name="criteria2" Type="nvarchar" Mode="In" />
+          <Parameter Name="criteria3" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_oms_search_user" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="criteria1" Type="nvarchar" Mode="In" />
+          <Parameter Name="criteria2" Type="nvarchar" Mode="In" />
+          <Parameter Name="criteria3" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="GT_Order_Monitoring_SystemModelStoreContainer">
+          <EntitySet Name="dtproperties" EntityType="Self.dtproperties" Schema="gtplasti_oms" store:Type="Tables" />
+          <EntitySet Name="tbl_control_local_detail" EntityType="Self.tbl_control_local_detail" Schema="gtplasti_oms" store:Type="Tables" />
+          <EntitySet Name="tbl_control_local_master" EntityType="Self.tbl_control_local_master" Schema="gtplasti_oms" store:Type="Tables" />
+          <EntitySet Name="tbl_control_local_packing" EntityType="Self.tbl_control_local_packing" Schema="gtplasti_oms" store:Type="Tables" />
+          <EntitySet Name="tbl_control_outoftown_detail" EntityType="Self.tbl_control_outoftown_detail" Schema="gtplasti_oms" store:Type="Tables" />
+          <EntitySet Name="tbl_control_outoftown_master" EntityType="Self.tbl_control_outoftown_master" Schema="gtplasti_oms" store:Type="Tables" />
+          <EntitySet Name="tbl_control_outoftown_packing" EntityType="Self.tbl_control_outoftown_packing" Schema="gtplasti_oms" store:Type="Tables" />
+          <EntitySet Name="tbl_customer" EntityType="Self.tbl_customer" Schema="gtplasti_oms" store:Type="Tables" />
+          <EntitySet Name="tbl_customer_temp" EntityType="Self.tbl_customer_temp" Schema="gtplasti_oms" store:Type="Tables" />
+          <EntitySet Name="tbl_delivery_detail" EntityType="Self.tbl_delivery_detail" Schema="gtplasti_oms" store:Type="Tables" />
+          <EntitySet Name="tbl_delivery_master" EntityType="Self.tbl_delivery_master" Schema="gtplasti_oms" store:Type="Tables" />
+          <EntitySet Name="tbl_laminated_jo" EntityType="Self.tbl_laminated_jo" Schema="gtplasti_oms" store:Type="Tables" />
+          <EntitySet Name="tbl_po_detail" EntityType="Self.tbl_po_detail" Schema="gtplasti_oms" store:Type="Tables" />
+          <EntitySet Name="tbl_po_master" EntityType="Self.tbl_po_master" Schema="gtplasti_oms" store:Type="Tables" />
+          <EntitySet Name="tbl_polybags_jo" EntityType="Self.tbl_polybags_jo" Schema="gtplasti_oms" store:Type="Tables" />
+          <EntitySet Name="tbl_requisition_detail" EntityType="Self.tbl_requisition_detail" Schema="gtplasti_oms" store:Type="Tables" />
+          <EntitySet Name="tbl_requisition_master" EntityType="Self.tbl_requisition_master" Schema="gtplasti_oms" store:Type="Tables" />
+          <EntitySet Name="tbl_return_detail" EntityType="Self.tbl_return_detail" Schema="gtplasti_oms" store:Type="Tables" />
+          <EntitySet Name="tbl_return_master" EntityType="Self.tbl_return_master" Schema="gtplasti_oms" store:Type="Tables" />
+          <EntitySet Name="tbl_return_packing" EntityType="Self.tbl_return_packing" Schema="gtplasti_oms" store:Type="Tables" />
+          <EntitySet Name="tbl_ship" EntityType="Self.tbl_ship" Schema="gtplasti_oms" store:Type="Tables" />
+          <EntitySet Name="tbl_truck" EntityType="Self.tbl_truck" Schema="gtplasti_oms" store:Type="Tables" />
+          <EntitySet Name="tbl_user" EntityType="Self.tbl_user" Schema="gtplasti_oms" store:Type="Tables" />
+          <EntitySet Name="pbcatedt" EntityType="Self.pbcatedt" store:Type="Tables" store:Schema="gtplasti_oms">
+            <DefiningQuery>SELECT 
+[pbcatedt].[pbe_name] AS [pbe_name], 
+[pbcatedt].[pbe_edit] AS [pbe_edit], 
+[pbcatedt].[pbe_type] AS [pbe_type], 
+[pbcatedt].[pbe_cntr] AS [pbe_cntr], 
+[pbcatedt].[pbe_seqn] AS [pbe_seqn], 
+[pbcatedt].[pbe_flag] AS [pbe_flag], 
+[pbcatedt].[pbe_work] AS [pbe_work]
+FROM [gtplasti_oms].[pbcatedt] AS [pbcatedt]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="pbcatfmt" EntityType="Self.pbcatfmt" store:Type="Tables" store:Schema="gtplasti_oms">
+            <DefiningQuery>SELECT 
+[pbcatfmt].[pbf_name] AS [pbf_name], 
+[pbcatfmt].[pbf_frmt] AS [pbf_frmt], 
+[pbcatfmt].[pbf_type] AS [pbf_type], 
+[pbcatfmt].[pbf_cntr] AS [pbf_cntr]
+FROM [gtplasti_oms].[pbcatfmt] AS [pbcatfmt]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="pbcatvld" EntityType="Self.pbcatvld" store:Type="Tables" store:Schema="gtplasti_oms">
+            <DefiningQuery>SELECT 
+[pbcatvld].[pbv_name] AS [pbv_name], 
+[pbcatvld].[pbv_vald] AS [pbv_vald], 
+[pbcatvld].[pbv_type] AS [pbv_type], 
+[pbcatvld].[pbv_cntr] AS [pbv_cntr], 
+[pbcatvld].[pbv_msg] AS [pbv_msg]
+FROM [gtplasti_oms].[pbcatvld] AS [pbcatvld]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_control_summary" EntityType="Self.tbl_control_summary" store:Type="Tables" store:Schema="gtplasti_oms">
+            <DefiningQuery>SELECT 
+[tbl_control_summary].[control_date] AS [control_date], 
+[tbl_control_summary].[total_bdls] AS [total_bdls], 
+[tbl_control_summary].[total_rolls] AS [total_rolls], 
+[tbl_control_summary].[total_pcks] AS [total_pcks], 
+[tbl_control_summary].[total_kgs] AS [total_kgs], 
+[tbl_control_summary].[category] AS [category]
+FROM [gtplasti_oms].[tbl_control_summary] AS [tbl_control_summary]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_holdjoborder" EntityType="Self.tbl_holdjoborder" store:Type="Tables" store:Schema="gtplasti_oms">
+            <DefiningQuery>SELECT 
+[tbl_holdjoborder].[id] AS [id], 
+[tbl_holdjoborder].[type] AS [type], 
+[tbl_holdjoborder].[job_type] AS [job_type], 
+[tbl_holdjoborder].[jo_no] AS [jo_no], 
+[tbl_holdjoborder].[customer_id] AS [customer_id], 
+[tbl_holdjoborder].[product_code] AS [product_code], 
+[tbl_holdjoborder].[description] AS [description], 
+[tbl_holdjoborder].[status] AS [status], 
+[tbl_holdjoborder].[released_by] AS [released_by]
+FROM [gtplasti_oms].[tbl_holdjoborder] AS [tbl_holdjoborder]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_laminated_design" EntityType="Self.tbl_laminated_design" store:Type="Tables" store:Schema="gtplasti_oms">
+            <DefiningQuery>SELECT 
+[tbl_laminated_design].[design_id] AS [design_id], 
+[tbl_laminated_design].[design_code] AS [design_code], 
+[tbl_laminated_design].[prod_code] AS [prod_code], 
+[tbl_laminated_design].[description] AS [description], 
+[tbl_laminated_design].[bottom_fold] AS [bottom_fold], 
+[tbl_laminated_design].[left_fold] AS [left_fold], 
+[tbl_laminated_design].[right_fold] AS [right_fold], 
+[tbl_laminated_design].[inner_dim_width] AS [inner_dim_width], 
+[tbl_laminated_design].[inner_dim_length] AS [inner_dim_length], 
+[tbl_laminated_design].[outer_dim_width] AS [outer_dim_width], 
+[tbl_laminated_design].[outer_dim_length] AS [outer_dim_length], 
+[tbl_laminated_design].[no_of_colors] AS [no_of_colors], 
+[tbl_laminated_design].[front_print] AS [front_print], 
+[tbl_laminated_design].[back_print] AS [back_print], 
+[tbl_laminated_design].[sealing_type] AS [sealing_type], 
+[tbl_laminated_design].[opening_portion] AS [opening_portion], 
+[tbl_laminated_design].[top_seal_width] AS [top_seal_width], 
+[tbl_laminated_design].[bottom_seal_width] AS [bottom_seal_width], 
+[tbl_laminated_design].[side_seal_width] AS [side_seal_width], 
+[tbl_laminated_design].[center_seal_width] AS [center_seal_width], 
+[tbl_laminated_design].[tear_knotch] AS [tear_knotch], 
+[tbl_laminated_design].[punch_whole] AS [punch_whole], 
+[tbl_laminated_design].[status] AS [status], 
+[tbl_laminated_design].[customer_id] AS [customer_id], 
+[tbl_laminated_design].[print_style] AS [print_style], 
+[tbl_laminated_design].[design_date] AS [design_date]
+FROM [gtplasti_oms].[tbl_laminated_design] AS [tbl_laminated_design]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_polybags_design" EntityType="Self.tbl_polybags_design" store:Type="Tables" store:Schema="gtplasti_oms">
+            <DefiningQuery>SELECT 
+[tbl_polybags_design].[design_id] AS [design_id], 
+[tbl_polybags_design].[design_code] AS [design_code], 
+[tbl_polybags_design].[prod_code] AS [prod_code], 
+[tbl_polybags_design].[description] AS [description], 
+[tbl_polybags_design].[ptype] AS [ptype], 
+[tbl_polybags_design].[plastic_color] AS [plastic_color], 
+[tbl_polybags_design].[bottom_fold] AS [bottom_fold], 
+[tbl_polybags_design].[left_fold] AS [left_fold], 
+[tbl_polybags_design].[right_fold] AS [right_fold], 
+[tbl_polybags_design].[width] AS [width], 
+[tbl_polybags_design].[length] AS [length], 
+[tbl_polybags_design].[print_style] AS [print_style], 
+[tbl_polybags_design].[no_of_colors] AS [no_of_colors], 
+[tbl_polybags_design].[front_print] AS [front_print], 
+[tbl_polybags_design].[back_print] AS [back_print], 
+[tbl_polybags_design].[customer_id] AS [customer_id], 
+[tbl_polybags_design].[design_date] AS [design_date]
+FROM [gtplasti_oms].[tbl_polybags_design] AS [tbl_polybags_design]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="tbl_control_local_detail$FK_tbl_control_local_detail_tbl_control_local_master" Association="Self.tbl_control_local_detail$FK_tbl_control_local_detail_tbl_control_local_master">
+            <End Role="tbl_control_local_master" EntitySet="tbl_control_local_master" />
+            <End Role="tbl_control_local_detail" EntitySet="tbl_control_local_detail" />
+          </AssociationSet>
+          <AssociationSet Name="tbl_control_local_packing$FK_tbl_control_local_packing_tbl_control_local_detail" Association="Self.tbl_control_local_packing$FK_tbl_control_local_packing_tbl_control_local_detail">
+            <End Role="tbl_control_local_detail" EntitySet="tbl_control_local_detail" />
+            <End Role="tbl_control_local_packing" EntitySet="tbl_control_local_packing" />
+          </AssociationSet>
+          <AssociationSet Name="tbl_control_outoftown_detail$FK_tbl_control_outoftown_detail_tbl_control_outoftown_master" Association="Self.tbl_control_outoftown_detail$FK_tbl_control_outoftown_detail_tbl_control_outoftown_master">
+            <End Role="tbl_control_outoftown_master" EntitySet="tbl_control_outoftown_master" />
+            <End Role="tbl_control_outoftown_detail" EntitySet="tbl_control_outoftown_detail" />
+          </AssociationSet>
+          <AssociationSet Name="tbl_control_outoftown_packing$FK_tbl_control_outoftown_packing_tbl_control_outoftown_detail" Association="Self.tbl_control_outoftown_packing$FK_tbl_control_outoftown_packing_tbl_control_outoftown_detail">
+            <End Role="tbl_control_outoftown_detail" EntitySet="tbl_control_outoftown_detail" />
+            <End Role="tbl_control_outoftown_packing" EntitySet="tbl_control_outoftown_packing" />
+          </AssociationSet>
+          <AssociationSet Name="tbl_delivery_detail$FK_tbl_delivery_detail_tbl_delivery_master" Association="Self.tbl_delivery_detail$FK_tbl_delivery_detail_tbl_delivery_master">
+            <End Role="tbl_delivery_master" EntitySet="tbl_delivery_master" />
+            <End Role="tbl_delivery_detail" EntitySet="tbl_delivery_detail" />
+          </AssociationSet>
+          <AssociationSet Name="tbl_return_detail$FK_tbl_return_detail_tbl_return_master" Association="Self.tbl_return_detail$FK_tbl_return_detail_tbl_return_master">
+            <End Role="tbl_return_master" EntitySet="tbl_return_master" />
+            <End Role="tbl_return_detail" EntitySet="tbl_return_detail" />
+          </AssociationSet>
+          <AssociationSet Name="tbl_return_packing$FK_tbl_return_packing_tbl_return_detail" Association="Self.tbl_return_packing$FK_tbl_return_packing_tbl_return_detail">
+            <End Role="tbl_return_detail" EntitySet="tbl_return_detail" />
+            <End Role="tbl_return_packing" EntitySet="tbl_return_packing" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GT_Order_Monitoring_SystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="GT_Order_Monitoring_SystemEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="dt_addtosourcecontrol">
+            <Parameter Name="vchSourceSafeINI" Mode="In" Type="String" />
+            <Parameter Name="vchProjectName" Mode="In" Type="String" />
+            <Parameter Name="vchComment" Mode="In" Type="String" />
+            <Parameter Name="vchLoginName" Mode="In" Type="String" />
+            <Parameter Name="vchPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_addtosourcecontrol_u">
+            <Parameter Name="vchSourceSafeINI" Mode="In" Type="String" />
+            <Parameter Name="vchProjectName" Mode="In" Type="String" />
+            <Parameter Name="vchComment" Mode="In" Type="String" />
+            <Parameter Name="vchLoginName" Mode="In" Type="String" />
+            <Parameter Name="vchPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_adduserobject" />
+          <FunctionImport Name="dt_adduserobject_vcs">
+          <Parameter Name="vchProperty" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_checkinobject">
+            <Parameter Name="chObjectType" Mode="In" Type="String" />
+            <Parameter Name="vchObjectName" Mode="In" Type="String" />
+            <Parameter Name="vchComment" Mode="In" Type="String" />
+            <Parameter Name="vchLoginName" Mode="In" Type="String" />
+            <Parameter Name="vchPassword" Mode="In" Type="String" />
+            <Parameter Name="iVCSFlags" Mode="In" Type="Int32" />
+            <Parameter Name="iActionFlag" Mode="In" Type="Int32" />
+            <Parameter Name="txStream1" Mode="In" Type="String" />
+            <Parameter Name="txStream2" Mode="In" Type="String" />
+            <Parameter Name="txStream3" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_checkinobject_u">
+            <Parameter Name="chObjectType" Mode="In" Type="String" />
+            <Parameter Name="vchObjectName" Mode="In" Type="String" />
+            <Parameter Name="vchComment" Mode="In" Type="String" />
+            <Parameter Name="vchLoginName" Mode="In" Type="String" />
+            <Parameter Name="vchPassword" Mode="In" Type="String" />
+            <Parameter Name="iVCSFlags" Mode="In" Type="Int32" />
+            <Parameter Name="iActionFlag" Mode="In" Type="Int32" />
+            <Parameter Name="txStream1" Mode="In" Type="String" />
+            <Parameter Name="txStream2" Mode="In" Type="String" />
+            <Parameter Name="txStream3" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_checkoutobject">
+            <Parameter Name="chObjectType" Mode="In" Type="String" />
+            <Parameter Name="vchObjectName" Mode="In" Type="String" />
+            <Parameter Name="vchComment" Mode="In" Type="String" />
+            <Parameter Name="vchLoginName" Mode="In" Type="String" />
+            <Parameter Name="vchPassword" Mode="In" Type="String" />
+            <Parameter Name="iVCSFlags" Mode="In" Type="Int32" />
+            <Parameter Name="iActionFlag" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="dt_checkoutobject_u">
+            <Parameter Name="chObjectType" Mode="In" Type="String" />
+            <Parameter Name="vchObjectName" Mode="In" Type="String" />
+            <Parameter Name="vchComment" Mode="In" Type="String" />
+            <Parameter Name="vchLoginName" Mode="In" Type="String" />
+            <Parameter Name="vchPassword" Mode="In" Type="String" />
+            <Parameter Name="iVCSFlags" Mode="In" Type="Int32" />
+            <Parameter Name="iActionFlag" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="dt_displayoaerror">
+            <Parameter Name="iObject" Mode="In" Type="Int32" />
+            <Parameter Name="iresult" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="dt_displayoaerror_u">
+            <Parameter Name="iObject" Mode="In" Type="Int32" />
+            <Parameter Name="iresult" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="dt_droppropertiesbyid">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="property" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_dropuserobjectbyid">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="dt_generateansiname">
+          <Parameter Name="name" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_getobjwithprop" ReturnType="Collection(Int32)">
+            <Parameter Name="property" Mode="In" Type="String" />
+            <Parameter Name="value" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_getobjwithprop_u" ReturnType="Collection(Int32)">
+            <Parameter Name="property" Mode="In" Type="String" />
+            <Parameter Name="uvalue" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_getpropertiesbyid" ReturnType="Collection(GT_Order_Monitoring_SystemModel.dt_getpropertiesbyid_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="property" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_getpropertiesbyid_u" ReturnType="Collection(GT_Order_Monitoring_SystemModel.dt_getpropertiesbyid_u_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="property" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_getpropertiesbyid_vcs">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="property" Mode="In" Type="String" />
+            <Parameter Name="value" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_getpropertiesbyid_vcs_u">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="property" Mode="In" Type="String" />
+            <Parameter Name="value" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_isundersourcecontrol">
+            <Parameter Name="vchLoginName" Mode="In" Type="String" />
+            <Parameter Name="vchPassword" Mode="In" Type="String" />
+            <Parameter Name="iWhoToo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="dt_isundersourcecontrol_u">
+            <Parameter Name="vchLoginName" Mode="In" Type="String" />
+            <Parameter Name="vchPassword" Mode="In" Type="String" />
+            <Parameter Name="iWhoToo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="dt_removefromsourcecontrol" />
+          <FunctionImport Name="dt_setpropertybyid">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="property" Mode="In" Type="String" />
+            <Parameter Name="value" Mode="In" Type="String" />
+            <Parameter Name="lvalue" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="dt_setpropertybyid_u">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="property" Mode="In" Type="String" />
+            <Parameter Name="uvalue" Mode="In" Type="String" />
+            <Parameter Name="lvalue" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="dt_validateloginparams">
+            <Parameter Name="vchLoginName" Mode="In" Type="String" />
+            <Parameter Name="vchPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_validateloginparams_u">
+            <Parameter Name="vchLoginName" Mode="In" Type="String" />
+            <Parameter Name="vchPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_vcsenabled" />
+          <FunctionImport Name="dt_verstamp006" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="dt_whocheckedout">
+            <Parameter Name="chObjectType" Mode="In" Type="String" />
+            <Parameter Name="vchObjectName" Mode="In" Type="String" />
+            <Parameter Name="vchLoginName" Mode="In" Type="String" />
+            <Parameter Name="vchPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="dt_whocheckedout_u">
+            <Parameter Name="chObjectType" Mode="In" Type="String" />
+            <Parameter Name="vchObjectName" Mode="In" Type="String" />
+            <Parameter Name="vchLoginName" Mode="In" Type="String" />
+            <Parameter Name="vchPassword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_billing_search_ship" ReturnType="Collection(GT_Order_Monitoring_SystemModel.sp_billing_search_ship_Result)">
+            <Parameter Name="criteria1" Mode="In" Type="String" />
+            <Parameter Name="criteria2" Mode="In" Type="String" />
+            <Parameter Name="criteria3" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_billing_search_truck" ReturnType="Collection(GT_Order_Monitoring_SystemModel.sp_billing_search_truck_Result)">
+            <Parameter Name="criteria1" Mode="In" Type="String" />
+            <Parameter Name="criteria2" Mode="In" Type="String" />
+            <Parameter Name="criteria3" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="dtproperties" EntityType="GT_Order_Monitoring_SystemModel.dtproperties" />
+          <EntitySet Name="tbl_control_local_detail" EntityType="GT_Order_Monitoring_SystemModel.tbl_control_local_detail" />
+          <EntitySet Name="tbl_control_local_master" EntityType="GT_Order_Monitoring_SystemModel.tbl_control_local_master" />
+          <EntitySet Name="tbl_control_local_packing" EntityType="GT_Order_Monitoring_SystemModel.tbl_control_local_packing" />
+          <EntitySet Name="tbl_control_outoftown_detail" EntityType="GT_Order_Monitoring_SystemModel.tbl_control_outoftown_detail" />
+          <EntitySet Name="tbl_control_outoftown_master" EntityType="GT_Order_Monitoring_SystemModel.tbl_control_outoftown_master" />
+          <EntitySet Name="tbl_control_outoftown_packing" EntityType="GT_Order_Monitoring_SystemModel.tbl_control_outoftown_packing" />
+          <EntitySet Name="tbl_customer" EntityType="GT_Order_Monitoring_SystemModel.tbl_customer" />
+          <EntitySet Name="tbl_customer_temp" EntityType="GT_Order_Monitoring_SystemModel.tbl_customer_temp" />
+          <EntitySet Name="tbl_delivery_detail" EntityType="GT_Order_Monitoring_SystemModel.tbl_delivery_detail" />
+          <EntitySet Name="tbl_delivery_master" EntityType="GT_Order_Monitoring_SystemModel.tbl_delivery_master" />
+          <EntitySet Name="tbl_laminated_jo" EntityType="GT_Order_Monitoring_SystemModel.tbl_laminated_jo" />
+          <EntitySet Name="tbl_po_detail" EntityType="GT_Order_Monitoring_SystemModel.tbl_po_detail" />
+          <EntitySet Name="tbl_po_master" EntityType="GT_Order_Monitoring_SystemModel.tbl_po_master" />
+          <EntitySet Name="tbl_polybags_jo" EntityType="GT_Order_Monitoring_SystemModel.tbl_polybags_jo" />
+          <EntitySet Name="tbl_requisition_detail" EntityType="GT_Order_Monitoring_SystemModel.tbl_requisition_detail" />
+          <EntitySet Name="tbl_requisition_master" EntityType="GT_Order_Monitoring_SystemModel.tbl_requisition_master" />
+          <EntitySet Name="tbl_return_detail" EntityType="GT_Order_Monitoring_SystemModel.tbl_return_detail" />
+          <EntitySet Name="tbl_return_master" EntityType="GT_Order_Monitoring_SystemModel.tbl_return_master" />
+          <EntitySet Name="tbl_return_packing" EntityType="GT_Order_Monitoring_SystemModel.tbl_return_packing" />
+          <EntitySet Name="tbl_ship" EntityType="GT_Order_Monitoring_SystemModel.tbl_ship" />
+          <EntitySet Name="tbl_truck" EntityType="GT_Order_Monitoring_SystemModel.tbl_truck" />
+          <EntitySet Name="tbl_user" EntityType="GT_Order_Monitoring_SystemModel.tbl_user" />
+          <EntitySet Name="pbcatedt" EntityType="GT_Order_Monitoring_SystemModel.pbcatedt" />
+          <EntitySet Name="pbcatfmt" EntityType="GT_Order_Monitoring_SystemModel.pbcatfmt" />
+          <EntitySet Name="pbcatvld" EntityType="GT_Order_Monitoring_SystemModel.pbcatvld" />
+          <EntitySet Name="tbl_control_summary" EntityType="GT_Order_Monitoring_SystemModel.tbl_control_summary" />
+          <EntitySet Name="tbl_holdjoborder" EntityType="GT_Order_Monitoring_SystemModel.tbl_holdjoborder" />
+          <EntitySet Name="tbl_laminated_design" EntityType="GT_Order_Monitoring_SystemModel.tbl_laminated_design" />
+          <EntitySet Name="tbl_polybags_design" EntityType="GT_Order_Monitoring_SystemModel.tbl_polybags_design" />
+          <AssociationSet Name="tbl_control_local_detail_FK_tbl_control_local_detail_tbl_control_local_master" Association="GT_Order_Monitoring_SystemModel.tbl_control_local_detail_FK_tbl_control_local_detail_tbl_control_local_master">
+            <End Role="tbl_control_local_master" EntitySet="tbl_control_local_master" />
+            <End Role="tbl_control_local_detail" EntitySet="tbl_control_local_detail" />
+          </AssociationSet>
+          <AssociationSet Name="tbl_control_local_packing_FK_tbl_control_local_packing_tbl_control_local_detail" Association="GT_Order_Monitoring_SystemModel.tbl_control_local_packing_FK_tbl_control_local_packing_tbl_control_local_detail">
+            <End Role="tbl_control_local_detail" EntitySet="tbl_control_local_detail" />
+            <End Role="tbl_control_local_packing" EntitySet="tbl_control_local_packing" />
+          </AssociationSet>
+          <AssociationSet Name="tbl_control_outoftown_detail_FK_tbl_control_outoftown_detail_tbl_control_outoftown_master" Association="GT_Order_Monitoring_SystemModel.tbl_control_outoftown_detail_FK_tbl_control_outoftown_detail_tbl_control_outoftown_master">
+            <End Role="tbl_control_outoftown_master" EntitySet="tbl_control_outoftown_master" />
+            <End Role="tbl_control_outoftown_detail" EntitySet="tbl_control_outoftown_detail" />
+          </AssociationSet>
+          <AssociationSet Name="tbl_control_outoftown_packing_FK_tbl_control_outoftown_packing_tbl_control_outoftown_detail" Association="GT_Order_Monitoring_SystemModel.tbl_control_outoftown_packing_FK_tbl_control_outoftown_packing_tbl_control_outoftown_detail">
+            <End Role="tbl_control_outoftown_detail" EntitySet="tbl_control_outoftown_detail" />
+            <End Role="tbl_control_outoftown_packing" EntitySet="tbl_control_outoftown_packing" />
+          </AssociationSet>
+          <AssociationSet Name="tbl_delivery_detail_FK_tbl_delivery_detail_tbl_delivery_master" Association="GT_Order_Monitoring_SystemModel.tbl_delivery_detail_FK_tbl_delivery_detail_tbl_delivery_master">
+            <End Role="tbl_delivery_master" EntitySet="tbl_delivery_master" />
+            <End Role="tbl_delivery_detail" EntitySet="tbl_delivery_detail" />
+          </AssociationSet>
+          <AssociationSet Name="tbl_return_detail_FK_tbl_return_detail_tbl_return_master" Association="GT_Order_Monitoring_SystemModel.tbl_return_detail_FK_tbl_return_detail_tbl_return_master">
+            <End Role="tbl_return_master" EntitySet="tbl_return_master" />
+            <End Role="tbl_return_detail" EntitySet="tbl_return_detail" />
+          </AssociationSet>
+          <AssociationSet Name="tbl_return_packing_FK_tbl_return_packing_tbl_return_detail" Association="GT_Order_Monitoring_SystemModel.tbl_return_packing_FK_tbl_return_packing_tbl_return_detail">
+            <End Role="tbl_return_detail" EntitySet="tbl_return_detail" />
+            <End Role="tbl_return_packing" EntitySet="tbl_return_packing" />
+          </AssociationSet>
+          <FunctionImport Name="sp_oms_search_ship" ReturnType="Collection(GT_Order_Monitoring_SystemModel.sp_oms_search_ship_Result)">
+            <Parameter Name="criteria1" Mode="In" Type="String" />
+            <Parameter Name="criteria2" Mode="In" Type="String" />
+            <Parameter Name="criteria3" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_oms_search_truck" ReturnType="Collection(GT_Order_Monitoring_SystemModel.sp_oms_search_truck_Result)">
+            <Parameter Name="criteria1" Mode="In" Type="String" />
+            <Parameter Name="criteria2" Mode="In" Type="String" />
+            <Parameter Name="criteria3" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_oms_search_user" ReturnType="Collection(GT_Order_Monitoring_SystemModel.sp_oms_search_user_Result)">
+            <Parameter Name="criteria1" Mode="In" Type="String" />
+            <Parameter Name="criteria2" Mode="In" Type="String" />
+            <Parameter Name="criteria3" Mode="In" Type="String" />
+          </FunctionImport>
+          </EntityContainer>
+        <ComplexType Name="dt_getpropertiesbyid_Result">
+          <Property Type="String" Name="property" Nullable="false" MaxLength="64" />
+          <Property Type="Int32" Name="version" Nullable="false" />
+          <Property Type="String" Name="value" Nullable="true" MaxLength="255" />
+          <Property Type="Binary" Name="lvalue" Nullable="true" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="dt_getpropertiesbyid_u_Result">
+          <Property Type="String" Name="property" Nullable="false" MaxLength="64" />
+          <Property Type="Int32" Name="version" Nullable="false" />
+          <Property Type="String" Name="uvalue" Nullable="true" MaxLength="255" />
+          <Property Type="Binary" Name="lvalue" Nullable="true" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="sp_billing_search_ship_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="via" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_billing_search_truck_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="truck_no" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <EntityType Name="dtproperties">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="property" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="objectid" Type="Int32" />
+          <Property Name="property" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="value" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="uvalue" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="lvalue" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="version" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_control_local_detail">
+          <Key>
+            <PropertyRef Name="item_code" />
+          </Key>
+          <Property Name="item_code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="control_no" Type="Int64" Nullable="false" />
+          <Property Name="qty" Type="Int64" Nullable="false" />
+          <Property Name="unit" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="control_type" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedTime" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tbl_control_local_master" Relationship="GT_Order_Monitoring_SystemModel.tbl_control_local_detail_FK_tbl_control_local_detail_tbl_control_local_master" FromRole="tbl_control_local_detail" ToRole="tbl_control_local_master" />
+          <NavigationProperty Name="tbl_control_local_packing" Relationship="GT_Order_Monitoring_SystemModel.tbl_control_local_packing_FK_tbl_control_local_packing_tbl_control_local_detail" FromRole="tbl_control_local_detail" ToRole="tbl_control_local_packing" />
+        </EntityType>
+        <EntityType Name="tbl_control_local_master">
+          <Key>
+            <PropertyRef Name="control_no" />
+            <PropertyRef Name="control_type" />
+          </Key>
+          <Property Name="control_no" Type="Int64" Nullable="false" />
+          <Property Name="control_date" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="customer_id" Type="Int64" Nullable="false" />
+          <Property Name="order_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="po_no" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="truck_no" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="control_type" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="notes" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="trip" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedTime" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tbl_control_local_detail" Relationship="GT_Order_Monitoring_SystemModel.tbl_control_local_detail_FK_tbl_control_local_detail_tbl_control_local_master" FromRole="tbl_control_local_master" ToRole="tbl_control_local_detail" />
+        </EntityType>
+        <EntityType Name="tbl_control_local_packing">
+          <Key>
+            <PropertyRef Name="packing_id" />
+          </Key>
+          <Property Name="packing_id" Type="Int64" Nullable="false" />
+          <Property Name="item_code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="qtyinpcs" Type="Int64" Nullable="false" />
+          <Property Name="qtyinkgs" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="order_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="qtyinrolls" Type="Int64" />
+          <NavigationProperty Name="tbl_control_local_detail" Relationship="GT_Order_Monitoring_SystemModel.tbl_control_local_packing_FK_tbl_control_local_packing_tbl_control_local_detail" FromRole="tbl_control_local_packing" ToRole="tbl_control_local_detail" />
+        </EntityType>
+        <EntityType Name="tbl_control_outoftown_detail">
+          <Key>
+            <PropertyRef Name="item_code" />
+          </Key>
+          <Property Name="item_code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="control_no" Type="Int64" Nullable="false" />
+          <Property Name="qty" Type="Int64" Nullable="false" />
+          <Property Name="volume" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="unit" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="control_type" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_control_outoftown_master" Relationship="GT_Order_Monitoring_SystemModel.tbl_control_outoftown_detail_FK_tbl_control_outoftown_detail_tbl_control_outoftown_master" FromRole="tbl_control_outoftown_detail" ToRole="tbl_control_outoftown_master" />
+          <NavigationProperty Name="tbl_control_outoftown_packing" Relationship="GT_Order_Monitoring_SystemModel.tbl_control_outoftown_packing_FK_tbl_control_outoftown_packing_tbl_control_outoftown_detail" FromRole="tbl_control_outoftown_detail" ToRole="tbl_control_outoftown_packing" />
+        </EntityType>
+        <EntityType Name="tbl_control_outoftown_master">
+          <Key>
+            <PropertyRef Name="control_no" />
+            <PropertyRef Name="control_type" />
+          </Key>
+          <Property Name="control_no" Type="Int64" Nullable="false" />
+          <Property Name="control_date" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="shippers_id" Type="Int64" Nullable="false" />
+          <Property Name="consignees_id" Type="Int64" Nullable="false" />
+          <Property Name="order_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="po_no" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="via" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="truck_no" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="control_type" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="notes" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="trip" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ship_value" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="freight" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_control_outoftown_detail" Relationship="GT_Order_Monitoring_SystemModel.tbl_control_outoftown_detail_FK_tbl_control_outoftown_detail_tbl_control_outoftown_master" FromRole="tbl_control_outoftown_master" ToRole="tbl_control_outoftown_detail" />
+        </EntityType>
+        <EntityType Name="tbl_control_outoftown_packing">
+          <Key>
+            <PropertyRef Name="packing_id" />
+          </Key>
+          <Property Name="packing_id" Type="Int64" Nullable="false" />
+          <Property Name="item_code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="qtyinpcs" Type="Int64" Nullable="false" />
+          <Property Name="qtyinkgs" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="order_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="qtyinrolls" Type="Int64" />
+          <NavigationProperty Name="tbl_control_outoftown_detail" Relationship="GT_Order_Monitoring_SystemModel.tbl_control_outoftown_packing_FK_tbl_control_outoftown_packing_tbl_control_outoftown_detail" FromRole="tbl_control_outoftown_packing" ToRole="tbl_control_outoftown_detail" />
+        </EntityType>
+        <EntityType Name="tbl_customer">
+          <Key>
+            <PropertyRef Name="customer_id" />
+          </Key>
+          <Property Name="customer_id" Type="Int64" Nullable="false" />
+          <Property Name="customer_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="contact_person" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="phone_no" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="fax_no" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="email_add" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="agent_code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="balance" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="over_" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="credit_limit" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="credit_terms" Type="Int32" />
+          <Property Name="business_style" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tin_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_customer_temp">
+          <Key>
+            <PropertyRef Name="customer_id" />
+          </Key>
+          <Property Name="customer_id" Type="Int64" Nullable="false" />
+          <Property Name="customer_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="contact_person" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="phone_no" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="fax_no" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="email_add" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="balance" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="over_" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="credit_limit" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="credit_terms" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_delivery_detail">
+          <Key>
+            <PropertyRef Name="detail_id" />
+          </Key>
+          <Property Name="detail_id" Type="Int64" Nullable="false" />
+          <Property Name="control_no" Type="Int64" Nullable="false" />
+          <Property Name="customer_id" Type="Int64" Nullable="false" />
+          <Property Name="bdls" Type="Int64" />
+          <Property Name="pcks" Type="Int64" />
+          <Property Name="weight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="delivery_id" Type="Int64" Nullable="false" />
+          <Property Name="control_type" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="control_cat" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="rolls" Type="Int64" />
+          <Property Name="status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_delivery_master" Relationship="GT_Order_Monitoring_SystemModel.tbl_delivery_detail_FK_tbl_delivery_detail_tbl_delivery_master" FromRole="tbl_delivery_detail" ToRole="tbl_delivery_master" />
+        </EntityType>
+        <EntityType Name="tbl_delivery_master">
+          <Key>
+            <PropertyRef Name="delivery_id" />
+          </Key>
+          <Property Name="delivery_id" Type="Int64" Nullable="false" />
+          <Property Name="delivery_date" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="truck_no" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="trip" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="gross" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="tare" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="notes" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_delivery_detail" Relationship="GT_Order_Monitoring_SystemModel.tbl_delivery_detail_FK_tbl_delivery_detail_tbl_delivery_master" FromRole="tbl_delivery_master" ToRole="tbl_delivery_detail" />
+        </EntityType>
+        <EntityType Name="tbl_laminated_jo">
+          <Key>
+            <PropertyRef Name="jo_no" />
+          </Key>
+          <Property Name="jo_no" Type="Int64" Nullable="false" />
+          <Property Name="jo_date" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="delivery_date" Type="DateTime" Precision="6" />
+          <Property Name="po_no" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="customer_id" Type="Int64" Nullable="false" />
+          <Property Name="code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ptype_substrate" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ptype_laminant" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="bottom_fold" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="left_fold" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="right_fold" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="inner_dim_width" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="inner_dim_length" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="outer_dim_width" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="outer_dim_length" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="thickness_substrate" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="thickness_laminant" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="plastic_category" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="print_style" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="no_of_colors" Type="Int64" Nullable="false" />
+          <Property Name="front_print" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="back_print" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="weight_per_pc" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="checking_based" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ordered_qty" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="unit" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="subtrate_inputted_qty" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="laminant_inputted_qty" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="sealing_type" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="opening_portion" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="changespecs_no" Type="Int64" />
+          <Property Name="created_by" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="changed_by" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="top_seal_width" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="bottom_seal_width" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="side_seal_width" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="center_seal_width" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="date_last_edit" Type="DateTime" Precision="6" />
+          <Property Name="tear_knotch" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="punch_whole" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="product_category" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ptype_barrier" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="approved_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="verified_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="noted_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="approved_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="verified_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="noted_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="prepared_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="order_status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="invoice_no" Type="Int64" />
+          <Property Name="plate_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="revision_code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="prod_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="date_faxed" Type="DateTime" Precision="6" />
+          <Property Name="finished_form" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_po_detail">
+          <Key>
+            <PropertyRef Name="item_id" />
+          </Key>
+          <Property Name="item_id" Type="Int64" Nullable="false" />
+          <Property Name="qty" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="unit" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="disc" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="po_id" Type="Int64" Nullable="false" />
+          <Property Name="pcsperpack" Type="Int64" />
+          <Property Name="remqty" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="overqty" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="overlimit" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="control_type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="order_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="product_category" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="order_status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="plate_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="revision_code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="revision_desc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="prod_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_po_master">
+          <Key>
+            <PropertyRef Name="po_no" />
+            <PropertyRef Name="customer_id" />
+            <PropertyRef Name="po_id" />
+          </Key>
+          <Property Name="po_no" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="po_date" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="terms" Type="Int64" Nullable="false" />
+          <Property Name="notes" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="customer_id" Type="Int64" Nullable="false" />
+          <Property Name="po_id" Type="Int64" Nullable="false" />
+          <Property Name="control" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="void_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="delivery_date" Type="DateTime" Precision="6" />
+          <Property Name="hold_type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="holdstatus" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_polybags_jo">
+          <Key>
+            <PropertyRef Name="jo_no" />
+          </Key>
+          <Property Name="jo_no" Type="Int64" Nullable="false" />
+          <Property Name="jo_date" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="delivery_date" Type="DateTime" Precision="6" />
+          <Property Name="customer_id" Type="Int64" Nullable="false" />
+          <Property Name="po_no" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ptype" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="plastic_color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="bottom_fold" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="left_fold" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="right_fold" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="width" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="length" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="thickness_single" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="thickness_tube" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="thickness_fold" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="weight_per_pc" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="checking_based" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="plastic_type" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="plastic_category" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="print_style" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="no_of_colors" Type="Int64" Nullable="false" />
+          <Property Name="front_print" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="back_print" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ordered_qty" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="unit" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="inputted_qty" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="changespecs_no" Type="Int64" />
+          <Property Name="created_by" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="changed_by" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="date_last_edit" Type="DateTime" Precision="6" />
+          <Property Name="product_category" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="approved_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="verified_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="noted_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="approved_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="verified_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="noted_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="prepared_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="order_status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="invoice_no" Type="Int64" />
+          <Property Name="plate_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="revision_code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="prod_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="date_faxed" Type="DateTime" Precision="6" />
+        </EntityType>
+        <EntityType Name="tbl_requisition_detail">
+          <Key>
+            <PropertyRef Name="rf_detail_id" />
+          </Key>
+          <Property Name="rf_detail_id" Type="Int64" Nullable="false" />
+          <Property Name="rf_id" Type="Int64" Nullable="false" />
+          <Property Name="rf_no" Type="Int64" Nullable="false" />
+          <Property Name="item_id" Type="Int64" Nullable="false" />
+          <Property Name="qty" Type="Int64" Nullable="false" />
+          <Property Name="unit" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="pcsperpack" Type="Int64" Nullable="false" />
+          <Property Name="remqty" Type="Int64" Nullable="false" />
+          <Property Name="overqty" Type="Int64" Nullable="false" />
+          <Property Name="status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_requisition_master">
+          <Key>
+            <PropertyRef Name="rf_id" />
+          </Key>
+          <Property Name="rf_id" Type="Int64" Nullable="false" />
+          <Property Name="rf_no" Type="Int64" Nullable="false" />
+          <Property Name="rf_type" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="po_no" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="po_id" Type="Int64" Nullable="false" />
+          <Property Name="po_date" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="customer_id" Type="Int64" Nullable="false" />
+          <Property Name="status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="requiested_by" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="approved_by" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_return_detail">
+          <Key>
+            <PropertyRef Name="ret_detail_id" />
+          </Key>
+          <Property Name="ret_detail_id" Type="Int64" Nullable="false" />
+          <Property Name="rs_no" Type="Int64" Nullable="false" />
+          <Property Name="qty" Type="Int64" Nullable="false" />
+          <Property Name="unit" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="item_code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="control_type" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbl_return_master" Relationship="GT_Order_Monitoring_SystemModel.tbl_return_detail_FK_tbl_return_detail_tbl_return_master" FromRole="tbl_return_detail" ToRole="tbl_return_master" />
+          <NavigationProperty Name="tbl_return_packing" Relationship="GT_Order_Monitoring_SystemModel.tbl_return_packing_FK_tbl_return_packing_tbl_return_detail" FromRole="tbl_return_detail" ToRole="tbl_return_packing" />
+        </EntityType>
+        <EntityType Name="tbl_return_master">
+          <Key>
+            <PropertyRef Name="rs_no" />
+          </Key>
+          <Property Name="rs_no" Type="Int64" Nullable="false" />
+          <Property Name="control_no" Type="Int64" Nullable="false" />
+          <Property Name="po_no" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="invoice_no" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="customer_id" Type="Int64" Nullable="false" />
+          <Property Name="control_category" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="date_returned" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="notes" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="control_type" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="return_slip_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="control_date" Type="DateTime" Precision="6" />
+          <NavigationProperty Name="tbl_return_detail" Relationship="GT_Order_Monitoring_SystemModel.tbl_return_detail_FK_tbl_return_detail_tbl_return_master" FromRole="tbl_return_master" ToRole="tbl_return_detail" />
+        </EntityType>
+        <EntityType Name="tbl_return_packing">
+          <Key>
+            <PropertyRef Name="ret_packing_id" />
+          </Key>
+          <Property Name="ret_packing_id" Type="Int64" Nullable="false" />
+          <Property Name="ret_detail_id" Type="Int64" Nullable="false" />
+          <Property Name="code" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="qtyinpcs" Type="Int64" Nullable="false" />
+          <Property Name="qtyinkgs" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="packing_id" Type="Int64" Nullable="false" />
+          <Property Name="unit_price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="qtyinrolls" Type="Int64" />
+          <NavigationProperty Name="tbl_return_detail" Relationship="GT_Order_Monitoring_SystemModel.tbl_return_packing_FK_tbl_return_packing_tbl_return_detail" FromRole="tbl_return_packing" ToRole="tbl_return_detail" />
+        </EntityType>
+        <EntityType Name="tbl_ship">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="via" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_truck">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="truck_no" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_user">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="acc_level" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="access" Type="Int32" Nullable="false" />
+          <Property Name="img" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="signature_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="width" Type="Int64" />
+          <Property Name="height" Type="Int64" />
+          <Property Name="y" Type="Int64" />
+        </EntityType>
+        <EntityType Name="pbcatedt">
+          <Key>
+            <PropertyRef Name="pbe_name" />
+            <PropertyRef Name="pbe_type" />
+            <PropertyRef Name="pbe_seqn" />
+          </Key>
+          <Property Name="pbe_name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="pbe_edit" Type="String" MaxLength="254" FixedLength="false" Unicode="true" />
+          <Property Name="pbe_type" Type="Int16" Nullable="false" />
+          <Property Name="pbe_cntr" Type="Int32" />
+          <Property Name="pbe_seqn" Type="Int16" Nullable="false" />
+          <Property Name="pbe_flag" Type="Int32" />
+          <Property Name="pbe_work" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="pbcatfmt">
+          <Key>
+            <PropertyRef Name="pbf_name" />
+            <PropertyRef Name="pbf_frmt" />
+            <PropertyRef Name="pbf_type" />
+          </Key>
+          <Property Name="pbf_name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="pbf_frmt" Type="String" Nullable="false" MaxLength="254" FixedLength="false" Unicode="true" />
+          <Property Name="pbf_type" Type="Int16" Nullable="false" />
+          <Property Name="pbf_cntr" Type="Int32" />
+        </EntityType>
+        <EntityType Name="pbcatvld">
+          <Key>
+            <PropertyRef Name="pbv_name" />
+            <PropertyRef Name="pbv_vald" />
+            <PropertyRef Name="pbv_type" />
+          </Key>
+          <Property Name="pbv_name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="pbv_vald" Type="String" Nullable="false" MaxLength="254" FixedLength="false" Unicode="true" />
+          <Property Name="pbv_type" Type="Int16" Nullable="false" />
+          <Property Name="pbv_cntr" Type="Int32" />
+          <Property Name="pbv_msg" Type="String" MaxLength="254" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_control_summary">
+          <Key>
+            <PropertyRef Name="control_date" />
+            <PropertyRef Name="total_bdls" />
+            <PropertyRef Name="total_rolls" />
+            <PropertyRef Name="total_pcks" />
+            <PropertyRef Name="total_kgs" />
+            <PropertyRef Name="category" />
+          </Key>
+          <Property Name="control_date" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="total_bdls" Type="Int64" Nullable="false" />
+          <Property Name="total_rolls" Type="Int64" Nullable="false" />
+          <Property Name="total_pcks" Type="Int64" Nullable="false" />
+          <Property Name="total_kgs" Type="Int64" Nullable="false" />
+          <Property Name="category" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_holdjoborder">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="type" />
+            <PropertyRef Name="job_type" />
+            <PropertyRef Name="jo_no" />
+            <PropertyRef Name="customer_id" />
+            <PropertyRef Name="product_code" />
+            <PropertyRef Name="description" />
+            <PropertyRef Name="status" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="type" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="job_type" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="jo_no" Type="Int64" Nullable="false" />
+          <Property Name="customer_id" Type="Int32" Nullable="false" />
+          <Property Name="product_code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="released_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_laminated_design">
+          <Key>
+            <PropertyRef Name="design_id" />
+            <PropertyRef Name="design_code" />
+            <PropertyRef Name="prod_code" />
+          </Key>
+          <Property Name="design_id" Type="Int64" Nullable="false" />
+          <Property Name="design_code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="prod_code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="bottom_fold" Type="Int64" />
+          <Property Name="left_fold" Type="Int64" />
+          <Property Name="right_fold" Type="Int64" />
+          <Property Name="inner_dim_width" Type="Int64" />
+          <Property Name="inner_dim_length" Type="Int64" />
+          <Property Name="outer_dim_width" Type="Int64" />
+          <Property Name="outer_dim_length" Type="Int64" />
+          <Property Name="no_of_colors" Type="Int64" />
+          <Property Name="front_print" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="back_print" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sealing_type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="opening_portion" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="top_seal_width" Type="Int64" />
+          <Property Name="bottom_seal_width" Type="Int64" />
+          <Property Name="side_seal_width" Type="Int64" />
+          <Property Name="center_seal_width" Type="Int64" />
+          <Property Name="tear_knotch" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="punch_whole" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="customer_id" Type="Int64" />
+          <Property Name="print_style" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="design_date" Type="DateTime" Precision="6" />
+        </EntityType>
+        <EntityType Name="tbl_polybags_design">
+          <Key>
+            <PropertyRef Name="design_id" />
+            <PropertyRef Name="design_code" />
+            <PropertyRef Name="prod_code" />
+          </Key>
+          <Property Name="design_id" Type="Int64" Nullable="false" />
+          <Property Name="design_code" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="prod_code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ptype" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="plastic_color" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="bottom_fold" Type="Int64" />
+          <Property Name="left_fold" Type="Int64" />
+          <Property Name="right_fold" Type="Int64" />
+          <Property Name="width" Type="Int64" />
+          <Property Name="length" Type="Int64" />
+          <Property Name="print_style" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="no_of_colors" Type="Int64" />
+          <Property Name="front_print" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="back_print" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="customer_id" Type="Int64" />
+          <Property Name="design_date" Type="DateTime" Precision="6" />
+        </EntityType>
+        <Association Name="tbl_control_local_detail_FK_tbl_control_local_detail_tbl_control_local_master">
+          <End Type="GT_Order_Monitoring_SystemModel.tbl_control_local_master" Role="tbl_control_local_master" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="GT_Order_Monitoring_SystemModel.tbl_control_local_detail" Role="tbl_control_local_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_control_local_master">
+              <PropertyRef Name="control_no" />
+              <PropertyRef Name="control_type" />
+            </Principal>
+            <Dependent Role="tbl_control_local_detail">
+              <PropertyRef Name="control_no" />
+              <PropertyRef Name="control_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tbl_control_local_packing_FK_tbl_control_local_packing_tbl_control_local_detail">
+          <End Type="GT_Order_Monitoring_SystemModel.tbl_control_local_detail" Role="tbl_control_local_detail" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="GT_Order_Monitoring_SystemModel.tbl_control_local_packing" Role="tbl_control_local_packing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_control_local_detail">
+              <PropertyRef Name="item_code" />
+            </Principal>
+            <Dependent Role="tbl_control_local_packing">
+              <PropertyRef Name="item_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tbl_control_outoftown_detail_FK_tbl_control_outoftown_detail_tbl_control_outoftown_master">
+          <End Type="GT_Order_Monitoring_SystemModel.tbl_control_outoftown_master" Role="tbl_control_outoftown_master" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="GT_Order_Monitoring_SystemModel.tbl_control_outoftown_detail" Role="tbl_control_outoftown_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_control_outoftown_master">
+              <PropertyRef Name="control_no" />
+              <PropertyRef Name="control_type" />
+            </Principal>
+            <Dependent Role="tbl_control_outoftown_detail">
+              <PropertyRef Name="control_no" />
+              <PropertyRef Name="control_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tbl_control_outoftown_packing_FK_tbl_control_outoftown_packing_tbl_control_outoftown_detail">
+          <End Type="GT_Order_Monitoring_SystemModel.tbl_control_outoftown_detail" Role="tbl_control_outoftown_detail" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="GT_Order_Monitoring_SystemModel.tbl_control_outoftown_packing" Role="tbl_control_outoftown_packing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_control_outoftown_detail">
+              <PropertyRef Name="item_code" />
+            </Principal>
+            <Dependent Role="tbl_control_outoftown_packing">
+              <PropertyRef Name="item_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tbl_delivery_detail_FK_tbl_delivery_detail_tbl_delivery_master">
+          <End Type="GT_Order_Monitoring_SystemModel.tbl_delivery_master" Role="tbl_delivery_master" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="GT_Order_Monitoring_SystemModel.tbl_delivery_detail" Role="tbl_delivery_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_delivery_master">
+              <PropertyRef Name="delivery_id" />
+            </Principal>
+            <Dependent Role="tbl_delivery_detail">
+              <PropertyRef Name="delivery_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tbl_return_detail_FK_tbl_return_detail_tbl_return_master">
+          <End Type="GT_Order_Monitoring_SystemModel.tbl_return_master" Role="tbl_return_master" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="GT_Order_Monitoring_SystemModel.tbl_return_detail" Role="tbl_return_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_return_master">
+              <PropertyRef Name="rs_no" />
+            </Principal>
+            <Dependent Role="tbl_return_detail">
+              <PropertyRef Name="rs_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tbl_return_packing_FK_tbl_return_packing_tbl_return_detail">
+          <End Type="GT_Order_Monitoring_SystemModel.tbl_return_detail" Role="tbl_return_detail" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="GT_Order_Monitoring_SystemModel.tbl_return_packing" Role="tbl_return_packing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_return_detail">
+              <PropertyRef Name="ret_detail_id" />
+            </Principal>
+            <Dependent Role="tbl_return_packing">
+              <PropertyRef Name="ret_detail_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_oms_search_ship_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="via" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_oms_search_truck_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="truck_no" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="sp_oms_search_user_Result">
+          <Property Type="String" Name="code" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="password" Nullable="false" />
+          <Property Type="String" Name="acc_level" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="access" Nullable="false" />
+          <Property Type="String" Name="img" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="signature_path" Nullable="true" MaxLength="200" />
+          <Property Type="Int64" Name="width" Nullable="true" />
+          <Property Type="Int64" Name="height" Nullable="true" />
+          <Property Type="Int64" Name="y" Nullable="true" />
+        </ComplexType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GT_Order_Monitoring_SystemModelStoreContainer" CdmEntityContainer="GT_Order_Monitoring_SystemEntities">
+          <EntitySetMapping Name="dtproperties">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.dtproperties">
+              <MappingFragment StoreEntitySet="dtproperties">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="lvalue" ColumnName="lvalue" />
+                <ScalarProperty Name="uvalue" ColumnName="uvalue" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="property" ColumnName="property" />
+                <ScalarProperty Name="objectid" ColumnName="objectid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_control_local_detail">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_control_local_detail">
+              <MappingFragment StoreEntitySet="tbl_control_local_detail">
+                <ScalarProperty Name="ModifiedTime" ColumnName="ModifiedTime" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="control_type" ColumnName="control_type" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="control_no" ColumnName="control_no" />
+                <ScalarProperty Name="item_code" ColumnName="item_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_control_local_master">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_control_local_master">
+              <MappingFragment StoreEntitySet="tbl_control_local_master">
+                <ScalarProperty Name="ModifiedTime" ColumnName="ModifiedTime" />
+                <ScalarProperty Name="trip" ColumnName="trip" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="control_type" ColumnName="control_type" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="truck_no" ColumnName="truck_no" />
+                <ScalarProperty Name="po_no" ColumnName="po_no" />
+                <ScalarProperty Name="order_no" ColumnName="order_no" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="control_date" ColumnName="control_date" />
+                <ScalarProperty Name="control_no" ColumnName="control_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_control_local_packing">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_control_local_packing">
+              <MappingFragment StoreEntitySet="tbl_control_local_packing">
+                <ScalarProperty Name="qtyinrolls" ColumnName="qtyinrolls" />
+                <ScalarProperty Name="order_no" ColumnName="order_no" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="qtyinkgs" ColumnName="qtyinkgs" />
+                <ScalarProperty Name="qtyinpcs" ColumnName="qtyinpcs" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="item_code" ColumnName="item_code" />
+                <ScalarProperty Name="packing_id" ColumnName="packing_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_control_outoftown_detail">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_control_outoftown_detail">
+              <MappingFragment StoreEntitySet="tbl_control_outoftown_detail">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="control_type" ColumnName="control_type" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="volume" ColumnName="volume" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="control_no" ColumnName="control_no" />
+                <ScalarProperty Name="item_code" ColumnName="item_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_control_outoftown_master">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_control_outoftown_master">
+              <MappingFragment StoreEntitySet="tbl_control_outoftown_master">
+                <ScalarProperty Name="freight" ColumnName="freight" />
+                <ScalarProperty Name="ship_value" ColumnName="ship_value" />
+                <ScalarProperty Name="trip" ColumnName="trip" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="control_type" ColumnName="control_type" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="truck_no" ColumnName="truck_no" />
+                <ScalarProperty Name="via" ColumnName="via" />
+                <ScalarProperty Name="po_no" ColumnName="po_no" />
+                <ScalarProperty Name="order_no" ColumnName="order_no" />
+                <ScalarProperty Name="consignees_id" ColumnName="consignees_id" />
+                <ScalarProperty Name="shippers_id" ColumnName="shippers_id" />
+                <ScalarProperty Name="control_date" ColumnName="control_date" />
+                <ScalarProperty Name="control_no" ColumnName="control_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_control_outoftown_packing">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_control_outoftown_packing">
+              <MappingFragment StoreEntitySet="tbl_control_outoftown_packing">
+                <ScalarProperty Name="qtyinrolls" ColumnName="qtyinrolls" />
+                <ScalarProperty Name="order_no" ColumnName="order_no" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="qtyinkgs" ColumnName="qtyinkgs" />
+                <ScalarProperty Name="qtyinpcs" ColumnName="qtyinpcs" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="item_code" ColumnName="item_code" />
+                <ScalarProperty Name="packing_id" ColumnName="packing_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_customer">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_customer">
+              <MappingFragment StoreEntitySet="tbl_customer">
+                <ScalarProperty Name="tin_no" ColumnName="tin_no" />
+                <ScalarProperty Name="business_style" ColumnName="business_style" />
+                <ScalarProperty Name="credit_terms" ColumnName="credit_terms" />
+                <ScalarProperty Name="credit_limit" ColumnName="credit_limit" />
+                <ScalarProperty Name="over_" ColumnName="over_" />
+                <ScalarProperty Name="balance" ColumnName="balance" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="agent_code" ColumnName="agent_code" />
+                <ScalarProperty Name="email_add" ColumnName="email_add" />
+                <ScalarProperty Name="fax_no" ColumnName="fax_no" />
+                <ScalarProperty Name="phone_no" ColumnName="phone_no" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="contact_person" ColumnName="contact_person" />
+                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_customer_temp">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_customer_temp">
+              <MappingFragment StoreEntitySet="tbl_customer_temp">
+                <ScalarProperty Name="credit_terms" ColumnName="credit_terms" />
+                <ScalarProperty Name="credit_limit" ColumnName="credit_limit" />
+                <ScalarProperty Name="over_" ColumnName="over_" />
+                <ScalarProperty Name="balance" ColumnName="balance" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="email_add" ColumnName="email_add" />
+                <ScalarProperty Name="fax_no" ColumnName="fax_no" />
+                <ScalarProperty Name="phone_no" ColumnName="phone_no" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="contact_person" ColumnName="contact_person" />
+                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_delivery_detail">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_delivery_detail">
+              <MappingFragment StoreEntitySet="tbl_delivery_detail">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="rolls" ColumnName="rolls" />
+                <ScalarProperty Name="control_cat" ColumnName="control_cat" />
+                <ScalarProperty Name="control_type" ColumnName="control_type" />
+                <ScalarProperty Name="delivery_id" ColumnName="delivery_id" />
+                <ScalarProperty Name="weight" ColumnName="weight" />
+                <ScalarProperty Name="pcks" ColumnName="pcks" />
+                <ScalarProperty Name="bdls" ColumnName="bdls" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="control_no" ColumnName="control_no" />
+                <ScalarProperty Name="detail_id" ColumnName="detail_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_delivery_master">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_delivery_master">
+              <MappingFragment StoreEntitySet="tbl_delivery_master">
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="tare" ColumnName="tare" />
+                <ScalarProperty Name="gross" ColumnName="gross" />
+                <ScalarProperty Name="trip" ColumnName="trip" />
+                <ScalarProperty Name="truck_no" ColumnName="truck_no" />
+                <ScalarProperty Name="delivery_date" ColumnName="delivery_date" />
+                <ScalarProperty Name="delivery_id" ColumnName="delivery_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_laminated_jo">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_laminated_jo">
+              <MappingFragment StoreEntitySet="tbl_laminated_jo">
+                <ScalarProperty Name="finished_form" ColumnName="finished_form" />
+                <ScalarProperty Name="date_faxed" ColumnName="date_faxed" />
+                <ScalarProperty Name="prod_code" ColumnName="prod_code" />
+                <ScalarProperty Name="revision_code" ColumnName="revision_code" />
+                <ScalarProperty Name="plate_no" ColumnName="plate_no" />
+                <ScalarProperty Name="invoice_no" ColumnName="invoice_no" />
+                <ScalarProperty Name="order_status" ColumnName="order_status" />
+                <ScalarProperty Name="prepared_path" ColumnName="prepared_path" />
+                <ScalarProperty Name="noted_path" ColumnName="noted_path" />
+                <ScalarProperty Name="verified_path" ColumnName="verified_path" />
+                <ScalarProperty Name="approved_path" ColumnName="approved_path" />
+                <ScalarProperty Name="noted_by" ColumnName="noted_by" />
+                <ScalarProperty Name="verified_by" ColumnName="verified_by" />
+                <ScalarProperty Name="approved_by" ColumnName="approved_by" />
+                <ScalarProperty Name="ptype_barrier" ColumnName="ptype_barrier" />
+                <ScalarProperty Name="product_category" ColumnName="product_category" />
+                <ScalarProperty Name="punch_whole" ColumnName="punch_whole" />
+                <ScalarProperty Name="tear_knotch" ColumnName="tear_knotch" />
+                <ScalarProperty Name="date_last_edit" ColumnName="date_last_edit" />
+                <ScalarProperty Name="center_seal_width" ColumnName="center_seal_width" />
+                <ScalarProperty Name="side_seal_width" ColumnName="side_seal_width" />
+                <ScalarProperty Name="bottom_seal_width" ColumnName="bottom_seal_width" />
+                <ScalarProperty Name="top_seal_width" ColumnName="top_seal_width" />
+                <ScalarProperty Name="changed_by" ColumnName="changed_by" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="changespecs_no" ColumnName="changespecs_no" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="opening_portion" ColumnName="opening_portion" />
+                <ScalarProperty Name="sealing_type" ColumnName="sealing_type" />
+                <ScalarProperty Name="laminant_inputted_qty" ColumnName="laminant_inputted_qty" />
+                <ScalarProperty Name="subtrate_inputted_qty" ColumnName="subtrate_inputted_qty" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="ordered_qty" ColumnName="ordered_qty" />
+                <ScalarProperty Name="checking_based" ColumnName="checking_based" />
+                <ScalarProperty Name="weight_per_pc" ColumnName="weight_per_pc" />
+                <ScalarProperty Name="back_print" ColumnName="back_print" />
+                <ScalarProperty Name="front_print" ColumnName="front_print" />
+                <ScalarProperty Name="no_of_colors" ColumnName="no_of_colors" />
+                <ScalarProperty Name="print_style" ColumnName="print_style" />
+                <ScalarProperty Name="plastic_category" ColumnName="plastic_category" />
+                <ScalarProperty Name="thickness_laminant" ColumnName="thickness_laminant" />
+                <ScalarProperty Name="thickness_substrate" ColumnName="thickness_substrate" />
+                <ScalarProperty Name="outer_dim_length" ColumnName="outer_dim_length" />
+                <ScalarProperty Name="outer_dim_width" ColumnName="outer_dim_width" />
+                <ScalarProperty Name="inner_dim_length" ColumnName="inner_dim_length" />
+                <ScalarProperty Name="inner_dim_width" ColumnName="inner_dim_width" />
+                <ScalarProperty Name="right_fold" ColumnName="right_fold" />
+                <ScalarProperty Name="left_fold" ColumnName="left_fold" />
+                <ScalarProperty Name="bottom_fold" ColumnName="bottom_fold" />
+                <ScalarProperty Name="ptype_laminant" ColumnName="ptype_laminant" />
+                <ScalarProperty Name="ptype_substrate" ColumnName="ptype_substrate" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="po_no" ColumnName="po_no" />
+                <ScalarProperty Name="delivery_date" ColumnName="delivery_date" />
+                <ScalarProperty Name="jo_date" ColumnName="jo_date" />
+                <ScalarProperty Name="jo_no" ColumnName="jo_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_po_detail">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_po_detail">
+              <MappingFragment StoreEntitySet="tbl_po_detail">
+                <ScalarProperty Name="prod_code" ColumnName="prod_code" />
+                <ScalarProperty Name="revision_desc" ColumnName="revision_desc" />
+                <ScalarProperty Name="revision_code" ColumnName="revision_code" />
+                <ScalarProperty Name="plate_no" ColumnName="plate_no" />
+                <ScalarProperty Name="order_status" ColumnName="order_status" />
+                <ScalarProperty Name="product_category" ColumnName="product_category" />
+                <ScalarProperty Name="order_no" ColumnName="order_no" />
+                <ScalarProperty Name="control_type" ColumnName="control_type" />
+                <ScalarProperty Name="overlimit" ColumnName="overlimit" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="overqty" ColumnName="overqty" />
+                <ScalarProperty Name="remqty" ColumnName="remqty" />
+                <ScalarProperty Name="pcsperpack" ColumnName="pcsperpack" />
+                <ScalarProperty Name="po_id" ColumnName="po_id" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="disc" ColumnName="disc" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_po_master">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_po_master">
+              <MappingFragment StoreEntitySet="tbl_po_master">
+                <ScalarProperty Name="holdstatus" ColumnName="holdstatus" />
+                <ScalarProperty Name="hold_type" ColumnName="hold_type" />
+                <ScalarProperty Name="delivery_date" ColumnName="delivery_date" />
+                <ScalarProperty Name="void_by" ColumnName="void_by" />
+                <ScalarProperty Name="control" ColumnName="control" />
+                <ScalarProperty Name="po_id" ColumnName="po_id" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="terms" ColumnName="terms" />
+                <ScalarProperty Name="po_date" ColumnName="po_date" />
+                <ScalarProperty Name="po_no" ColumnName="po_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_polybags_jo">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_polybags_jo">
+              <MappingFragment StoreEntitySet="tbl_polybags_jo">
+                <ScalarProperty Name="date_faxed" ColumnName="date_faxed" />
+                <ScalarProperty Name="prod_code" ColumnName="prod_code" />
+                <ScalarProperty Name="revision_code" ColumnName="revision_code" />
+                <ScalarProperty Name="plate_no" ColumnName="plate_no" />
+                <ScalarProperty Name="invoice_no" ColumnName="invoice_no" />
+                <ScalarProperty Name="order_status" ColumnName="order_status" />
+                <ScalarProperty Name="prepared_path" ColumnName="prepared_path" />
+                <ScalarProperty Name="noted_path" ColumnName="noted_path" />
+                <ScalarProperty Name="verified_path" ColumnName="verified_path" />
+                <ScalarProperty Name="approved_path" ColumnName="approved_path" />
+                <ScalarProperty Name="noted_by" ColumnName="noted_by" />
+                <ScalarProperty Name="verified_by" ColumnName="verified_by" />
+                <ScalarProperty Name="approved_by" ColumnName="approved_by" />
+                <ScalarProperty Name="product_category" ColumnName="product_category" />
+                <ScalarProperty Name="date_last_edit" ColumnName="date_last_edit" />
+                <ScalarProperty Name="changed_by" ColumnName="changed_by" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="changespecs_no" ColumnName="changespecs_no" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="inputted_qty" ColumnName="inputted_qty" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="ordered_qty" ColumnName="ordered_qty" />
+                <ScalarProperty Name="back_print" ColumnName="back_print" />
+                <ScalarProperty Name="front_print" ColumnName="front_print" />
+                <ScalarProperty Name="no_of_colors" ColumnName="no_of_colors" />
+                <ScalarProperty Name="print_style" ColumnName="print_style" />
+                <ScalarProperty Name="plastic_category" ColumnName="plastic_category" />
+                <ScalarProperty Name="plastic_type" ColumnName="plastic_type" />
+                <ScalarProperty Name="checking_based" ColumnName="checking_based" />
+                <ScalarProperty Name="weight_per_pc" ColumnName="weight_per_pc" />
+                <ScalarProperty Name="thickness_fold" ColumnName="thickness_fold" />
+                <ScalarProperty Name="thickness_tube" ColumnName="thickness_tube" />
+                <ScalarProperty Name="thickness_single" ColumnName="thickness_single" />
+                <ScalarProperty Name="length" ColumnName="length" />
+                <ScalarProperty Name="width" ColumnName="width" />
+                <ScalarProperty Name="right_fold" ColumnName="right_fold" />
+                <ScalarProperty Name="left_fold" ColumnName="left_fold" />
+                <ScalarProperty Name="bottom_fold" ColumnName="bottom_fold" />
+                <ScalarProperty Name="plastic_color" ColumnName="plastic_color" />
+                <ScalarProperty Name="ptype" ColumnName="ptype" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="po_no" ColumnName="po_no" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="delivery_date" ColumnName="delivery_date" />
+                <ScalarProperty Name="jo_date" ColumnName="jo_date" />
+                <ScalarProperty Name="jo_no" ColumnName="jo_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_requisition_detail">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_requisition_detail">
+              <MappingFragment StoreEntitySet="tbl_requisition_detail">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="overqty" ColumnName="overqty" />
+                <ScalarProperty Name="remqty" ColumnName="remqty" />
+                <ScalarProperty Name="pcsperpack" ColumnName="pcsperpack" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+                <ScalarProperty Name="rf_no" ColumnName="rf_no" />
+                <ScalarProperty Name="rf_id" ColumnName="rf_id" />
+                <ScalarProperty Name="rf_detail_id" ColumnName="rf_detail_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_requisition_master">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_requisition_master">
+              <MappingFragment StoreEntitySet="tbl_requisition_master">
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="approved_by" ColumnName="approved_by" />
+                <ScalarProperty Name="requiested_by" ColumnName="requiested_by" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="po_date" ColumnName="po_date" />
+                <ScalarProperty Name="po_id" ColumnName="po_id" />
+                <ScalarProperty Name="po_no" ColumnName="po_no" />
+                <ScalarProperty Name="rf_type" ColumnName="rf_type" />
+                <ScalarProperty Name="rf_no" ColumnName="rf_no" />
+                <ScalarProperty Name="rf_id" ColumnName="rf_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_return_detail">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_return_detail">
+              <MappingFragment StoreEntitySet="tbl_return_detail">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="control_type" ColumnName="control_type" />
+                <ScalarProperty Name="item_code" ColumnName="item_code" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="rs_no" ColumnName="rs_no" />
+                <ScalarProperty Name="ret_detail_id" ColumnName="ret_detail_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_return_master">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_return_master">
+              <MappingFragment StoreEntitySet="tbl_return_master">
+                <ScalarProperty Name="control_date" ColumnName="control_date" />
+                <ScalarProperty Name="return_slip_no" ColumnName="return_slip_no" />
+                <ScalarProperty Name="control_type" ColumnName="control_type" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="date_returned" ColumnName="date_returned" />
+                <ScalarProperty Name="control_category" ColumnName="control_category" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="invoice_no" ColumnName="invoice_no" />
+                <ScalarProperty Name="po_no" ColumnName="po_no" />
+                <ScalarProperty Name="control_no" ColumnName="control_no" />
+                <ScalarProperty Name="rs_no" ColumnName="rs_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_return_packing">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_return_packing">
+              <MappingFragment StoreEntitySet="tbl_return_packing">
+                <ScalarProperty Name="qtyinrolls" ColumnName="qtyinrolls" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="unit_price" ColumnName="unit_price" />
+                <ScalarProperty Name="packing_id" ColumnName="packing_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="qtyinkgs" ColumnName="qtyinkgs" />
+                <ScalarProperty Name="qtyinpcs" ColumnName="qtyinpcs" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="ret_detail_id" ColumnName="ret_detail_id" />
+                <ScalarProperty Name="ret_packing_id" ColumnName="ret_packing_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ship">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_ship">
+              <MappingFragment StoreEntitySet="tbl_ship">
+                <ScalarProperty Name="via" ColumnName="via" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_truck">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_truck">
+              <MappingFragment StoreEntitySet="tbl_truck">
+                <ScalarProperty Name="truck_no" ColumnName="truck_no" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_user">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_user">
+              <MappingFragment StoreEntitySet="tbl_user">
+                <ScalarProperty Name="y" ColumnName="y" />
+                <ScalarProperty Name="height" ColumnName="height" />
+                <ScalarProperty Name="width" ColumnName="width" />
+                <ScalarProperty Name="signature_path" ColumnName="signature_path" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="access" ColumnName="access" />
+                <ScalarProperty Name="acc_level" ColumnName="acc_level" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="code" ColumnName="code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pbcatedt">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.pbcatedt">
+              <MappingFragment StoreEntitySet="pbcatedt">
+                <ScalarProperty Name="pbe_work" ColumnName="pbe_work" />
+                <ScalarProperty Name="pbe_flag" ColumnName="pbe_flag" />
+                <ScalarProperty Name="pbe_seqn" ColumnName="pbe_seqn" />
+                <ScalarProperty Name="pbe_cntr" ColumnName="pbe_cntr" />
+                <ScalarProperty Name="pbe_type" ColumnName="pbe_type" />
+                <ScalarProperty Name="pbe_edit" ColumnName="pbe_edit" />
+                <ScalarProperty Name="pbe_name" ColumnName="pbe_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pbcatfmt">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.pbcatfmt">
+              <MappingFragment StoreEntitySet="pbcatfmt">
+                <ScalarProperty Name="pbf_cntr" ColumnName="pbf_cntr" />
+                <ScalarProperty Name="pbf_type" ColumnName="pbf_type" />
+                <ScalarProperty Name="pbf_frmt" ColumnName="pbf_frmt" />
+                <ScalarProperty Name="pbf_name" ColumnName="pbf_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pbcatvld">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.pbcatvld">
+              <MappingFragment StoreEntitySet="pbcatvld">
+                <ScalarProperty Name="pbv_msg" ColumnName="pbv_msg" />
+                <ScalarProperty Name="pbv_cntr" ColumnName="pbv_cntr" />
+                <ScalarProperty Name="pbv_type" ColumnName="pbv_type" />
+                <ScalarProperty Name="pbv_vald" ColumnName="pbv_vald" />
+                <ScalarProperty Name="pbv_name" ColumnName="pbv_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_control_summary">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_control_summary">
+              <MappingFragment StoreEntitySet="tbl_control_summary">
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="total_kgs" ColumnName="total_kgs" />
+                <ScalarProperty Name="total_pcks" ColumnName="total_pcks" />
+                <ScalarProperty Name="total_rolls" ColumnName="total_rolls" />
+                <ScalarProperty Name="total_bdls" ColumnName="total_bdls" />
+                <ScalarProperty Name="control_date" ColumnName="control_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_holdjoborder">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_holdjoborder">
+              <MappingFragment StoreEntitySet="tbl_holdjoborder">
+                <ScalarProperty Name="released_by" ColumnName="released_by" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="product_code" ColumnName="product_code" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="jo_no" ColumnName="jo_no" />
+                <ScalarProperty Name="job_type" ColumnName="job_type" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_laminated_design">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_laminated_design">
+              <MappingFragment StoreEntitySet="tbl_laminated_design">
+                <ScalarProperty Name="design_date" ColumnName="design_date" />
+                <ScalarProperty Name="print_style" ColumnName="print_style" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="punch_whole" ColumnName="punch_whole" />
+                <ScalarProperty Name="tear_knotch" ColumnName="tear_knotch" />
+                <ScalarProperty Name="center_seal_width" ColumnName="center_seal_width" />
+                <ScalarProperty Name="side_seal_width" ColumnName="side_seal_width" />
+                <ScalarProperty Name="bottom_seal_width" ColumnName="bottom_seal_width" />
+                <ScalarProperty Name="top_seal_width" ColumnName="top_seal_width" />
+                <ScalarProperty Name="opening_portion" ColumnName="opening_portion" />
+                <ScalarProperty Name="sealing_type" ColumnName="sealing_type" />
+                <ScalarProperty Name="back_print" ColumnName="back_print" />
+                <ScalarProperty Name="front_print" ColumnName="front_print" />
+                <ScalarProperty Name="no_of_colors" ColumnName="no_of_colors" />
+                <ScalarProperty Name="outer_dim_length" ColumnName="outer_dim_length" />
+                <ScalarProperty Name="outer_dim_width" ColumnName="outer_dim_width" />
+                <ScalarProperty Name="inner_dim_length" ColumnName="inner_dim_length" />
+                <ScalarProperty Name="inner_dim_width" ColumnName="inner_dim_width" />
+                <ScalarProperty Name="right_fold" ColumnName="right_fold" />
+                <ScalarProperty Name="left_fold" ColumnName="left_fold" />
+                <ScalarProperty Name="bottom_fold" ColumnName="bottom_fold" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="prod_code" ColumnName="prod_code" />
+                <ScalarProperty Name="design_code" ColumnName="design_code" />
+                <ScalarProperty Name="design_id" ColumnName="design_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_polybags_design">
+            <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_polybags_design">
+              <MappingFragment StoreEntitySet="tbl_polybags_design">
+                <ScalarProperty Name="design_date" ColumnName="design_date" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="back_print" ColumnName="back_print" />
+                <ScalarProperty Name="front_print" ColumnName="front_print" />
+                <ScalarProperty Name="no_of_colors" ColumnName="no_of_colors" />
+                <ScalarProperty Name="print_style" ColumnName="print_style" />
+                <ScalarProperty Name="length" ColumnName="length" />
+                <ScalarProperty Name="width" ColumnName="width" />
+                <ScalarProperty Name="right_fold" ColumnName="right_fold" />
+                <ScalarProperty Name="left_fold" ColumnName="left_fold" />
+                <ScalarProperty Name="bottom_fold" ColumnName="bottom_fold" />
+                <ScalarProperty Name="plastic_color" ColumnName="plastic_color" />
+                <ScalarProperty Name="ptype" ColumnName="ptype" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="prod_code" ColumnName="prod_code" />
+                <ScalarProperty Name="design_code" ColumnName="design_code" />
+                <ScalarProperty Name="design_id" ColumnName="design_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_oms_search_ship" FunctionName="GT_Order_Monitoring_SystemModel.Store.sp_oms_search_ship">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GT_Order_Monitoring_SystemModel.sp_oms_search_ship_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="via" ColumnName="via" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_oms_search_truck" FunctionName="GT_Order_Monitoring_SystemModel.Store.sp_oms_search_truck">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GT_Order_Monitoring_SystemModel.sp_oms_search_truck_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="truck_no" ColumnName="truck_no" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_oms_search_user" FunctionName="GT_Order_Monitoring_SystemModel.Store.sp_oms_search_user">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GT_Order_Monitoring_SystemModel.sp_oms_search_user_Result">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="acc_level" ColumnName="acc_level" />
+                <ScalarProperty Name="access" ColumnName="access" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="signature_path" ColumnName="signature_path" />
+                <ScalarProperty Name="width" ColumnName="width" />
+                <ScalarProperty Name="height" ColumnName="height" />
+                <ScalarProperty Name="y" ColumnName="y" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

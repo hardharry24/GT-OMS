@@ -1,0 +1,652 @@
+﻿
+@{
+    ViewBag.TabTitle = "Purchase Control";
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var db = new GT_Billing_SystemEntities();
+}
+@using GT_Order_Monitoring_System.Entity;
+@model GT_Order_Monitoring_System.Models.MyModel
+<div class="row">
+    <div class="col-xl-12">
+        <div class="breadcrumb-holder">
+            <h1 class="main-title float-left"><i class="fa fa-plus-square-o"></i> @Session["PCtype"] Control - @(Session["PCcntrol"].ToString() == "local" ? "Local" : "Out of Town")</h1>
+            <ol class="breadcrumb float-right">
+                <li class="breadcrumb-item">Order</li>
+                <li class="breadcrumb-item active">Purchase Control</li>
+            </ol>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12" style="overflow-y: auto">
+        <div class="card mb-5">
+            <div class="card-header">
+                <a href="/Order/Sale"><i class="fa fa-reply" aria-hidden="true"></i> Back</a>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("PurchaseControl", "Order", FormMethod.Post))
+                {
+                    <div class="col-lg-12">
+                        @if (ViewBag.errorMessage != "")
+                        {
+                            <div class="alert @(ViewBag.errorCode == "1" ? "alert-success": "alert-danger")">@ViewBag.errorMessage</div>
+                        }
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <ul class="nav nav-tabs">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="tabCustInfo" data-toggle="tab" href="#contactInfo">Customer Information</a>
+                                        </li>
+                                        <li class="nav-item" @(Session["PCcntrol"].ToString() == "local" ? "hidden" : "")>
+                                            <a class="nav-link" data-toggle="tab" href="#contactAgent">Consignee's Information</a>
+                                        </li>
+                                    </ul>
+
+                                    <a href="#" class="btn btn-primary float-right" style="margin-left: 100px;cursor: pointer;" data-toggle="modal" data-target="#modal_add_show_customer">Select Customer</a>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane fade show active" id="contactInfo">
+                                            <hr />
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label>Customer Name :</label>
+                                                    <input id="cust_customer_name" class="form-control border-1" style="background-color: #e9ecef;" name="customer_name" onkeydown="return false;" autocomplete="nope" required />
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label>Contact Person&nbsp;: </label>
+                                                    <input id="cust_contact_person" class="form-control border-0" name="contact_person" disabled />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <label>Address&nbsp;: </label>
+                                                    <input id="cust_address" class="form-control border-0" name="address" disabled />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label>Phone #&nbsp;: </label>
+                                                    <input id="cust_phone_no" class="form-control border-0" name="phone_no" disabled />
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label>Fax #&nbsp;: </label>
+                                                    <input id="cust_fax_no" class="form-control border-0" name="fax_no" disabled />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label>Email Add&nbsp;: </label>
+                                                    <input id="cust_email_add" class="form-control border-0" name="email_add" disabled />
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label>Agent Code&nbsp;: </label>
+                                                    <input id="cust_agent_code" class="form-control border-0" name="agent_code" disabled />
+                                                </div>
+                                            </div>
+                                            <div hidden>
+                                                <input type="text" name="customer_id" value="" id="cust_customer_id" />
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade" id="contactAgent">
+                                            <hr />
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label>Agent Name&nbsp;: </label>
+                                                    <input id="agent_agent_name" class="form-control border-0" name="agent_name" disabled />
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label>Agent Code&nbsp;: </label>
+                                                    <input id="agent_agent_code" class="form-control border-0" name="agent_code" disabled />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <label>Address&nbsp;: </label>
+                                                    <input id="agent_address" class="form-control border-0" name="address" disabled />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label>Phone #&nbsp;: </label>
+                                                    <span id="phone_no" name="phone_no"></span>
+                                                    <input id="agent_phone_no" class="form-control border-0" name="phone_no" disabled />
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label>Email Add&nbsp;: </label>
+                                                    <input id="agent_email_add" class="form-control border-0" name="email_add" disabled />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label>Status&nbsp;: </label>
+                                                    <input id="agent_status" class="form-control border-0" name="status" disabled />
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label>Total Agent Commission &nbsp;: </label>
+                                                    <input id="agent_commission" class="form-control border-0" name="commission" disabled />
+                                                </div>
+                                            </div>
+                                            <div hidden>
+                                                <input type="text" name="agentId" value="" id="agent_agentId" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group row">
+                                    <ul class="nav nav-tabs">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="orderForm" data-toggle="tab" href="#contactInfo">Control Form</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane fade show active" id="orderForm">
+                                            <hr />
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label>Status :</label>
+                                                    <input id="status" class="form-control border-0" name="status" value="Ok" style="color: green;" readonly />
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label>Control Date&nbsp;: </label>
+                                                    <input id="control_date" type="datetime-local" class="form-control" name="control_date" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label>Control No:</label>
+                                                    <input id="control_no" class="form-control border-0" name="control_no" value="@Session["PCno"].ToString()"  disabled/>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label>Trip&nbsp;: </label>
+                                                    <select name="trip" class="form-control" required>
+                                                        <option value="">******* SELECT *******</option>
+                                                        <option value="Regular">Regular</option>
+                                                        <option value="1st Trip">1st Trip</option>
+                                                        <option value="2nd Trip">2nd Trip</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label>PO NO :</label>
+                                                    <select name="PoNo" id="PoNo" class="form-control" onchange="onSelectPO()" required>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label>Truck&nbsp;: </label>
+                                                    <select name="truck" class="form-control" required>
+                                                        @foreach (var item in Model.ListTruck)
+                                                        {
+                                                            <option value="@item.truck_no">@item.truck_no</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*<input type="submit" name="name" value="SUBMiT" />
+                            <a href="#" data-toggle="modal" data-target="#modal_items">Add Item</a>*@
+
+                    </div>
+                    <hr style="border: none; border-bottom: 2px solid black;">
+                    <div class="col-lg-12">
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <div class="form-group row">
+                                    <ul class="nav nav-tabs">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="tabCustInfo" data-toggle="tab" href="#myItem">My Items</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="container-fluid" style="overflow-y: visible;">
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane fade show active" id="myItem">
+                                            <hr />
+                                            <span class="pull-right">
+                                                <a href="#" class="btn btn-primary" onclick="onAddItem()" data-toggle="modal" data-target="#modal_show_add_item">
+                                                    <i class="fas fa-plus-square" aria-hidden="true"></i> Add Item
+                                                </a>
+                                            </span>
+                                            <div class="table-responsive">
+                                                <table id="dataTableMain1" class="table table-bordered table-hover display" style="margin-top: 10px; height: 300px; overflow-y: scroll;">
+                                                    <thead>
+                                                        <tr id="tableHeader" style="background-color: #5ba2e6;color: white;">
+                                                            <th>Qty</th>
+                                                            <th>Unit</th>
+                                                            <th>Description</th>
+                                                            <th>Item Code</th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+
+                                            <span class="pull-right">
+                                                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modal_items">
+                                                    <i class="fas fa-plus-square" aria-hidden="true"></i> Add Item
+                                                </a>
+                                            </span>
+                                            <div class="table-responsive">
+                                                <table id="dataTableMain2" class="table table-bordered table-hover display" style="margin-top: 10px; height: 300px; overflow-y: scroll;">
+                                                    <thead>
+                                                        <tr id="tableHeader" style="background-color: #5ba2e6;color: white;">
+                                                            <th>Code</th>
+                                                            <th>Description</th>
+                                                            <th>Qty in KG(S)</th>
+                                                            <th>Qty in PC(S)</th>
+                                                            <th>Qty in ROLL(S)</th>
+                                                            <th>Order No</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                            <hr style="border: none; border-bottom: 2px solid black;">
+                                   
+                               
+                                            <div class="float-right">
+                                                <input type="submit" name="name" value="SUBMIT" class="btn btn-success" />
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Display Customer Details-->
+<div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_show_customer" aria-hidden="true" id="modal_add_show_customer" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="#" method="post" enctype="multipart/form-data">
+
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-users"></i>&nbsp;Select Customer</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-lg-12" style="height: 300px;">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <label>Search Customer&nbsp;</label>
+                                    <input type="text" name="txtAgentSearch" id="txtAgentSearch" value="" placeholder="Search Here" onkeyup="onchangeSearchAgent()" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group row" style="height: 300px;">
+                                <div class="col-lg-12">
+                                    <table style="width: inherit;" id="tblAgents">
+                                        <tbody style="display: block; border: none; height: 230px; overflow-y: scroll">
+                                            @{ var listCustomer = db.tbl_customer.ToList();
+                                            }
+                                            @foreach (var item in listCustomer)
+                                            {
+                                                <tr>
+                                                    <td style="width: 84%;">@item.customer_name <input id="lblCustomerName@(item.customer_id)" value="@item.customer_name" hidden /></td>
+                                                    <td><div id="@item.customer_id" class="btn btn-primary" data-value="" onclick="SelectCustomer(@item.customer_id)" style="cursor:pointer;" data-dismiss="modal">Select</div></td>
+                                                </tr>
+                                            }
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_show_add_item" aria-hidden="true" id="modal_show_add_item" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <form action="#" method="post" enctype="multipart/form-data">
+
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-users"></i>&nbsp;Please Enter Item: </h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                </div>
+
+                <div class="modal-body" id="items1">
+
+                </div>
+
+                <div class="modal-footer">
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/Content/assets/js/customer.js"></script>
+<script type="text/javascript">
+    var PoNo = 0;
+    var countClickItem = 0;
+    const items = [];
+    function SelectCustomer(custId)
+    {
+        var url = "/Order/GetCustomer?id=" + custId;
+
+
+        var request = new XMLHttpRequest();
+        // POST to any url
+        request.open('GET', url, false);
+
+        request.send();
+
+        var resObj = JSON.parse(request.response);
+
+        var res_tbl_agent = resObj.tbl_agent;
+        var res_tbl_customer = resObj.tbl_customer;
+
+        //console.log(res_tbl_agent);
+
+        //set Value Agent Info
+        document.getElementById("agent_agent_name").value = res_tbl_agent.agent_name;
+        document.getElementById("agent_agent_code").value = res_tbl_agent.agent_code;
+        document.getElementById("agent_address").value = res_tbl_agent.address;
+        document.getElementById("agent_phone_no").value = res_tbl_agent.phone_no;
+        document.getElementById("agent_email_add").value = res_tbl_agent.email_add;
+        document.getElementById("agent_status").value = res_tbl_agent.status;
+        document.getElementById("agent_commission").value = res_tbl_agent.commission;
+        document.getElementById("agent_agentId").value = res_tbl_agent.id;
+
+        //set Value Agent Info
+        document.getElementById("cust_customer_name").value = res_tbl_customer.customer_name;
+        document.getElementById("cust_contact_person").value = res_tbl_customer.contact_person;
+        document.getElementById("cust_address").value = res_tbl_customer.address;
+        document.getElementById("cust_phone_no").value = res_tbl_customer.phone_no;
+        document.getElementById("cust_email_add").value = res_tbl_customer.email_add;
+        document.getElementById("cust_fax_no").value = res_tbl_customer.fax_no;
+        document.getElementById("cust_agent_code").value = res_tbl_customer.agent_code;
+        document.getElementById("cust_customer_id").value = res_tbl_customer.customer_id;
+
+        //Get all PO NO
+        GetPoByCustId(custId);
+
+    }
+    function GetPoByCustId(id) {
+        // Get list of PO
+        var url2 = "/JobOrder/GetPObyCustomer/" + id;
+        var request = new XMLHttpRequest();
+        // POST to any url
+        request.open('GET', url2, false);
+        request.send();
+
+        var resObj = JSON.parse(request.response);
+        console.log(resObj);
+
+
+        $("#PoNo").empty();
+        var optDefault = document.createElement("option");
+        optDefault.text = "SELECT";
+        optDefault.value = "";
+        var select = document.getElementById("PoNo");
+        select.appendChild(optDefault);
+        for (var i = 0; i < resObj.listPo.length; i++) {
+            var item = JSON.stringify(resObj.listPo[i]);
+            var opt = JSON.parse(item);
+
+            var option = document.createElement("option");
+            option.text = opt.poNo;
+            option.value = opt.poNo;
+            select.appendChild(option);
+        }
+
+    }
+    function onSelectPO()
+    {
+        var selected = document.getElementById("PoNo").value;
+
+        //PoNo = selected;
+    }
+    function onAddItem()
+    {
+        var selectedPO = document.getElementById("PoNo").value;
+        //console.log(selectedPO);
+
+        var div = document.getElementById("items1");
+
+        jQuery.noConflict();
+
+        $.ajax({
+            cache: false,
+            type: "GET",
+            url: "/Order/PartialPurchaseCtlPromptItemDetail?poNo=" + selectedPO,
+            success: function (data) {
+             
+                div.innerHTML = data;
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                swal('Please Contact Administrator', 'Error', 'error');
+                console.log(thrownError);
+            }
+        });
+
+        /*
+        div.innerHTML = "<table>"+
+                "<tr>"+
+                    "<th>Quantity</th>"+
+                    "<th>Unit</th>"+
+                "</tr>"+
+                "<tr>"+
+                    "<td><input class='form-control' type='number' name='itemQty' value='' placeholder='0' id='itemQty' /></td>"+
+                    "<td>"+
+                    "<select class='form-control' id='itemUnit'>"+
+                    "<option value='BDL(S)'>BDL(S)</option>"+
+                    "<option value='PCK(S)'>PCK(S)</option>"+
+                    "<option value='ROLL(S)'>ROLL(S)</option>"+
+                    "</select>"+
+                    "</td>"+
+                "</tr>"+
+        "</table>";
+        */
+        //swal({
+        //    title: "",
+        //    content: div,
+        //    confirmButtonText: "OK",
+        //    allowOutsideClick: "false",
+        //    closeOnClickOutside: true,
+        //}).then((willDelete) => {
+        //    if (willDelete) {
+        //        var qty = document.getElementById("itemQty").value;
+        //        var unit = document.getElementById("itemUnit").value;
+
+        //        onAddlocalItem(qty, unit);
+                
+        //    }
+        //});
+    }
+
+    function onClickItem(itemId) {
+        var itemQty = document.getElementById("itemQty").value;
+        var itemUnit = document.getElementById("itemUnit").value;
+
+        if (!(itemQty > 0)) {
+            swal('Not valid Quantity', 'Error', 'error');
+            return;
+        }
+        // addPurchaseOrderMaster(int itemId,int qty, string unit)
+        //add item
+        $.ajax({
+            cache: false,
+            type: "GET",
+            url: "/Order/addPurchaseOrderMaster?itemId=" + itemId + "&qty=" + itemQty + "&unit="+itemUnit,
+            success: function (data) {
+                swal('Item Added!', 'Message', 'success');
+
+                GetItems();
+                GetItems2();
+
+                //div.innerHTML = data;
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                swal('Please Contact Administrator', 'Error', 'error');
+                console.log(thrownError);
+            }
+        });
+    }
+
+    function GetItems()
+    {
+        var request = new XMLHttpRequest();
+        // POST to any url
+        request.open('GET', "/Order/RetrieveItems", false);
+        request.send();
+
+        var resObj = JSON.parse(request.response);
+        //console.log(resObj);
+
+        //console.log(resObj.tbl_control_local_detail.length);
+        //Clear row
+        try {
+            var rowItem1 = document.getElementById("tableAdded1");
+            row.parentNode.removeChild(row);
+        } catch (e) {
+    
+        }
+        
+     
+        //Item1
+        for (var i = 0; i < resObj.tbl_control_local_detail.length; i++)
+        {
+            var item = JSON.stringify(resObj.tbl_control_local_detail[i]);
+            var itemObj = JSON.parse(item);
+            //console.log(itemObj.control_no);
+
+
+            var tableRef1 = document.getElementById('dataTableMain1');
+
+            //console.log(itemAdded);
+            var rowCount = tableRef1.rows.length;
+
+            //var resObj = JSON.parse(data.tbl_control_local_detail);
+
+            var row = tableRef1.insertRow(tableRef1.rows.length);
+            row.setAttribute("id", "tableAdded1", 0);
+
+            // row.attr("id", "tableAdded")
+            row.insertCell(0).innerHTML = itemObj.qty;
+            row.insertCell(1).innerHTML = itemObj.unit;
+            row.insertCell(2).innerHTML = itemObj.description;
+            row.insertCell(3).innerHTML = itemObj.item_code;
+            row.insertCell(4).innerHTML = itemObj.status;
+        }
+
+       
+    }
+    function GetItems2()
+    {
+        
+        var request = new XMLHttpRequest();
+        // POST to any url
+        request.open('GET', "/Order/RetrieveItems", false);
+        request.send();
+
+        var resObj = JSON.parse(request.response);
+
+        try {
+            //clear item2
+            var rowItem1 = document.getElementById("tableAdded2");
+            row.parentNode.removeChild(row);
+        } catch (e) {
+    
+        }
+      
+        //Item2
+        for (var i = 0; i < resObj.tbl_control_local_packing.length; i++)
+        {
+            var item = JSON.stringify(resObj.tbl_control_local_packing[i]);
+            var itemObj = JSON.parse(item);
+            //console.log(itemObj.control_no);
+
+
+            var tableRef2 = document.getElementById('dataTableMain2');
+
+            //console.log(itemAdded);
+            var rowCount = tableRef2.rows.length;
+
+            //var resObj = JSON.parse(data.tbl_control_local_detail);
+
+            var row = tableRef2.insertRow(tableRef2.rows.length);
+            row.setAttribute("id", "tableAdded2", 0);
+
+            var onUpdate = "onchange='onUpdateQty('kgs')";
+            // row.attr("id", "tableAdded")
+            row.insertCell(0).innerHTML = itemObj.code;
+            row.insertCell(1).innerHTML = itemObj.description;
+            row.insertCell(2).innerHTML = "<input type='number' class='form-control' id='qtyKgs"+itemObj.packing_id+"' onkeyup=onUpdateQty('kgs',"+itemObj.packing_id+") />";
+            row.insertCell(3).innerHTML = "<input type='number' class='form-control' id='qtyPcs"+itemObj.packing_id+"' onkeyup=onUpdateQty('pcs',"+itemObj.packing_id+") />";
+            row.insertCell(4).innerHTML =  "<input type='number' class='form-control' id='qtyRoll"+itemObj.packing_id+"' onkeyup=onUpdateQty('roll',"+itemObj.packing_id+") />";
+            row.insertCell(5).innerHTML = itemObj.order_no;
+            row.insertCell(6).innerHTML = "<button class='btn btn-danger'>X</button>";
+        }
+    }
+
+    function onUpdateQty(qtyType,id) {
+        var valueTxt = "";
+        if (qtyType == "kgs")
+             valueTxt = document.getElementById("qtyKgs"+id).value;
+        if (qtyType == "pcs")
+             valueTxt = document.getElementById("qtyPcs"+id).value;
+        if (qtyType == "roll")
+             valueTxt = document.getElementById("qtyRoll"+id).value;
+
+        //string cntrol, double valueTxt, int id, string Qtytype)
+        var request = new XMLHttpRequest();
+
+        var formData = new FormData();
+        formData.append("valueTxt",valueTxt);
+        formData.append("Qtytype",qtyType);
+        formData.append("id",id);
+
+        // POST to any url
+        request.open('POST', "/Order/UpdatePcQty", false);
+        request.send(formData);
+
+        //console.log(request.response);
+
+    }
+</script>

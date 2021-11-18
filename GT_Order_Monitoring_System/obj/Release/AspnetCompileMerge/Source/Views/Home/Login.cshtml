@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.TabTitle = "Login";
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+}
+<link href="~/Content/assets/css/login_2.css" rel="stylesheet" />
+
+<br /><br /><br />
+<br /><br /><br />
+<div class="container h-100">
+    <div class="d-flex justify-content-center h-100">
+        <div class="user_card">
+            <div class="d-flex justify-content-center">
+                <div class="brand_logo_container">
+                    <img src="~/Content/assets/images/logo.png" class="brand_logo" alt="Logo">
+                </div>
+
+               
+            </div>
+            <div class="d-flex justify-content-center form_container2">
+              
+                @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+                {
+                    <div class="input-group mb-3" style="width: 300px;">
+                        <center><h1 style="color:white;">WELCOME USER</h1></center>
+                    </div>
+                    <div class="input-group mb-3" style="width: 300px;">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" name="code" class="form-control input_user" value="@(ViewBag.UserCode != "" ?  ViewBag.UserCode : "")" placeholder="Code" required> 
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="password" name="password" class="form-control input_pass" value="kersher" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customControlInline">
+                            <label class="custom-control-label" for="customControlInline">Remember me</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                       <h5 style="color: red;">@ViewBag.LogErr</h5>
+                    </div>
+                        <div class="d-flex justify-content-center mt-3 login_container">
+                            <button type="submit" name="button" class="btn login_btn">Login</button>
+                            <br />
+                          
+                        </div>
+                        }
+                    </div>
+
+            <div class="mt-4">
+                <div class="d-flex justify-content-center links" style="color:white;">
+                    Don't have an account? <a href="#" class="ml-2">Sign Up</a>
+                </div>
+                <div class="d-flex justify-content-center links">
+                    <a href="#">Forgot your password?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

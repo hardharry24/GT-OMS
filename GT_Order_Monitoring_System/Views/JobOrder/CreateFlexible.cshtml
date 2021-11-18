@@ -1,0 +1,543 @@
+﻿
+@{
+    ViewBag.TabTitle = "Create Flexible";
+    ViewBag.Title = "JobOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model GT_Order_Monitoring_System.Models.MyModel
+<div class="row">
+    <div class="col-xl-12">
+        <div class="breadcrumb-holder">
+            <h1 class="main-title float-left"><i class="fa fa-briefcase"></i> Create Job Order Flexible</h1>
+            <ol class="breadcrumb float-right">
+                <li class="breadcrumb-item">Jorb Order</li>
+                <li class="breadcrumb-item active">Create</li>
+            </ol>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card mb-5">
+            <div class="card-header">
+                <a href="/JobOrder/Polybag"><i class="fa fa-reply" aria-hidden="true"></i> Back</a>
+            </div>
+            <div class="card-body">
+                <div class="card-body">
+                    @using (Html.BeginForm("CreateFlexible", "JobOrder", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="col-lg-12">
+                            <div class="form-group row">
+                                @if (ViewBag.errorMessage != "")
+                                {
+                                    <div class="alert @(ViewBag.errorCode == "1" ? "alert-success" : "alert-danger")">@ViewBag.errorMessage</div>
+                                }
+                            </div>
+                            <div class="form-group row">
+
+                                <div class="col-sm-3">
+                                    <div class="input-group d-inline">
+                                        <label>Customer Name :&nbsp;</label>
+                                        <div class="d-table-cell w-100">
+                                            <input type="text" class="form-control" id="custName" name="custName" placeholder="" required>
+                                        </div>
+                                        <div class="d-table-cell align-middle">
+                                            <button class="btn btn-primary" data-toggle="modal" data-target="#modal_add_show_customer" onclick="return false;">SELECT</button>
+                                        </div>
+                                        <input type="text" name="customer_id" id="custId" value="@Model.JobOrderLaminated.customer_id" hidden required />
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>Order No : &nbsp;</label>
+                                    <input type="text" name="OrNo" id="OrNo" value="@(Model.JobOrderLaminated.jo_no != 0 ? "PJ-"+Model.JobOrderLaminated.jo_no: "")" class="form-control" />
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="input-group d-inline">
+                                        <label>Product Code &nbsp;</label>
+                                        <div class="d-table-cell w-100">
+                                            <input type="text" id="productCode" name="prod_code" class="form-control" value="@Model.JobOrderLaminated.prod_code" placeholder="" required>
+                                        </div>
+                                        <div class="d-table-cell align-middle">
+                                            <button class="btn btn-primary" data-toggle="modal" data-target="#modal_show_po_item" onclick="return false;">SELECT</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>Delivery Date : &nbsp;</label>
+                                    <input type="datetime-local" name="delivery_date" value="@Model.JobOrderLaminated.delivery_date" class="form-control" required />
+                                    <input type="datetime" name="jo_date" value="@DateTime.Now" class="form-control" hidden />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <label>Address &nbsp;</label>
+                                    <input type="text" name="Address" value="@Model.Customer.address" class="form-control" id="custAddress" />
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>PO NO &nbsp;</label>
+                                    <select class="form-control" name="po_no" id="PoNo" onchange="GetFlexJoOrNo()" required></select>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>Product Name &nbsp;</label>
+                                    <input type="text" name="decription" id="productName" value="@Model.JobOrderLaminated.description" class="form-control" required />
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="form-group row">
+                                <div class="col-sm-2">
+                                    <fieldset class="border p-2" style="height: 257px;">
+                                        <legend class="w-auto" style="font-size: 15px;"><span>Film Type</span></legend>
+                                        <div class="col-12 row">
+                                            <div class="col-12">
+                                                <label>Substrate &nbsp;</label>
+                                                <select class="form-control" name="ptype_substrate" required>
+                                                    <option value="">SELECT</option>
+                                                    <option value="NYLON">NYLON</option>
+                                                    <option value="OPP">OPP</option>
+                                                    <option value="PET">PET</option>
+                                                    <option value="VM-CPP">VM-CPP</option>
+                                                    <option value="VM-PET">VM-PET</option>
+                                                </select>
+                                                <label>Laminant &nbsp;</label>
+                                                <div class="d-inline">
+                                                    <select class="form-control" name="ptype_laminant" required>
+                                                        <option value="">SELECT</option>
+                                                        <option value="CPP">CPP</option>
+                                                        <option value="FOIL">FOIL</option>
+                                                        <option value="OPP">OPP</option>
+                                                        <option value="PE">PE</option>
+                                                        <option value="SPE">SPE</option>
+                                                        <option value="VM-CPP">VM-CPP</option>
+                                                        <option value="VM-PET">VM-PET</option>
+                                                    </select>
+                                                    <a href="#" class="btn btn-primary" style="float: right; margin-top: 5px;">...</a>
+                                                </div>
+                                               
+                                            </div>
+                                           
+                                        </div>
+                                        
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-2">
+                                    <fieldset class="border p-2"  style="height: 257px;">
+                                        <legend class="w-auto" style="font-size: 15px;"><span>Gusset(mm)</span></legend>
+                                        <label>Bottom &nbsp;</label>
+                                        <input type="number" name="bottom_fold" value="@Model.JobOrderLaminated.bottom_fold" class="form-control numInput" placeholder="0.00" required />
+                                        <label>Side &nbsp;</label>
+                                        <input type="number" name="left_fold" value="@Model.JobOrderLaminated.left_fold" class="form-control numInput" min="0" max="999" placeholder="0.00" required />
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-2">
+                                    <fieldset class="border p-2" style="height: 257px;">
+                                        <legend class="w-auto" style="font-size: 15px;"><span>Inner(mm)</span></legend>
+                                        <label>Width &nbsp;</label>
+                                        <input type="number" name="inner_dim_width" value="@Model.JobOrderLaminated.inner_dim_width == 0 ? : @Model.JobOrderLaminated.inner_dim_width" class="form-control numInput" placeholder="0.00" />
+                                        <label>Length &nbsp;</label>
+                                        <input type="number" name="inner_dim_length" value="@Model.JobOrderLaminated.inner_dim_length  == 0 ? : @Model.JobOrderLaminated.inner_dim_length" class="form-control numInput" placeholder="0.00" />
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-2">
+                                    <fieldset class="border p-2" style="height: 257px;">
+                                        <legend class="w-auto" style="font-size: 15px;"><span>Outer(mm)</span></legend>
+                                        <label>Width &nbsp;</label>
+                                        <input type="number" name="outer_dim_length" value="@Model.JobOrderLaminated.outer_dim_length == 0 ? : @Model.JobOrderLaminated.outer_dim_length" class="form-control numInput" placeholder="0.00" />
+                                        <label>Length &nbsp;</label>
+                                        <input type="number" name="outer_dim_width" value="@Model.JobOrderLaminated.outer_dim_width  == 0 ? : @Model.JobOrderLaminated.outer_dim_width" class="form-control numInput" placeholder="0.00" />
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-2">
+                                    <fieldset class="border p-2" style="height: 257px;">
+                                        <legend class="w-auto" style="font-size: 15px;"><span>Thickness(mic)</span></legend>
+                                        <label>Substrate &nbsp;</label>
+                                        <input type="number" name="thickness_substrate" value="@Model.JobOrderLaminated.thickness_substrate == 0 ? : @Model.JobOrderLaminated.thickness_substrate" class="form-control numInput" placeholder="0.00" />
+                                        <label>Laminant &nbsp;</label>
+                                        <input type="number" name="thickness_laminant" value="@Model.JobOrderLaminated.thickness_laminant  == 0 ? : @Model.JobOrderLaminated.thickness_laminant" class="form-control numInput" placeholder="0.00" />
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-2" style="margin-top: 10px;">
+                                    <fieldset class="border p-2" style="height: 247px;">
+                                        <legend class="w-auto" style="font-size: 15px;"><span>   </span></legend>
+                                        <label>Finished from &nbsp;</label>
+                                        <select class="form-control" name="finished_form" required>
+                                            <option value="">SELECT</option>
+                                            <option value="BAG">BAG</option>
+                                            <option value="ROLL">ROLL</option>
+                                            <option value="SHEET">SHEET</option>
+                                        </select>
+                                        <label>Checking Based &nbsp;</label>
+                                        <select class="form-control" name="checking_based" id="finished_form" required>
+                                            <option value="">SELECT</option>
+                                            <option value="THICKNESS">THICKNESS</option>
+                                            <option value="WEIGHT">WEIGHT</option>
+                                        </select>
+                                        <label>Weight/PC(g) &nbsp;</label>
+                                        <input type="number" name="weight_per_pc" value="@Model.JobOrderLaminated.weight_per_pc  == 0 ? : @Model.JobOrderLaminated.weight_per_pc" class="form-control numInput" placeholder="0.00" />
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="form-group row">
+                                <div class="col-sm-2" style="margin-top: 10px;">
+                                    <fieldset class="border p-2" style="height: 171px">
+                                        <legend class="w-auto" style="font-size: 15px;color: transparent;"><span></span></legend>
+                                        <label>Sealing Type &nbsp;</label>
+                                        <select class="form-control" name="sealing_type" required>
+                                            <option value="">SELECT</option>
+                                            <option value="3 SIDE SEAL">3 SIDE SEAL</option>
+                                            <option value="CENTER SEAL">CENTER SEAL</option>
+                                            <option value="SUP">SUP</option>
+                                        </select>
+                                        <label>Opening Portion &nbsp;</label>
+                                        <select class="form-control" name="opening_portion" required>
+                                            <option value="">SELECT</option>
+                                            <option value="BOTTOM">BOTTOM</option>
+                                            <option value="LEFT">LEFT</option>
+                                            <option value="RIGHT">RIGHT</option>
+                                            <option value="TOP">TOP</option>
+                                        </select>
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-4">
+                                    <fieldset class="border p-2">
+                                        <legend class="w-auto" style="font-size: 15px;"><span>Sealing Width(mm)</span></legend>
+                                        <div class="col-12 row">
+                                            <div class="col-lg-6">
+                                                <label>Top Seal &nbsp;</label>
+                                                <input type="number" name="top_seal_width" value="@Model.JobOrderLaminated.top_seal_width" class="form-control noinput" required />
+                                                <label>Bottom Seal &nbsp;</label>
+                                                <input type="number" name="bottom_seal_width" value="@Model.JobOrderLaminated.bottom_seal_width" class="form-control numInput" required />
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label>Side Seal &nbsp;</label>
+                                                <input type="number" name="side_seal_width" value="@Model.JobOrderLaminated.side_seal_width" class="form-control noinput" required />
+                                                <label>Center Seal &nbsp;</label>
+                                                <input type="number" name="center_seal_width" value="@Model.JobOrderLaminated.center_seal_width" class="form-control numInput" required />
+                                            </div>
+                                        </div>
+                                     
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-2" style="margin-top: 10px; height: 171px">
+                                    <fieldset class="border p-2" style="height: 171px">
+                                        <legend class="w-auto" style="font-size: 15px;"><span></span></legend>
+                                        <label>Plastic Category &nbsp;</label>
+                                        <select class="form-control" name="plastic_category" required>
+                                            <option value="">SELECT</option>
+                                            <option value="PLAIN">PLAIN</option>
+                                            <option value="PRINTED">PRINTED</option>
+                                        </select>
+                                        <label>Plate No &nbsp;</label>
+                                        <input type="number" name="plate_no" value="@Model.JobOrderLaminated.plate_no" class="form-control" readonly />
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-4">
+                                    <fieldset class="border p-2">
+                                        <legend class="w-auto" style="font-size: 15px;"><span>Print Specs</span></legend>
+                                        <label>No Colors&nbsp;</label>
+                                        <input type="number" name="no_of_colors" value="@Model.JobOrderLaminated.no_of_colors" class="form-control numInput" required />
+                                        <label>Print Colors&nbsp;</label>
+                                        <input type="text" name="front_print" value="@Model.JobOrderLaminated.front_print" class="form-control numInput" required />
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="form-group row">
+                                <div class="col-sm-2" style="margin-top: 10px;">
+                                    <fieldset class="border p-2">
+                                        <legend class="w-auto" style="font-size: 15px;color: transparent;"><span></span></legend>
+                                        <label>Tear Knotch &nbsp;</label>
+                                        <select class="form-control" name="tear_knotch" required>
+                                            <option value="">SELECT</option>
+                                            <option value="YES">YES</option>
+                                            <option value="NO">NO</option>
+                                        </select>
+                                        <label>Opening Portion &nbsp;</label>
+                                        <select class="form-control" name="punch_whole" required>
+                                            <option value="">SELECT</option>
+                                            <option value="YES">YES</option>
+                                            <option value="NO">NO</option>
+                                        </select>
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-2" style="margin-top: 10px;">
+                                    <fieldset class="border p-2">
+                                        <legend class="w-auto" style="font-size: 15px;color: transparent;"><span></span></legend>
+                                        <label>Ordered QTY &nbsp;</label>
+                                        <input type="number" name="ordered_qty" value="@Model.JobOrderLaminated.ordered_qty" class="form-control numInput" />
+                                        <label>Unit&nbsp;</label>
+                                        <select class="form-control" name="unit" id="cbUnit" required>
+                                            <option value="">SELECT</option>
+                                            <option value="pc">PC(s)</option>
+                                            <option value="th">TH</option>
+                                            <option value="pck">PCK(s)</option>
+                                            <option value="kg">KG(s)</option>
+                                            <option value="roll">ROLL(s)</option>
+                                        </select>
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-4" style="margin-top: 10px;">
+                                    <fieldset class="border p-2">
+                                        <label>Remarks&nbsp;</label>
+                                        <textarea name="remarks" value="@Model.JobOrderLaminated.remarks" class="form-control"></textarea>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <input type="submit" name="name" value="SAVE" class="btn btn-success" />
+                                </div>
+                            </div>
+
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Display Customer Details-->
+<div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_show_customer" aria-hidden="true" id="modal_add_show_customer" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="#" method="post" enctype="multipart/form-data">
+
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-users"></i>&nbsp;Select Customer</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-lg-12" style="height: 300px;">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <label>Search Customer&nbsp;</label>
+                                    <input type="text" name="txtAgentSearch" id="txtAgentSearch" value="" placeholder="Search Here" onkeyup="onchangeSearchAgent()" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group row" style="height: 300px;">
+                                <div class="col-lg-12">
+                                    <table style="width: inherit;" id="tblAgents">
+                                        <tbody style="display: block; border: none; height: 230px; overflow-y: scroll">
+                                            @{ var db = new GT_Order_Monitoring_System.Entity.GT_Billing_SystemEntities(); var listCustomer = db.tbl_customer.ToList();
+                                            }
+                                            @foreach (var item in listCustomer)
+                                            {
+                                                <tr>
+                                                    <td style="width: 84%;">@item.customer_name <input id="lblCustomerName@(item.customer_id)" value="@item.customer_name" hidden /></td>
+                                                    <td><div id="@item.customer_id" class="btn btn-primary" data-value="" onclick="SelectCustomer(@item.customer_id)" style="cursor:pointer;" data-dismiss="modal">Select</div></td>
+                                                </tr>
+                                            }
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<!--Modal Display Customer Details-->
+<div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_show_po_item" aria-hidden="true" id="modal_show_po_item" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fas fa-list-alt"></i>&nbsp;Select PO Items</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+            </div>
+
+            <div class="modal-body" id="detailsBody">
+
+                <div class="row">
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function SelectCustomer(custId) {
+        var url = "/Order/GetCustomer/" + custId;
+        var request = new XMLHttpRequest();
+        // POST to any url
+        request.open('GET', url, false);
+
+        request.send();
+
+        var resObj = JSON.parse(request.response);
+
+        var res_tbl_customer = resObj.tbl_customer;
+
+        document.getElementById("custId").value = res_tbl_customer.customer_id;
+        document.getElementById("custName").value = res_tbl_customer.customer_name;
+        document.getElementById("custAddress").value = res_tbl_customer.address;
+
+        GetPoByCustId(custId);
+
+    }
+    function GetPoByCustId(id)
+    {
+        // Get list of PO
+        var url2 = "/JobOrder/GetPObyCustomer/" + id;
+        var request = new XMLHttpRequest();
+        // POST to any url
+        request.open('GET', url2, false);
+        request.send();
+
+        var resObj = JSON.parse(request.response);
+        console.log(resObj);
+
+
+        $("#PoNo").empty();
+        var optDefault = document.createElement("option");
+        optDefault.text = "SELECT";
+        optDefault.value = "";
+        var select = document.getElementById("PoNo");
+        select.appendChild(optDefault);
+        for (var i = 0; i < resObj.listPo.length; i++)
+        {
+            var item = JSON.stringify(resObj.listPo[i]);
+            var opt = JSON.parse(item);
+
+            var option = document.createElement("option");
+            option.text = opt.poNo;
+            option.value = opt.poNo;
+            select.appendChild(option);
+        }
+
+
+        document.getElementById("productCode").value = "";
+        document.getElementById("productName").value = "";
+    }
+
+    function GetFlexJoOrNo()
+    {
+        var url = "/Base/GetFlexJobOrderNo";
+        var request = new XMLHttpRequest();
+        // POST to any url
+        request.open('GET', url, false);
+        request.send();
+
+        document.getElementById("OrNo").value = request.response;
+
+        var poNo = document.getElementById("PoNo").value;
+
+        var url2 = "/JobOrder/Partial_PolyPOItems/";
+        var request2 = new XMLHttpRequest();
+        // POST to any url
+        request2.open('POST', url2, false);
+
+        var param = new FormData();
+        param.append("id", poNo);
+
+        request2.send(param);
+
+        var result = $("#detailsBody");
+        result.html('');
+        result.html(request2.response);
+
+        //Reset value
+        document.getElementById("productCode").value = "";
+        document.getElementById("productName").value = "";
+    }
+
+
+    function LoadPOitem(id)
+    {
+        var url = "/JobOrder/Partial_PolyPOItems/";
+        var request = new XMLHttpRequest();
+        // POST to any url
+        request.open('POST', url, false);
+
+        var param = new FormData();
+        param.append("id", id);
+
+        request.send(param);
+
+        var result = $("#detailsBody"); 
+        //result.innerHTML = data;
+        result.html('');
+        result.html(request.response);
+    }
+
+    function onSelectItemPo(id)
+    {
+        var url = "/Base/GetPOdetail/" + id;
+        var request = new XMLHttpRequest();
+        // POST to any url
+        request.open('GET', url, false);
+        request.send();
+
+        var resObj = JSON.parse(request.response);
+
+        var tbl_detail = resObj.tbl_po_detail;
+
+        if (tbl_detail.control_type == "L") {
+            document.getElementById("productCode").value = tbl_detail.prod_code;
+            document.getElementById("productName").value = tbl_detail.description;
+        }
+        else {
+            document.getElementById("productCode").value = "";
+            document.getElementById("productName").value = "";
+
+            swal("Unable to continue product is Polybag!", {
+                icon: "error"
+            })
+        }
+
+
+    }
+    disAbleMinMax();
+    function disAbleMinMax() {
+        for (var i = 0 ; i < document.getElementsByClassName('form-control numInput').length; i++)
+        {
+            document.getElementsByClassName('form-control numInput')[i].addEventListener("keyup", function (e) {
+                if (e.target.value > 999) {
+                    this.value = 999;
+                } else if (e.target.value.length && e.target.value <= 0) {
+                    this.value = 1;
+                }
+            });
+        }
+    }
+
+    function onSelectThickness() {
+        var thickness = document.querySelector('input[name = radio]:checked').value;
+        if (thickness == "Single") {
+            document.getElementById("cbPlasticType").value = "SHEET";
+        }
+        else {
+            document.getElementById("cbPlasticType").value = "TUBE";
+        }
+    }
+</script>

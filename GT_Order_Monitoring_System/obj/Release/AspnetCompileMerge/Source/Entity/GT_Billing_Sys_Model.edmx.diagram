@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="594bf49d11fa46f3a7395db0fc6fe038" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.dtproperties" Width="1.5" PointX="10.75" PointY="3.75" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.tbl_agent" Width="1.5" PointX="5.75" PointY="10.75" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.tbl_agent_detail" Width="1.5" PointX="10.75" PointY="7.75" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.tbl_commercial_product" Width="1.5" PointX="7.75" PointY="10.75" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.tbl_commercial_produnit" Width="1.5" PointX="9.75" PointY="10.75" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.tbl_commission_detail" Width="1.5" PointX="3" PointY="9.875" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.tbl_commission_master" Width="1.5" PointX="0.75" PointY="9.875" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.tbl_counterreceipt_detail" Width="1.5" PointX="8" PointY="6" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.tbl_counterreceipt_master" Width="1.5" PointX="5.75" PointY="6.25" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.tbl_customer" Width="1.5" PointX="11.75" PointY="10.75" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.tbl_invoice_detail" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.tbl_job_product" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.tbl_job_produnit" Width="1.5" PointX="2.75" PointY="12.75" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.tbl_payment_bank" Width="1.5" PointX="0.75" PointY="3" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.tbl_payment_check" Width="1.5" PointX="3" PointY="4.25" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.tbl_payment_detail" Width="1.5" PointX="12.75" PointY="4.75" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.tbl_payment_master" Width="1.5" PointX="13.75" PointY="8.75" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.tbl_payment_pmo" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.tbl_returnslip_detail" Width="1.5" PointX="8" PointY="1" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.tbl_returnslip_master" Width="1.5" PointX="5.75" PointY="1.25" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.tbl_sales_invoice" Width="1.5" PointX="13.75" PointY="12.75" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.tbl_user" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.pbcatedt" Width="1.5" PointX="14.75" PointY="3.75" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.pbcatfmt" Width="1.5" PointX="4.75" PointY="14.75" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.pbcatvld" Width="1.5" PointX="6.75" PointY="14.75" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.tbl_avail_list" Width="1.5" PointX="8.75" PointY="14.75" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.tbl_transactions" Width="1.5" PointX="15.75" PointY="7.75" />
+        <EntityTypeShape EntityType="GT_Billing_SystemModel.vw_job_product_customer" Width="1.5" PointX="10.75" PointY="15.75" />
+        <AssociationConnector Association="GT_Billing_SystemModel.tbl_commission_detail_FK_tbl_commission_detail_tbl_commission_master" />
+        <AssociationConnector Association="GT_Billing_SystemModel.tbl_counterreceipt_detail_FK_tbl_counterreceipt_detail_tbl_counterreceipt_master" />
+        <AssociationConnector Association="GT_Billing_SystemModel.tbl_payment_check_FK_tbl_payment_check_tbl_payment_bank" />
+        <AssociationConnector Association="GT_Billing_SystemModel.tbl_payment_pmo_FK_tbl_payment_pmo_tbl_payment_bank" />
+        <AssociationConnector Association="GT_Billing_SystemModel.tbl_returnslip_detail_FK_tbl_returnslip_detail_tbl_returnslip_master" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

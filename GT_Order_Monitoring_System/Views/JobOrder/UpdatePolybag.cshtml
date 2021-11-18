@@ -1,0 +1,431 @@
+﻿
+@{
+    ViewBag.TabTitle = "Update Polybag";
+    ViewBag.Title = "JobOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model GT_Order_Monitoring_System.Models.MyModel
+<div class="row">
+    <div class="col-xl-12">
+        <div class="breadcrumb-holder">
+            <h1 class="main-title float-left"><i class="fa fa-edit"></i> Update Job Order Polybag</h1>
+            <ol class="breadcrumb float-right">
+                <li class="breadcrumb-item">Jorb Order</li>
+                <li class="breadcrumb-item active">Update</li>
+            </ol>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card mb-5">
+            <div class="card-header">
+                <a href="/JobOrder/Polybag"><i class="fa fa-reply" aria-hidden="true"></i> Back</a>
+            </div>
+            <div class="card-body">
+                <div class="card-body">
+                    @using (Html.BeginForm("UpdatePolybag", "JobOrder", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div hidden>
+                            <input type="text" name="jo_no" value="@Model.JobOrderPolybags.jo_no" />
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group row">
+                                @if (ViewBag.errorMessage != "")
+                                {
+                                    <div class="alert @(ViewBag.errorCode == "1" ? "alert-success" : "alert-danger")">@ViewBag.errorMessage</div>
+                                }
+                            </div>
+                            <div class="form-group row">
+
+                                <div class="col-sm-3">
+                                    <label>Customer Name :&nbsp;</label>
+                                    <input type="text" class="form-control" id="custName" name="custName" placeholder="" value="@Model.Customer.customer_name" required readonly>
+                                    <input type="text" name="customer_id" id="custId" value="@Model.JobOrderPolybags.customer_id" hidden required />
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>Order No : &nbsp;</label>
+                                    <input type="text" name="OrNo" id="OrNo" value="@(Model.JobOrderPolybags.jo_no != 0 ? "PJ-"+Model.JobOrderPolybags.jo_no: "")" class="form-control" readonly/>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>Product Code &nbsp;</label>
+                                    <input type="text" id="productCode" name="prod_code" class="form-control" value="@Model.JobOrderPolybags.prod_code" placeholder="" required readonly>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>Delivery Date : &nbsp;</label>
+                                    <input type="datetime" name="delivery_date" value="@Model.JobOrderPolybags.delivery_date" class="form-control" required />
+                                    <input type="datetime" name="jo_date" value="@DateTime.Now" class="form-control" hidden />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <label>Address &nbsp;</label>
+                                    <input type="text" name="Address" value="@Model.Customer.address" class="form-control" id="custAddress" readonly/>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>PO NO &nbsp;</label>
+                                    <input type="text" name="po_no" value="@Model.JobOrderPolybags.po_no" class="form-control" id="po_no" readonly />
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>Product Name &nbsp;</label>
+                                    <input type="text" name="decription" id="productName" value="@Model.JobOrderPolybags.description" class="form-control" required readonly />
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="form-group row">
+                                <div class="col-sm-2" style="margin-top: 10px;">
+                                    <fieldset class="border p-2" style="height: 238px;">
+                                        <legend class="w-auto" style="font-size: 15px;"><span></span></legend>
+                                        <label>Polymer Type &nbsp;</label>
+                                        <select class="form-control" name="ptype" required>
+                                            <option value="" >SELECT</option>
+                                            <option value="HDPE" @(Model.JobOrderPolybags.ptype == "HDPE" ? "selected": "")>HDPE</option>
+                                            <option value="LDPE" @(Model.JobOrderPolybags.ptype == "LDPE" ? "selected": "")>LDPE</option>
+                                            <option value="OPP"  @(Model.JobOrderPolybags.ptype == "OPP" ? "selected": "")>OPP</option>
+                                            <option value="PP"  @(Model.JobOrderPolybags.ptype == "PP" ? "selected": "")>PP</option>
+                                        </select>
+                                        <label>Plastic Color &nbsp;</label>
+                                        <input type="text" name="plastic_color" value="@Model.JobOrderPolybags.plastic_color" class="form-control" />
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-2">
+                                    <fieldset class="border p-2">
+                                        <legend class="w-auto" style="font-size: 15px;"><span>Fold(mm)</span></legend>
+                                        <label>Bottom &nbsp;</label>
+                                        <input type="number" name="bottom_fold" value="@Model.JobOrderPolybags.bottom_fold" class="form-control numInput" placeholder="0.00" required />
+                                        <label>Left &nbsp;</label>
+                                        <input type="number" name="left_fold" value="@Model.JobOrderPolybags.left_fold" class="form-control numInput" min="0" max="999" placeholder="0.00" required />
+                                        <label>Right &nbsp;</label>
+                                        <input type="number" name="right_fold" value="@Model.JobOrderPolybags.right_fold" class="form-control numInput" min="0" max="999" placeholder="0.00" required />
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-2">
+                                    <fieldset class="border p-2" style="height: 247px;">
+                                        <legend class="w-auto" style="font-size: 15px;"><span>Size(mm)</span></legend>
+                                        <label>Width &nbsp;</label>
+                                        <input type="number" name="width" value="@Model.JobOrderPolybags.width == 0 ? : @Model.JobOrderPolybags.width" class="form-control numInput" placeholder="0.00" />
+                                        <label>Height &nbsp;</label>
+                                        <input type="number" name="length" value="@Model.JobOrderPolybags.length  == 0 ? : @Model.JobOrderPolybags.length" class="form-control numInput" placeholder="0.00" />
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-2">
+                                    <fieldset class="border p-2" style="height: 247px;">
+                                        <legend class="w-auto" style="font-size: 15px;"><span>Thickness(π)</span></legend>
+                                        <div class="form-check">
+                                            <div class="d-inline-block">
+                                                <div class="form-group form-check-inline">
+                                                    <input type="number" name="thickness_single" value="@Model.JobOrderPolybags.thickness_single" class="form-control numInput" style="width: 50%;" />&nbsp;
+                                                    <input type="radio" name="radio" id="rSingle" value="Single" onclick="onSelectThickness()" />
+                                                    <label class="form-check-label" for="rSingle" onclick="onSelectThickness()">
+                                                        &nbsp;Single
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="d-inline-block">
+                                                <div class="form-group form-check-inline">
+                                                    <input type="number" name="thickness_tube" value="@Model.JobOrderPolybags.thickness_tube" class="form-control numInput" style="width: 50%;" />&nbsp;
+                                                    <input type="radio" name="radio" id="rTube" value="Tube" onclick="onSelectThickness()" />
+                                                    <label class="form-check-label" for="rTube" onclick="onSelectThickness()">
+                                                        &nbsp;Tube
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-2">
+                                    <fieldset class="border p-2" style="height: 247px;">
+                                        <legend class="w-auto" style="font-size: 15px;"><span>Weight(g)</span></legend>
+                                        <label>Weight/PC &nbsp;</label>
+                                        <input type="number" name="weight_per_pc" value="@Model.JobOrderPolybags.weight_per_pc" class="form-control numInput" required />
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-2" style="margin-top: 10px;">
+                                    <fieldset class="border p-2" style="height: 247px;">
+                                        <legend class="w-auto" style="font-size: 15px;"><span>   </span></legend>
+                                        <label>Checking Based &nbsp;</label>
+                                        <select class="form-control" name="checking_based" required>
+                                            <option value="">SELECT</option>
+                                            <option value="WEIGHT"  @(Model.JobOrderPolybags.checking_based == "WEIGHT" ? "selected": "")>WEIGHT</option>
+                                            <option value="THICKNESS"  @(Model.JobOrderPolybags.checking_based == "THICKNESS" ? "selected": "")>THICKNESS</option>
+                                        </select>
+                                        <label>Plastic Type &nbsp;</label>
+                                        <select class="form-control" name="plastic_type" id="cbPlasticType" required>
+                                            <option value="">SELECT</option>
+                                            <option value="SHEET"  @(Model.JobOrderPolybags.plastic_type == "SHEET" ? "selected": "")>SHEET</option>
+                                            <option value="TUBE" @(Model.JobOrderPolybags.plastic_type == "TUBE" ? "selected": "")>TUBE</option>
+                                            <option value="TUBE W/ FOLD" @(Model.JobOrderPolybags.plastic_type == "TUBE W/ FOLD" ? "selected": "")>TUBE W/ FOLD</option>
+                                        </select>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="form-group row">
+                                <div class="col-sm-2">
+                                    <fieldset class="border p-2">
+                                        <legend class="w-auto" style="font-size: 15px;"><span>   </span></legend>
+                                        <label>Plastic Category &nbsp;</label>
+                                        <select class="form-control" name="plastic_category" required>
+                                            <option value="">SELECT</option>
+                                            <option value="PLAIN" @(Model.JobOrderPolybags.plastic_category == "PLAIN" ? "selected": "")>PLAIN</option>
+                                            <option value="PRINTED" @(Model.JobOrderPolybags.plastic_category == "PRINTED" ? "selected": "")>PRINTED</option>
+                                        </select>
+                                        <label>Print Style &nbsp;</label>
+                                        <select class="form-control" name="print_style" required>
+                                            <option value="">SELECT</option>
+                                            <option value="BOTH SIDE" @(Model.JobOrderPolybags.print_style == "BOTH SIDE" ? "selected": "")>BOTH SIDE</option>
+                                            <option value="ONE SIDE" @(Model.JobOrderPolybags.print_style == "ONE SIDE" ? "selected": "")>ONE SIDE</option>
+                                        </select>
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-3">
+                                    <fieldset class="border p-2">
+                                        <legend class="w-auto" style="font-size: 15px;"><span></span></legend>
+                                        <label>Plate No &nbsp;</label>
+                                        <input type="text" name="plate_no" value="@Model.JobOrderPolybags.plate_no" class="form-control noinput" readonly />
+                                        <label>No. of Colors &nbsp;</label>
+                                        <input type="number" name="no_of_colors" value="@Model.JobOrderPolybags.no_of_colors" class="form-control numInput" />
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-4">
+                                    <fieldset class="border p-2">
+                                        <legend class="w-auto" style="font-size: 15px;"><span></span></legend>
+                                        <label>Front Print Colors&nbsp;</label>
+                                        <input type="text" name="front_print" value="@Model.JobOrderPolybags.front_print" class="form-control" />
+                                        <label>Back Print Colors&nbsp;</label>
+                                        <input type="text" name="back_print" value="@Model.JobOrderPolybags.back_print" class="form-control" />
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-3">
+                                    <fieldset class="border p-2">
+                                        <legend class="w-auto" style="font-size: 15px;"><span></span></legend>
+                                        <label>Ordered QTY&nbsp;</label>
+                                        <input type="number" name="ordered_qty" value="@Model.JobOrderPolybags.ordered_qty" class="form-control numInput" required />
+                                        <label>Unit&nbsp;</label>
+                                        <select class="form-control" name="unit" id="cbUnit" required>
+                                            <option value="">SELECT</option>
+                                            <option value="pc"  @(Model.JobOrderPolybags.unit.Trim() == "PC(S)" ? "selected": "")>PC(s)</option>
+                                            <option value="th"  @(Model.JobOrderPolybags.unit.Trim() == "TH" ? "selected": "")>TH</option>
+                                            <option value="pck"  @(Model.JobOrderPolybags.unit.Trim() == "PCK(S)" ? "selected": "")>PCK(s)</option>
+                                            <option value="kg"  @(Model.JobOrderPolybags.unit.Trim() == "KG(S)" ? "selected": "")>KG(s)</option>
+                                            <option value="roll"  @(Model.JobOrderPolybags.unit.Trim() == "ROLL(S)" ? "selected": "")>ROLL(s)</option>
+                                        </select>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-4">
+                                    <label>Remarks&nbsp;</label>
+                                    <textarea name="remarks" value="" class="form-control">@Model.JobOrderPolybags.remarks</textarea>
+                                </div><br />
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <input  type="submit" id="btnSubmit" name="button"  class="btn btn-success" onclick="return confirm('Are you sure to update?')" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Display Customer Details-->
+<!--Modal Display Customer Details-->
+<div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_show_po_item" aria-hidden="true" id="modal_show_po_item" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fas fa-list-alt"></i>&nbsp;Select PO Items</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+            </div>
+
+            <div class="modal-body" id="detailsBody">
+
+                <div class="row">
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function SelectCustomer(custId) {
+        var url = "/Order/GetCustomer/" + custId;
+        var request = new XMLHttpRequest();
+        // POST to any url
+        request.open('GET', url, false);
+
+        request.send();
+
+        var resObj = JSON.parse(request.response);
+
+        var res_tbl_customer = resObj.tbl_customer;
+
+        document.getElementById("custId").value = res_tbl_customer.customer_id;
+        document.getElementById("custName").value = res_tbl_customer.customer_name;
+        document.getElementById("custAddress").value = res_tbl_customer.address;
+
+        GetPoByCustId(custId);
+
+    }
+    function GetPoByCustId(id)
+    {
+        // Get list of PO
+        var url2 = "/JobOrder/GetPObyCustomer/" + id;
+        var request = new XMLHttpRequest();
+        // POST to any url
+        request.open('GET', url2, false);
+        request.send();
+
+        var resObj = JSON.parse(request.response);
+        console.log(resObj);
+
+
+        $("#PoNo").empty();
+        var optDefault = document.createElement("option");
+        optDefault.text = "SELECT";
+        optDefault.value = "";
+        var select = document.getElementById("PoNo");
+        select.appendChild(optDefault);
+        for (var i = 0; i < resObj.listPo.length; i++)
+        {
+            var item = JSON.stringify(resObj.listPo[i]);
+            var opt = JSON.parse(item);
+
+            var option = document.createElement("option");
+            option.text = opt.poNo;
+            option.value = opt.poId;
+            select.appendChild(option);
+        }
+
+
+        document.getElementById("productCode").value = "";
+        document.getElementById("productName").value = "";
+    }
+
+    function GetPolyJoOrNo()
+    {
+        var url = "/Base/GetPolyJobOrderNo";
+        var request = new XMLHttpRequest();
+        // POST to any url
+        request.open('GET', url, false);
+        request.send();
+
+        document.getElementById("OrNo").value = request.response;
+
+        var poNo = document.getElementById("PoNo").value;
+        //console.log(poNo);
+        LoadPOitem(poNo);
+
+        //Reset value
+        document.getElementById("productCode").value = "";
+        document.getElementById("productName").value = "";
+    }
+
+    function LoadPOitem(id)
+    {
+        var url = "/JobOrder/Partial_PolyPOItems/" + id;
+        var request = new XMLHttpRequest();
+        // POST to any url
+        request.open('GET', url, false);
+        request.send();
+
+        var result = $("#detailsBody");
+        //result.innerHTML = data;
+        result.html('');
+        result.html(request.response);
+    }
+
+    function onSelectItemPo(id)
+    {
+        var url = "/Base/GetPOdetail/" + id;
+        var request = new XMLHttpRequest();
+        // POST to any url
+        request.open('GET', url, false);
+        request.send();
+
+        var resObj = JSON.parse(request.response);
+
+        var tbl_detail = resObj.tbl_po_detail;
+
+        if (tbl_detail.control_type == "P") {
+            document.getElementById("productCode").value = tbl_detail.prod_code;
+            document.getElementById("productName").value = tbl_detail.description;
+        }
+        else {
+            document.getElementById("productCode").value = "";
+            document.getElementById("productName").value = "";
+
+            swal("Unable to continue product is Laminated!", {
+                icon: "error"
+            })
+        }
+
+
+    }
+    disAbleMinMax();
+    function disAbleMinMax() {
+        for (var i = 0 ; i < document.getElementsByClassName('form-control numInput').length; i++)
+        {
+            document.getElementsByClassName('form-control numInput')[i].addEventListener("keyup", function (e) {
+                if (e.target.value > 999) {
+                    this.value = 999;
+                } else if (e.target.value.length && e.target.value <= 0) {
+                    this.value = 1;
+                }
+            });
+        }
+    }
+
+    function onSelectThickness() {
+        var thickness = document.querySelector('input[name = radio]:checked').value;
+        if (thickness == "Single") {
+            document.getElementById("cbPlasticType").value = "SHEET";
+        }
+        else {
+            document.getElementById("cbPlasticType").value = "TUBE";
+        }
+    }
+
+    //$('#btnSubmit').on('click', function (e) {
+
+    //    event.preventDefault();
+    //    var form = this;
+
+    //    swal({
+    //        title: "Are you sure?",
+    //        text: "This Job Order will be voided?",
+    //        type: "warning",
+    //        showCancelButton: true,
+    //        confirmButtonColor: "#DD6B55",
+    //        confirmButtonText: "Yes, VOID it!",
+    //        cancelButtonText: "No, cancel please!",
+    //        closeOnConfirm: false,
+    //        closeOnCancel: false
+    //    },
+    //        function (isConfirm) {
+    //            if (isConfirm) {
+    //                form.submit();
+    //            } else {
+    //                swal("Cancelled", "AMC Record is safe :)", "error");
+
+    //            }
+    //        });
+    //});
+</script>

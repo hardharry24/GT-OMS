@@ -1,0 +1,164 @@
+﻿
+@{
+    ViewBag.TabTitle = "Control";
+    ViewBag.Title = "Local";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var db = new GT_Order_Monitoring_System.Entity.GT_Billing_SystemEntities();
+}
+
+
+@model GT_Order_Monitoring_System.Models.MyModel
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="breadcrumb-holder">
+            <h1 class="main-title float-left"><i class="fa fa-briefcase"></i> Control - Local</h1>
+            <ol class="breadcrumb float-right">
+                <li class="breadcrumb-item">Control</li>
+                <li class="breadcrumb-item active">Local</li>
+            </ol>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card mb-3">
+            <div class="card-header">
+                <span class="pull-right">
+                    @*<a href="/JobOrder/CreatePolybag" class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus" aria-hidden="true"></i> New JO Polybag
+                    </a>*@
+                </span>
+
+                <h3>
+                </h3>
+                <hr />
+                <div class="form-group">
+                    @using (Html.BeginForm("Local", "Control", FormMethod.Post))
+                    {
+                        <div class="col-lg-12">
+                            <div class="form-group row">
+                                <div class="form-group form-inline">
+                                    <label>SEARCH : &nbsp;</label> &nbsp;
+                                    <select name="a_criteria1" class="form-control select2-arrow">
+                                        <option value="jo_no" @(ViewBag.a_criteria1 == "jo_no" ? "selected" : "")>JO NO</option>
+                                        <option value="po_no" @(ViewBag.a_criteria1 == "po_no" ? "selected" : "")>PO NO</option>
+                                        <option value="prod_code" @(ViewBag.a_criteria1 == "prod_code" ? "selected" : "")>Product Code</option>
+                                        <option value="customer_id" @(ViewBag.a_criteria1 == "customer_id" ? "selected" : "")>Customer Name</option>
+                                        <option value="description" @(ViewBag.a_criteria1 == "description" ? "selected" : "")>Description</option>
+                                        <option value="status" @(ViewBag.a_criteria1 == "status" ? "selected" : "")>Status</option>
+                                    </select>&nbsp;
+                                    <select name="a_criteria2" class="form-control select2-arrow">
+                                        <option value="Equal" @(ViewBag.a_criteria2 == "Equals" ? "selected" : "")>Equals</option>
+                                        <option value="Contains" @(ViewBag.a_criteria2 == "Contains" ? "selected" : "")>Contains</option>
+                                        <option value="Startswith" @(ViewBag.a_criteria2 == "Startswith" ? "selected" : "")>Starts with</option>
+                                        <option value="Endswith" @(ViewBag.a_criteria2 == "Endswith" ? "selected" : "")>Ends with</option>
+                                        <option value="IsGreaterthan" @(ViewBag.a_criteria2 == "IsGreaterthan" ? "selected" : "")>Is Greater than</option>
+                                        <option value="IsLessthan" @(ViewBag.a_criteria2 == "IsLessthan" ? "selected" : "")>Is Less than</option>
+                                    </select>&nbsp;
+                                    <input type="text" name="a_criteria3" value="@(ViewBag.a_criteria3 != "" ? ViewBag.a_criteria3 : "")" placeholder="Enter text here.." class="form-control" required />&nbsp;
+                                    <input type="submit" name="name" value="Search" class="btn btn-primary" />&nbsp;
+                                    <span>Total # of Records: <span class="@(Model.ListLocalMaster.Count > 0 ? "badge badge-info" : "badge badge-danger")">@Model.ListLocalMaster.Count</span></span> &nbsp;
+                                    <a href="/Control/Local" class="btn btn-success btn-sm" title="Refresh">
+                                        <i class="fas fa-sync" aria-hidden="true"></i>
+                                    </a>&nbsp;
+                                    <label style="cursor:pointer"><input type="checkbox" id="ckTxtSearch" name="manualSearch" value="false" onchange="onCheckChange()">&nbsp; Manual Search</label>&nbsp;
+                                    <input type="text" id="txtSearch" name="a_criteria3" value="" placeholder="Enter search here.." class="form-control" onkeyup="onchangeSearch()" hidden />
+                                </div>
+                            </div>
+                        </div>
+                                        }
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="dataTable" class="table table-bordered table-hover display" style="width:100%">
+                            <thead>
+                                <tr id="tableHeader" style="background-color: #5ba2e6;color: white;">
+                                    <th>Control #</th>
+                                    <th>Customer Name</th>
+                                    <th>Contact Person</th>
+                                    <th>Control Date</th>
+                                    <th>PO No</th>
+                                    <th>Truck</th>
+                                    <th>Status</th>
+                                    <th>Note</th>
+                                    <th>Trip</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>@{ int counter = 0; }
+                            @foreach (var obj in Model.ListLocalMaster)
+                            {
+                                counter++;
+                                <tr id="tableRow">
+                                    <td>@obj.control_no</td>
+                                    <td>
+                                        @{ var customer = db.tbl_customer.Where(m => m.customer_id == obj.customer_id).FirstOrDefault();}
+                                    @{ int StrLength1 = customer.customer_name.Length; }
+                                    @if (StrLength1 > 15)
+                                    {
+                                        <div title="@customer.customer_name">@customer.customer_name.Substring(0, 15) <span class="badge badge-success">(cont..)</span></div>
+                                    }
+                                    else
+                                    {
+                                        <div>@customer.customer_name.ToString()</div>
+                                    }
+                                </td>
+                                <td>@customer.contact_person</td>
+                                <td>@obj.control_date</td>
+                                <td>@obj.po_no</td>
+                                <td>@obj.truck_no</td>
+                                <td>@obj.status</td>
+                                <td>@obj.notes</td>
+                                <td>@obj.trip</td>
+                                <td>
+                                    <div class="col-12 row">
+                                        <a href="#" class="btn btn-success" data-toggle="modal" data-target="#modalViewDetails" onclick="onDetails(@obj.control_no)"> <i class="fa fa-info-circle"></i> </a> &nbsp;
+                                        <a class="btn btn-primary" href="/JobOrder/UpdatePolybag/@obj.control_no"> <i class="fa fa-edit"></i> </a>&nbsp;
+                                        <a href="/Document/PrintControlLocal/@obj.control_no" class="btn btn-success" target="_blank"> <i class="fa fa-print"></i> </a>&nbsp;
+                                        <a href="#" class="btn btn-danger" onclick="onDelete(@obj.control_no)"> <i class="fa fa-trash"></i> </a>&nbsp;
+                                    </div>
+                                </td>
+                            </tr>
+
+
+                                        }
+
+                        </table>
+
+                    </div>
+                    <!-- end table-responsive-->
+                    <div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modalViewDetails" aria-hidden="true" id="modalViewDetails">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <form>
+                                    <div class="modal-header">
+                                        <h5 class="modal-title"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;Job Order Detail POLYBAG</h5>
+                                        <button type="button" class="close" data-dismiss="modal">
+                                            <span aria-hidden="true">&times;</span>
+                                            <span class="sr-only">Close</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body" id="detailsBody">
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

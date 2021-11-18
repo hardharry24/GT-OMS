@@ -1,0 +1,607 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GT_Order_Monitoring_SystemModelStoreContainer" CdmEntityContainer="GT_Order_Monitoring_SystemEntities">
+    <EntitySetMapping Name="dtproperties">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.dtproperties">
+        <MappingFragment StoreEntitySet="dtproperties">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="lvalue" ColumnName="lvalue" />
+          <ScalarProperty Name="uvalue" ColumnName="uvalue" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="property" ColumnName="property" />
+          <ScalarProperty Name="objectid" ColumnName="objectid" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_control_local_detail">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_control_local_detail">
+        <MappingFragment StoreEntitySet="tbl_control_local_detail">
+          <ScalarProperty Name="ModifiedTime" ColumnName="ModifiedTime" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="control_type" ColumnName="control_type" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="control_no" ColumnName="control_no" />
+          <ScalarProperty Name="item_code" ColumnName="item_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_control_local_master">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_control_local_master">
+        <MappingFragment StoreEntitySet="tbl_control_local_master">
+          <ScalarProperty Name="ModifiedTime" ColumnName="ModifiedTime" />
+          <ScalarProperty Name="trip" ColumnName="trip" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="control_type" ColumnName="control_type" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="truck_no" ColumnName="truck_no" />
+          <ScalarProperty Name="po_no" ColumnName="po_no" />
+          <ScalarProperty Name="order_no" ColumnName="order_no" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="control_date" ColumnName="control_date" />
+          <ScalarProperty Name="control_no" ColumnName="control_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_control_local_packing">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_control_local_packing">
+        <MappingFragment StoreEntitySet="tbl_control_local_packing">
+          <ScalarProperty Name="qtyinrolls" ColumnName="qtyinrolls" />
+          <ScalarProperty Name="order_no" ColumnName="order_no" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="qtyinkgs" ColumnName="qtyinkgs" />
+          <ScalarProperty Name="qtyinpcs" ColumnName="qtyinpcs" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="item_code" ColumnName="item_code" />
+          <ScalarProperty Name="packing_id" ColumnName="packing_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_control_outoftown_detail">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_control_outoftown_detail">
+        <MappingFragment StoreEntitySet="tbl_control_outoftown_detail">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="control_type" ColumnName="control_type" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="volume" ColumnName="volume" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="control_no" ColumnName="control_no" />
+          <ScalarProperty Name="item_code" ColumnName="item_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_control_outoftown_master">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_control_outoftown_master">
+        <MappingFragment StoreEntitySet="tbl_control_outoftown_master">
+          <ScalarProperty Name="freight" ColumnName="freight" />
+          <ScalarProperty Name="ship_value" ColumnName="ship_value" />
+          <ScalarProperty Name="trip" ColumnName="trip" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="control_type" ColumnName="control_type" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="truck_no" ColumnName="truck_no" />
+          <ScalarProperty Name="via" ColumnName="via" />
+          <ScalarProperty Name="po_no" ColumnName="po_no" />
+          <ScalarProperty Name="order_no" ColumnName="order_no" />
+          <ScalarProperty Name="consignees_id" ColumnName="consignees_id" />
+          <ScalarProperty Name="shippers_id" ColumnName="shippers_id" />
+          <ScalarProperty Name="control_date" ColumnName="control_date" />
+          <ScalarProperty Name="control_no" ColumnName="control_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_control_outoftown_packing">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_control_outoftown_packing">
+        <MappingFragment StoreEntitySet="tbl_control_outoftown_packing">
+          <ScalarProperty Name="qtyinrolls" ColumnName="qtyinrolls" />
+          <ScalarProperty Name="order_no" ColumnName="order_no" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="qtyinkgs" ColumnName="qtyinkgs" />
+          <ScalarProperty Name="qtyinpcs" ColumnName="qtyinpcs" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="item_code" ColumnName="item_code" />
+          <ScalarProperty Name="packing_id" ColumnName="packing_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_customer">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_customer">
+        <MappingFragment StoreEntitySet="tbl_customer">
+          <ScalarProperty Name="tin_no" ColumnName="tin_no" />
+          <ScalarProperty Name="business_style" ColumnName="business_style" />
+          <ScalarProperty Name="credit_terms" ColumnName="credit_terms" />
+          <ScalarProperty Name="credit_limit" ColumnName="credit_limit" />
+          <ScalarProperty Name="over_" ColumnName="over_" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="agent_code" ColumnName="agent_code" />
+          <ScalarProperty Name="email_add" ColumnName="email_add" />
+          <ScalarProperty Name="fax_no" ColumnName="fax_no" />
+          <ScalarProperty Name="phone_no" ColumnName="phone_no" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="contact_person" ColumnName="contact_person" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_customer_temp">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_customer_temp">
+        <MappingFragment StoreEntitySet="tbl_customer_temp">
+          <ScalarProperty Name="credit_terms" ColumnName="credit_terms" />
+          <ScalarProperty Name="credit_limit" ColumnName="credit_limit" />
+          <ScalarProperty Name="over_" ColumnName="over_" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="email_add" ColumnName="email_add" />
+          <ScalarProperty Name="fax_no" ColumnName="fax_no" />
+          <ScalarProperty Name="phone_no" ColumnName="phone_no" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="contact_person" ColumnName="contact_person" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_delivery_detail">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_delivery_detail">
+        <MappingFragment StoreEntitySet="tbl_delivery_detail">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="rolls" ColumnName="rolls" />
+          <ScalarProperty Name="control_cat" ColumnName="control_cat" />
+          <ScalarProperty Name="control_type" ColumnName="control_type" />
+          <ScalarProperty Name="delivery_id" ColumnName="delivery_id" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+          <ScalarProperty Name="pcks" ColumnName="pcks" />
+          <ScalarProperty Name="bdls" ColumnName="bdls" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="control_no" ColumnName="control_no" />
+          <ScalarProperty Name="detail_id" ColumnName="detail_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_delivery_master">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_delivery_master">
+        <MappingFragment StoreEntitySet="tbl_delivery_master">
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="tare" ColumnName="tare" />
+          <ScalarProperty Name="gross" ColumnName="gross" />
+          <ScalarProperty Name="trip" ColumnName="trip" />
+          <ScalarProperty Name="truck_no" ColumnName="truck_no" />
+          <ScalarProperty Name="delivery_date" ColumnName="delivery_date" />
+          <ScalarProperty Name="delivery_id" ColumnName="delivery_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_laminated_jo">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_laminated_jo">
+        <MappingFragment StoreEntitySet="tbl_laminated_jo">
+          <ScalarProperty Name="finished_form" ColumnName="finished_form" />
+          <ScalarProperty Name="date_faxed" ColumnName="date_faxed" />
+          <ScalarProperty Name="prod_code" ColumnName="prod_code" />
+          <ScalarProperty Name="revision_code" ColumnName="revision_code" />
+          <ScalarProperty Name="plate_no" ColumnName="plate_no" />
+          <ScalarProperty Name="invoice_no" ColumnName="invoice_no" />
+          <ScalarProperty Name="order_status" ColumnName="order_status" />
+          <ScalarProperty Name="prepared_path" ColumnName="prepared_path" />
+          <ScalarProperty Name="noted_path" ColumnName="noted_path" />
+          <ScalarProperty Name="verified_path" ColumnName="verified_path" />
+          <ScalarProperty Name="approved_path" ColumnName="approved_path" />
+          <ScalarProperty Name="noted_by" ColumnName="noted_by" />
+          <ScalarProperty Name="verified_by" ColumnName="verified_by" />
+          <ScalarProperty Name="approved_by" ColumnName="approved_by" />
+          <ScalarProperty Name="ptype_barrier" ColumnName="ptype_barrier" />
+          <ScalarProperty Name="product_category" ColumnName="product_category" />
+          <ScalarProperty Name="punch_whole" ColumnName="punch_whole" />
+          <ScalarProperty Name="tear_knotch" ColumnName="tear_knotch" />
+          <ScalarProperty Name="date_last_edit" ColumnName="date_last_edit" />
+          <ScalarProperty Name="center_seal_width" ColumnName="center_seal_width" />
+          <ScalarProperty Name="side_seal_width" ColumnName="side_seal_width" />
+          <ScalarProperty Name="bottom_seal_width" ColumnName="bottom_seal_width" />
+          <ScalarProperty Name="top_seal_width" ColumnName="top_seal_width" />
+          <ScalarProperty Name="changed_by" ColumnName="changed_by" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="changespecs_no" ColumnName="changespecs_no" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="opening_portion" ColumnName="opening_portion" />
+          <ScalarProperty Name="sealing_type" ColumnName="sealing_type" />
+          <ScalarProperty Name="laminant_inputted_qty" ColumnName="laminant_inputted_qty" />
+          <ScalarProperty Name="subtrate_inputted_qty" ColumnName="subtrate_inputted_qty" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="ordered_qty" ColumnName="ordered_qty" />
+          <ScalarProperty Name="checking_based" ColumnName="checking_based" />
+          <ScalarProperty Name="weight_per_pc" ColumnName="weight_per_pc" />
+          <ScalarProperty Name="back_print" ColumnName="back_print" />
+          <ScalarProperty Name="front_print" ColumnName="front_print" />
+          <ScalarProperty Name="no_of_colors" ColumnName="no_of_colors" />
+          <ScalarProperty Name="print_style" ColumnName="print_style" />
+          <ScalarProperty Name="plastic_category" ColumnName="plastic_category" />
+          <ScalarProperty Name="thickness_laminant" ColumnName="thickness_laminant" />
+          <ScalarProperty Name="thickness_substrate" ColumnName="thickness_substrate" />
+          <ScalarProperty Name="outer_dim_length" ColumnName="outer_dim_length" />
+          <ScalarProperty Name="outer_dim_width" ColumnName="outer_dim_width" />
+          <ScalarProperty Name="inner_dim_length" ColumnName="inner_dim_length" />
+          <ScalarProperty Name="inner_dim_width" ColumnName="inner_dim_width" />
+          <ScalarProperty Name="right_fold" ColumnName="right_fold" />
+          <ScalarProperty Name="left_fold" ColumnName="left_fold" />
+          <ScalarProperty Name="bottom_fold" ColumnName="bottom_fold" />
+          <ScalarProperty Name="ptype_laminant" ColumnName="ptype_laminant" />
+          <ScalarProperty Name="ptype_substrate" ColumnName="ptype_substrate" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="po_no" ColumnName="po_no" />
+          <ScalarProperty Name="delivery_date" ColumnName="delivery_date" />
+          <ScalarProperty Name="jo_date" ColumnName="jo_date" />
+          <ScalarProperty Name="jo_no" ColumnName="jo_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_po_detail">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_po_detail">
+        <MappingFragment StoreEntitySet="tbl_po_detail">
+          <ScalarProperty Name="prod_code" ColumnName="prod_code" />
+          <ScalarProperty Name="revision_desc" ColumnName="revision_desc" />
+          <ScalarProperty Name="revision_code" ColumnName="revision_code" />
+          <ScalarProperty Name="plate_no" ColumnName="plate_no" />
+          <ScalarProperty Name="order_status" ColumnName="order_status" />
+          <ScalarProperty Name="product_category" ColumnName="product_category" />
+          <ScalarProperty Name="order_no" ColumnName="order_no" />
+          <ScalarProperty Name="control_type" ColumnName="control_type" />
+          <ScalarProperty Name="overlimit" ColumnName="overlimit" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="overqty" ColumnName="overqty" />
+          <ScalarProperty Name="remqty" ColumnName="remqty" />
+          <ScalarProperty Name="pcsperpack" ColumnName="pcsperpack" />
+          <ScalarProperty Name="po_id" ColumnName="po_id" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="disc" ColumnName="disc" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="item_id" ColumnName="item_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_po_master">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_po_master">
+        <MappingFragment StoreEntitySet="tbl_po_master">
+          <ScalarProperty Name="holdstatus" ColumnName="holdstatus" />
+          <ScalarProperty Name="hold_type" ColumnName="hold_type" />
+          <ScalarProperty Name="delivery_date" ColumnName="delivery_date" />
+          <ScalarProperty Name="void_by" ColumnName="void_by" />
+          <ScalarProperty Name="control" ColumnName="control" />
+          <ScalarProperty Name="po_id" ColumnName="po_id" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="terms" ColumnName="terms" />
+          <ScalarProperty Name="po_date" ColumnName="po_date" />
+          <ScalarProperty Name="po_no" ColumnName="po_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_polybags_jo">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_polybags_jo">
+        <MappingFragment StoreEntitySet="tbl_polybags_jo">
+          <ScalarProperty Name="date_faxed" ColumnName="date_faxed" />
+          <ScalarProperty Name="prod_code" ColumnName="prod_code" />
+          <ScalarProperty Name="revision_code" ColumnName="revision_code" />
+          <ScalarProperty Name="plate_no" ColumnName="plate_no" />
+          <ScalarProperty Name="invoice_no" ColumnName="invoice_no" />
+          <ScalarProperty Name="order_status" ColumnName="order_status" />
+          <ScalarProperty Name="prepared_path" ColumnName="prepared_path" />
+          <ScalarProperty Name="noted_path" ColumnName="noted_path" />
+          <ScalarProperty Name="verified_path" ColumnName="verified_path" />
+          <ScalarProperty Name="approved_path" ColumnName="approved_path" />
+          <ScalarProperty Name="noted_by" ColumnName="noted_by" />
+          <ScalarProperty Name="verified_by" ColumnName="verified_by" />
+          <ScalarProperty Name="approved_by" ColumnName="approved_by" />
+          <ScalarProperty Name="product_category" ColumnName="product_category" />
+          <ScalarProperty Name="date_last_edit" ColumnName="date_last_edit" />
+          <ScalarProperty Name="changed_by" ColumnName="changed_by" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="changespecs_no" ColumnName="changespecs_no" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="inputted_qty" ColumnName="inputted_qty" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="ordered_qty" ColumnName="ordered_qty" />
+          <ScalarProperty Name="back_print" ColumnName="back_print" />
+          <ScalarProperty Name="front_print" ColumnName="front_print" />
+          <ScalarProperty Name="no_of_colors" ColumnName="no_of_colors" />
+          <ScalarProperty Name="print_style" ColumnName="print_style" />
+          <ScalarProperty Name="plastic_category" ColumnName="plastic_category" />
+          <ScalarProperty Name="plastic_type" ColumnName="plastic_type" />
+          <ScalarProperty Name="checking_based" ColumnName="checking_based" />
+          <ScalarProperty Name="weight_per_pc" ColumnName="weight_per_pc" />
+          <ScalarProperty Name="thickness_fold" ColumnName="thickness_fold" />
+          <ScalarProperty Name="thickness_tube" ColumnName="thickness_tube" />
+          <ScalarProperty Name="thickness_single" ColumnName="thickness_single" />
+          <ScalarProperty Name="length" ColumnName="length" />
+          <ScalarProperty Name="width" ColumnName="width" />
+          <ScalarProperty Name="right_fold" ColumnName="right_fold" />
+          <ScalarProperty Name="left_fold" ColumnName="left_fold" />
+          <ScalarProperty Name="bottom_fold" ColumnName="bottom_fold" />
+          <ScalarProperty Name="plastic_color" ColumnName="plastic_color" />
+          <ScalarProperty Name="ptype" ColumnName="ptype" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="po_no" ColumnName="po_no" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="delivery_date" ColumnName="delivery_date" />
+          <ScalarProperty Name="jo_date" ColumnName="jo_date" />
+          <ScalarProperty Name="jo_no" ColumnName="jo_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_requisition_detail">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_requisition_detail">
+        <MappingFragment StoreEntitySet="tbl_requisition_detail">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="overqty" ColumnName="overqty" />
+          <ScalarProperty Name="remqty" ColumnName="remqty" />
+          <ScalarProperty Name="pcsperpack" ColumnName="pcsperpack" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="item_id" ColumnName="item_id" />
+          <ScalarProperty Name="rf_no" ColumnName="rf_no" />
+          <ScalarProperty Name="rf_id" ColumnName="rf_id" />
+          <ScalarProperty Name="rf_detail_id" ColumnName="rf_detail_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_requisition_master">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_requisition_master">
+        <MappingFragment StoreEntitySet="tbl_requisition_master">
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="approved_by" ColumnName="approved_by" />
+          <ScalarProperty Name="requiested_by" ColumnName="requiested_by" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="po_date" ColumnName="po_date" />
+          <ScalarProperty Name="po_id" ColumnName="po_id" />
+          <ScalarProperty Name="po_no" ColumnName="po_no" />
+          <ScalarProperty Name="rf_type" ColumnName="rf_type" />
+          <ScalarProperty Name="rf_no" ColumnName="rf_no" />
+          <ScalarProperty Name="rf_id" ColumnName="rf_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_return_detail">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_return_detail">
+        <MappingFragment StoreEntitySet="tbl_return_detail">
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="control_type" ColumnName="control_type" />
+          <ScalarProperty Name="item_code" ColumnName="item_code" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="rs_no" ColumnName="rs_no" />
+          <ScalarProperty Name="ret_detail_id" ColumnName="ret_detail_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_return_master">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_return_master">
+        <MappingFragment StoreEntitySet="tbl_return_master">
+          <ScalarProperty Name="control_date" ColumnName="control_date" />
+          <ScalarProperty Name="return_slip_no" ColumnName="return_slip_no" />
+          <ScalarProperty Name="control_type" ColumnName="control_type" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="date_returned" ColumnName="date_returned" />
+          <ScalarProperty Name="control_category" ColumnName="control_category" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="invoice_no" ColumnName="invoice_no" />
+          <ScalarProperty Name="po_no" ColumnName="po_no" />
+          <ScalarProperty Name="control_no" ColumnName="control_no" />
+          <ScalarProperty Name="rs_no" ColumnName="rs_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_return_packing">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_return_packing">
+        <MappingFragment StoreEntitySet="tbl_return_packing">
+          <ScalarProperty Name="qtyinrolls" ColumnName="qtyinrolls" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="unit_price" ColumnName="unit_price" />
+          <ScalarProperty Name="packing_id" ColumnName="packing_id" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="qtyinkgs" ColumnName="qtyinkgs" />
+          <ScalarProperty Name="qtyinpcs" ColumnName="qtyinpcs" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="ret_detail_id" ColumnName="ret_detail_id" />
+          <ScalarProperty Name="ret_packing_id" ColumnName="ret_packing_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ship">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_ship">
+        <MappingFragment StoreEntitySet="tbl_ship">
+          <ScalarProperty Name="via" ColumnName="via" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_truck">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_truck">
+        <MappingFragment StoreEntitySet="tbl_truck">
+          <ScalarProperty Name="truck_no" ColumnName="truck_no" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_user">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_user">
+        <MappingFragment StoreEntitySet="tbl_user">
+          <ScalarProperty Name="y" ColumnName="y" />
+          <ScalarProperty Name="height" ColumnName="height" />
+          <ScalarProperty Name="width" ColumnName="width" />
+          <ScalarProperty Name="signature_path" ColumnName="signature_path" />
+          <ScalarProperty Name="img" ColumnName="img" />
+          <ScalarProperty Name="access" ColumnName="access" />
+          <ScalarProperty Name="acc_level" ColumnName="acc_level" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="code" ColumnName="code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pbcatedt">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.pbcatedt">
+        <MappingFragment StoreEntitySet="pbcatedt">
+          <ScalarProperty Name="pbe_work" ColumnName="pbe_work" />
+          <ScalarProperty Name="pbe_flag" ColumnName="pbe_flag" />
+          <ScalarProperty Name="pbe_seqn" ColumnName="pbe_seqn" />
+          <ScalarProperty Name="pbe_cntr" ColumnName="pbe_cntr" />
+          <ScalarProperty Name="pbe_type" ColumnName="pbe_type" />
+          <ScalarProperty Name="pbe_edit" ColumnName="pbe_edit" />
+          <ScalarProperty Name="pbe_name" ColumnName="pbe_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pbcatfmt">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.pbcatfmt">
+        <MappingFragment StoreEntitySet="pbcatfmt">
+          <ScalarProperty Name="pbf_cntr" ColumnName="pbf_cntr" />
+          <ScalarProperty Name="pbf_type" ColumnName="pbf_type" />
+          <ScalarProperty Name="pbf_frmt" ColumnName="pbf_frmt" />
+          <ScalarProperty Name="pbf_name" ColumnName="pbf_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pbcatvld">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.pbcatvld">
+        <MappingFragment StoreEntitySet="pbcatvld">
+          <ScalarProperty Name="pbv_msg" ColumnName="pbv_msg" />
+          <ScalarProperty Name="pbv_cntr" ColumnName="pbv_cntr" />
+          <ScalarProperty Name="pbv_type" ColumnName="pbv_type" />
+          <ScalarProperty Name="pbv_vald" ColumnName="pbv_vald" />
+          <ScalarProperty Name="pbv_name" ColumnName="pbv_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_control_summary">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_control_summary">
+        <MappingFragment StoreEntitySet="tbl_control_summary">
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="total_kgs" ColumnName="total_kgs" />
+          <ScalarProperty Name="total_pcks" ColumnName="total_pcks" />
+          <ScalarProperty Name="total_rolls" ColumnName="total_rolls" />
+          <ScalarProperty Name="total_bdls" ColumnName="total_bdls" />
+          <ScalarProperty Name="control_date" ColumnName="control_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_holdjoborder">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_holdjoborder">
+        <MappingFragment StoreEntitySet="tbl_holdjoborder">
+          <ScalarProperty Name="released_by" ColumnName="released_by" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="product_code" ColumnName="product_code" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="jo_no" ColumnName="jo_no" />
+          <ScalarProperty Name="job_type" ColumnName="job_type" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_laminated_design">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_laminated_design">
+        <MappingFragment StoreEntitySet="tbl_laminated_design">
+          <ScalarProperty Name="design_date" ColumnName="design_date" />
+          <ScalarProperty Name="print_style" ColumnName="print_style" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="punch_whole" ColumnName="punch_whole" />
+          <ScalarProperty Name="tear_knotch" ColumnName="tear_knotch" />
+          <ScalarProperty Name="center_seal_width" ColumnName="center_seal_width" />
+          <ScalarProperty Name="side_seal_width" ColumnName="side_seal_width" />
+          <ScalarProperty Name="bottom_seal_width" ColumnName="bottom_seal_width" />
+          <ScalarProperty Name="top_seal_width" ColumnName="top_seal_width" />
+          <ScalarProperty Name="opening_portion" ColumnName="opening_portion" />
+          <ScalarProperty Name="sealing_type" ColumnName="sealing_type" />
+          <ScalarProperty Name="back_print" ColumnName="back_print" />
+          <ScalarProperty Name="front_print" ColumnName="front_print" />
+          <ScalarProperty Name="no_of_colors" ColumnName="no_of_colors" />
+          <ScalarProperty Name="outer_dim_length" ColumnName="outer_dim_length" />
+          <ScalarProperty Name="outer_dim_width" ColumnName="outer_dim_width" />
+          <ScalarProperty Name="inner_dim_length" ColumnName="inner_dim_length" />
+          <ScalarProperty Name="inner_dim_width" ColumnName="inner_dim_width" />
+          <ScalarProperty Name="right_fold" ColumnName="right_fold" />
+          <ScalarProperty Name="left_fold" ColumnName="left_fold" />
+          <ScalarProperty Name="bottom_fold" ColumnName="bottom_fold" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="prod_code" ColumnName="prod_code" />
+          <ScalarProperty Name="design_code" ColumnName="design_code" />
+          <ScalarProperty Name="design_id" ColumnName="design_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_polybags_design">
+      <EntityTypeMapping TypeName="GT_Order_Monitoring_SystemModel.tbl_polybags_design">
+        <MappingFragment StoreEntitySet="tbl_polybags_design">
+          <ScalarProperty Name="design_date" ColumnName="design_date" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="back_print" ColumnName="back_print" />
+          <ScalarProperty Name="front_print" ColumnName="front_print" />
+          <ScalarProperty Name="no_of_colors" ColumnName="no_of_colors" />
+          <ScalarProperty Name="print_style" ColumnName="print_style" />
+          <ScalarProperty Name="length" ColumnName="length" />
+          <ScalarProperty Name="width" ColumnName="width" />
+          <ScalarProperty Name="right_fold" ColumnName="right_fold" />
+          <ScalarProperty Name="left_fold" ColumnName="left_fold" />
+          <ScalarProperty Name="bottom_fold" ColumnName="bottom_fold" />
+          <ScalarProperty Name="plastic_color" ColumnName="plastic_color" />
+          <ScalarProperty Name="ptype" ColumnName="ptype" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="prod_code" ColumnName="prod_code" />
+          <ScalarProperty Name="design_code" ColumnName="design_code" />
+          <ScalarProperty Name="design_id" ColumnName="design_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_oms_search_ship" FunctionName="GT_Order_Monitoring_SystemModel.Store.sp_oms_search_ship">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GT_Order_Monitoring_SystemModel.sp_oms_search_ship_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="via" ColumnName="via" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_oms_search_truck" FunctionName="GT_Order_Monitoring_SystemModel.Store.sp_oms_search_truck">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GT_Order_Monitoring_SystemModel.sp_oms_search_truck_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="truck_no" ColumnName="truck_no" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_oms_search_user" FunctionName="GT_Order_Monitoring_SystemModel.Store.sp_oms_search_user">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GT_Order_Monitoring_SystemModel.sp_oms_search_user_Result">
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="acc_level" ColumnName="acc_level" />
+          <ScalarProperty Name="access" ColumnName="access" />
+          <ScalarProperty Name="img" ColumnName="img" />
+          <ScalarProperty Name="signature_path" ColumnName="signature_path" />
+          <ScalarProperty Name="width" ColumnName="width" />
+          <ScalarProperty Name="height" ColumnName="height" />
+          <ScalarProperty Name="y" ColumnName="y" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

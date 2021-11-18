@@ -1,0 +1,156 @@
+﻿@{
+    ViewBag.TabTitle = "Profile";
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+ @model GT_Order_Monitoring_System.Models.MyModel
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="breadcrumb-holder">
+            <h1 class="main-title float-left">My Profile</h1>
+            <ol class="breadcrumb float-right">
+                <li class="breadcrumb-item">Home</li>
+                <li class="breadcrumb-item active">Profile</li>
+            </ol>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!-- end row -->
+
+<div class="row">
+
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9 col-xl-9">
+        <div class="card mb-3">
+            <div class="card-header">
+                <h3><i class="far fa-user"></i> Profile details</h3>
+            </div>
+
+            <div class="card-body">
+                @using (Html.BeginForm("Profile", "Home", FormMethod.Post))
+                {
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Full name (required)</label>
+                                @Html.TextBoxFor(m => m.CurrentUser.name, new { @class = "form-control", @required = "true" })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>User Code</label>
+                                @Html.TextBoxFor(m => m.CurrentUser.code, new { @class = "form-control", @required = "true" })
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    @Html.TextBoxFor(m => m.CurrentUser.password, new { @class = "form-control", @required = "true", @type = "password" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Repeat Password</label>
+                                    <input class="form-control" name="password2" type="password" value="" required />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Access Level</label>
+                                    @Html.TextBoxFor(m => m.CurrentUser.acc_level, new { @class = "form-control", @readonly = "true" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6" hidden>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.CurrentUser.acc_level, new { @class = "form-control", @required = "true" })
+                                    @Html.TextBoxFor(m => m.CurrentUser.access, new { @class = "form-control", @required = "true" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                @if (ViewBag.LogCod == "NOT")
+                                {
+                                    <h5 style="color: red;">@ViewBag.LogErr </h5>
+                                }
+                                else
+                                {
+                                    <h5 style="color: green;">@ViewBag.LogCode</h5>
+                                    <h5 style="color: green;">@ViewBag.LogErr</h5>
+                                }
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <hr>
+                                <button type="submit" class="btn btn-primary">Update Profile</button>
+                            </div>
+                        </div>
+
+                }
+
+            </div>
+            <!-- end card-body -->
+
+        </div>
+        <!-- end card -->
+
+    </div>
+    <!-- end col -->
+
+
+
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
+        <div class="card mb-3">
+            <div class="card-header">
+                <h3><i class="far fa-file-image"></i> Avatar</h3>
+            </div>
+
+            <div class="card-body text-center">
+                @*@using (Html.BeginForm("UpdateProfile", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {*@
+                <div class="row">
+                    <div class="col-lg-12">
+                        <img alt="avatar" id="avatar" width="100%" class="img-fluid" src="@Url.Content(HttpContext.Current.Session["uImg"].ToString())">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                    </div>
+                    <div class="col-lg-12">
+                        <input type='file' name="FileUpload1" id="FileUpload1" class="form-control" accept='image/*' onchange='openFile(event)'>
+                    </div>
+                    <div class="col-lg-12">
+                        <button type="button" onclick="saveImage()" class="btn btn-primary btn-block mt-3">UPDATE AVATAR</button>
+                    </div>
+                </div>
+                @*}*@
+            </div>
+            <!-- end card-body -->
+
+        </div>
+        <!-- end card -->
+
+    </div>
+    <!-- end col -->
+
+
+</div>
+<!-- end row -->
+
+<script src="~/Content/assets/js/profile.js"></script>

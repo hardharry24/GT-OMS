@@ -1,0 +1,249 @@
+﻿@model GT_Order_Monitoring_System.Models.MyModel
+
+<div class="form-group row">
+    <div class="col-sm-12 row">
+        <div class="col-sm-12 pull-right">
+            <a href="/JobOrder/PrintPolybag/@Model.JobOrderPolybags.jo_no" style="float: right;" class="btn btn-success"><i class="fa fa-print"></i> PRINT PREVIEW </a>
+        </div>
+    </div>
+   
+    <div class="col-sm-12 row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold">JO #</label>
+                <input type="text" name="name" class="form-control" value="PJ-@Model.JobOrderPolybags.jo_no" readonly/>
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold">PO #</label>
+                <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.po_no" readonly />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold">JO Date</label>
+                <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.jo_date" readonly/>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold">Delivery Date</label>
+                <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.delivery_date" readonly />
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold">Customer</label>
+                <input type="text" name="name" class="form-control" value="@Model.Customer.customer_name" readonly />
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold">Production Code</label>
+                <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.prod_code" readonly />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold">Description</label>
+                <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.description" readonly />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold">Created by</label>
+                <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.created_by" readonly />
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 row">
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label class="font-weight-bold">Plastic Color</label>
+                <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.plastic_color" readonly />
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label class="font-weight-bold center">Fold (mm)</label>
+                <div class="col-sm-12 row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label>Bottom</label>
+                            <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.bottom_fold" readonly />
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label>Left</label>
+                            <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.left_fold" readonly />
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label>Right</label>
+                            <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.right_fold" readonly />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold center">Size (mm)</label>
+                <div class="col-sm-12 row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Width</label><br />
+                            <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.width" readonly />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Height</label><br />
+                            <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.length" readonly />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold center">Thickness (π)</label>
+                <div class="col-sm-12 row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Single</label><br />
+                            <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.thickness_single" readonly />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>Tube</label><br />
+                            <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.thickness_tube" readonly />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold">Polymer Type</label>
+                <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.ptype" readonly />
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold">Plastic Color</label>
+                <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.plastic_color" readonly />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold">Weight</label>
+                <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.weight_per_pc" readonly />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold">Checking Based</label>
+                <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.checking_based" readonly />
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold">Plastic Type</label>
+                <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.plastic_type" readonly />
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold">Plastic Category</label>
+                <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.plastic_category" readonly />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold">Print Style</label>
+                <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.print_style" readonly />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold">Plate No</label>
+                <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.plate_no" readonly />
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold">No Color</label>
+                <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.no_of_colors" readonly />
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold">Front Print Color</label>
+                <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.front_print" readonly />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold">Back Print Color</label>
+                <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.back_print" readonly />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold">Plate No</label>
+                <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.plate_no" readonly />
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold">Ordered QTY</label>
+                <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.ordered_qty" readonly />
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold">Order Status</label>
+                <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.order_status" readonly />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold">Unit</label>
+                <input type="text" name="name" class="form-control" value="@Model.JobOrderPolybags.unit" readonly />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="font-weight-bold">Remarks</label>
+                <input class="form-control" type="text" name="name" value="@Model.JobOrderPolybags.remarks" readonly/>
+            </div>
+        </div>
+    </div>
+    <hr />
+   
+</div>
+
+
+
+

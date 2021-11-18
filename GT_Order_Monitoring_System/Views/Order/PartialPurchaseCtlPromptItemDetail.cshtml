@@ -1,0 +1,73 @@
+﻿
+@model GT_Order_Monitoring_System.Models.MyModel
+<table>
+    <tr>
+        <th>Quantity</th>
+        <th>Unit</th>
+    </tr>
+    <tr>
+        <td><input class='form-control' type='number' name='itemQty' value='' placeholder='0' id='itemQty' /></td>
+        <td>
+            <select class='form-control' id='itemUnit'>
+                <option value='BDL(S)'>BDL(S)</option>
+                <option value='PCK(S)'>PCK(S)</option>
+                <option value='ROLL(S)'>ROLL(S)</option>
+            </select>
+        </td>
+    </tr>
+</table>
+
+<hr />
+<label>Please select item :</label>
+<table>
+    <table id="dataTableMain" class="table table-bordered table-hover display" style="margin-top: 10px; overflow-y: scroll;">
+        <thead>
+            <tr id="tableHeader" style="background-color: #5ba2e6;color: white;">
+                <th>Code</th>
+                <th>Description</th>
+                <th>Unit</th>
+                <th>PC(s)/PCK</th>
+                <th>Qty</th>
+                <th>Amount</th>
+                <th>Remaining Qty</th>
+                <th>Over Qty</th>
+                <th>Product Category</th>
+                <th>Status</th>
+                <th>Control Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ListSalesOrderDetails)
+            {
+                <tr style="cursor: pointer;" onclick="onClickItem(@item.item_id)">
+            <td>@item.code</td>
+            <td>
+                @{ int StrLength = item.description.Length; }
+            @if (StrLength > 15)
+            {
+                <div title="@item.description.ToString()">@item.description.Substring(0, 15) <span class="badge badge-success" style="cursor: pointer;" onclick="swal('@item.description')">(cont..)</span></div>
+            }
+            else
+            {
+                <div>@item.description.ToString()</div>
+            }
+        </td>
+        <td>@item.unit</td>
+        <td>@item.pcsperpack</td>
+        <td>@item.qty</td>
+        <td>@item.amount.ToString("N2")</td>
+        <td>@item.remqty.ToString("N2")</td>
+        <td>@item.overqty.ToString("N2")</td>
+        <td>@item.product_category</td>
+        <td>@item.status</td>
+        <td>@item.control_type</td>
+    </tr>
+            }
+        </tbody>
+    </table>
+
+</table>
+
+<script type="text/javascript">
+   
+</script>

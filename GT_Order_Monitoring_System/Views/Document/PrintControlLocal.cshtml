@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewBag.Title = "PrintControlLocal";
+    Layout = null;
+}
+@model GT_Order_Monitoring_System.Models.MyModel
+<link href="~/Content/print/documentStyle.css" rel="stylesheet" />
+<!-- Bootstrap CSS -->
+<link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+<!-- Font Awesome CSS -->
+<link href="~/Content/assets/font-awesome/css/all.css" rel="stylesheet" type="text/css" />
+
+<!-- Custom CSS -->
+<link href="~/Content/assets/css/style.css" rel="stylesheet" type="text/css" />
+
+<!-- BEGIN CSS for this page -->
+<link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/chart.js/Chart.min.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/datatables/datatables.min.css" />
+<link href="~/Content/assets/css/custom/loader.css" rel="stylesheet" />
+
+@*<h2>Print Polybag</h2>*@
+<br /><br />
+
+<page size="A4">
+    <div class="col-12 row" >
+            <table style="border: 2px solid black; border-radius: 10px; width: 100%; margin-top: 50px; margin-left: 50px; margin-right:  40px;">
+                <tr style="border: 1px solid black;">
+                    <td style="width: 80%; margin: 5px; padding: 10px; background-color: black; color: white; font-size: 15px;" class="font-weight-bold">CONTROL - LOCAL</td>
+                    <td style="background-color: black; color: white;  font-size: 15px;" class="font-weight-bold">NO:</td>
+                    <td class="font-weight-bold" style="font-size: 15px;">GTL - @Model.ControlLocalMaster.control_no</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="font-weight-bold" style="padding: 10px;">CUSTOMER'S NAME AND ADDRESS</td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="align-content: center; padding: 10px;">@Model.Customer.customer_name , @Model.Customer.address</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-12 row">
+        <table border="0" style="border: 2px solid black; border-radius: 10px; width: 100%; margin-top: 10px; margin-left: 50px; margin-right:  40px;">
+            <tr style="text-align: center;padding: 10px; border: 1px solid black;">
+                <th style="padding:10px; border: 1px solid black;" colspan="2">P.O NO</th>
+                <th style="padding:10px;border: 1px solid black;">ORDER NO</th>
+                <th style="padding:10px;border: 1px solid black;">TUCK NO</th>
+                <th style="padding:10px;border: 1px solid black;">MO</th>
+                <th style="padding:10px;border: 1px solid black;">DAY</th>
+                <th style="padding:10px;border: 1px solid black;">YR</th>
+            </tr>
+            <tr  style="text-align:center;">
+                <td style="border: 1px solid black;width: 30%;padding: 10px;" colspan="2" class="font-weight-bold">@Model.ControlLocalMaster.po_no</td>
+                <td style="border: 1px solid black;width: 50%;padding: 10px;">@Model.ControlLocalMaster.order_no</td>
+                <td style="border: 1px solid black;width: 20%;padding: 10px;">@Model.ControlLocalMaster.truck_no</td>
+                <td style="border: 1px solid black;padding: 10px;"> @Model.ControlLocalMaster.control_date.Month</td>
+                <td style="border: 1px solid black;padding: 10px;">@Model.ControlLocalMaster.control_date.Day</td>
+                <td style="border: 1px solid black;padding: 10px;">@Model.ControlLocalMaster.control_date.Year</td>
+            </tr>
+            <tr style="text-align: center;" class="font-weight-bold">
+                <td style="border: 1px solid black;padding: 10px; width: 10%;">QTY</td>
+                <td style="border: 1px solid black;padding: 10px;  width: 10%">UNIT/CODE</td>
+                <td style="border: 1px solid black;padding: 10px;">DESCRIPTION</td>
+                <td style="border: 1px solid black;padding: 10px;" colspan="4">PACKING</td>
+            </tr>
+            <tr style="text-align: center;" class="font-weight-bold">
+                <td style="border-right: 1px solid black;padding: 10px;"></td>
+                <td style="border-right: 1px solid black;padding: 10px;"></td>
+                <td style="border-right: 1px solid black;padding: 10px;"></td>
+                <td style="padding: 10px;"></td>
+                <td style="padding: 10px;">PC(S)</td>
+                <td style="padding: 10px;">ROLL(S)</td>
+                <td style="padding: 10px;">KG(S)</td>
+            </tr>
+            <tr style="text-align: center;" class="font-weight-light">
+                <td style="border-right: 1px solid black;padding: 10px; width: 10%;">@Model.ControlLocalDetail.qty</td>
+                <td style="border-right: 1px solid black;padding: 10px;  width: 10%">@Model.ControlLocalDetail.unit</td>
+                <td style="border-right: 1px solid black;padding: 10px; text-align: left;">@Model.ControlLocalDetail.description</td>
+                <td style="padding: 10px;"></td>
+                <td style="padding: 10px;"></td>
+                <td style="padding: 10px;"></td>
+                <td style="padding: 10px;"></td>
+            </tr>@{ double totPcs = 0, totKgs = 0, totRolls = 0;}
+            @foreach (var item in Model.ListLocalPckng)
+            {
+                <tr style="text-align: center;" class="font-weight-light">
+                    <td style="border-right: 1px solid black;padding: 10px; width: 10%;"></td>
+                    <td style="border-right: 1px solid black;padding: 10px;  width: 10%">@item.item_code</td>
+                    <td style="border-right: 1px solid black;padding: 10px; ">@item.description</td>
+                    <td style="padding: 10px;"></td>
+                    <td style="padding: 10px;">@item.qtyinpcs.ToString("n2")</td>
+                    <td style="padding: 10px;">@item.qtyinrolls.Value.ToString("n2")</td>
+                    <td style="padding: 10px;">@item.qtyinkgs.ToString("n2")</td>
+                </tr>
+
+                    totPcs += item.qtyinpcs;
+                    totKgs += Convert.ToDouble(item.qtyinkgs);
+                    totRolls += Convert.ToDouble(item.qtyinrolls);
+                
+            }
+             <tr style="text-align: center;" class="font-weight-light">
+                 <td style="border-right: 1px solid black;padding: 10px; width: 10%;"></td>
+                 <td style="border-right: 1px solid black;padding: 10px;  width: 10%"></td>
+                 <td style="border-right: 1px solid black;padding: 10px; "></td>
+                 <td style="border-bottom: 1px solid black;border-top: 1px solid black;padding: 10px;"></td>
+                 <td style="border-bottom: 1px solid black;border-top: 1px solid black;padding: 10px;">@totPcs.ToString("n2")</td>
+                 <td style="border-bottom: 1px solid black;border-top: 1px solid black;padding: 10px;">@totKgs.ToString("n2")</td>
+                 <td style="border-bottom: 1px solid black;border-top: 1px solid black;padding: 10px;">@totRolls.ToString("n2")</td>
+           </tr>
+            <tr style="text-align: center;" class="font-weight-light">
+                <td style="border-right: 1px solid black;padding: 10px; width: 10%;">________</td>
+                <td style="border-right: 1px solid black;padding: 10px;  width: 10%"></td>
+                <td style="border-right: 1px solid black;padding: 10px;" class="font-weight-bold">** Nothing follows **</td>
+                <td style="border-bottom: 2px solid black;border-top: 1px solid black;padding: 10px;"></td>
+                <td style="border-bottom: 2px solid black;padding: 10px;"></td>
+                <td style="border-bottom: 2px solid black;padding: 10px;"></td>
+                <td style="border-bottom: 2px solid black;padding: 10px;"></td>
+            </tr>
+            <tr style="text-align: center;" class="font-weight-light">
+                <td style="border-right: 1px solid black;padding: 10px; width: 10%;"></td>
+                <td style="border-right: 1px solid black;padding: 10px;  width: 10%"></td>
+                <td style="border-right: 1px solid black;padding: 10px; ">< -- TOTAL -- ></td>
+                <td style="padding: 10px;"></td>
+                <td style="padding: 10px;" class="font-weight-bold">@totPcs.ToString("n2")</td>
+                <td style="padding: 10px;" class="font-weight-bold">@totKgs.ToString("n2")</td>
+                <td style="padding: 10px;" class="font-weight-bold">@totRolls.ToString("n2")</td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-12 row">
+        <table border="1" style="border: 2px solid black; border-radius: 10px; width: 100%; margin-top: 30%; margin-left: 50px; margin-right:  40px;">
+            <tr style="border: 1px solid black;">
+                <td rowspan="3" style="width: 30%; margin: 5px; padding: 10px; text-align: justify"   class="font-weight-bold">NOTES: </td>
+                <td style="width: 20%;font-size: 15px;" class="font-weight-bold"></td> @*background-color: black; color: white; font-size: 15px;" class="font-weight-bold*@
+                <td colspan="2" class="font-weight-light" style="font-size: 12px;">Received the goods listed in good order and condition <br /><br /><br /><br /></td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold" style="padding: 10px;background-color: black; color: white; font-size: 12px;">CHECKED BY</td>
+                <td colspan="2" class="font-weight-bold" style="padding: 10px;background-color: black; color: white; font-size: 12px;">PRINTED NAME AND SIGNATURE OF CUSTOMER</td>
+            </tr>
+        </table>
+    </div>
+</page>

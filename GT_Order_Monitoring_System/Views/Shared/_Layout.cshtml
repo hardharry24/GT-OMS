@@ -1,0 +1,525 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.TabTitle | GT Order Monitoring System </title>
+    <meta name="description" content="Dashboard | GT Order Monitoring System">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="www.GTodermonitoring">
+
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/Content/assets/images/favicon.ico">
+
+    <!-- Bootstrap CSS -->
+    <link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Font Awesome CSS -->
+    <link href="~/Content/assets/font-awesome/css/all.css" rel="stylesheet" type="text/css" />
+
+    <!-- Custom CSS -->
+    <link href="~/Content/assets/css/style.css" rel="stylesheet" type="text/css" />
+
+    <!-- BEGIN CSS for this page -->
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/chart.js/Chart.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/datatables/datatables.min.css" />
+    <link href="~/Content/assets/css/custom/loader.css" rel="stylesheet" />
+    <!-- END CSS for this page -->
+</head>
+<body class="adminbody">
+    <div id="main">
+        <!-- top bar navigation -->
+        <div class="headerbar">
+
+            <!-- LOGO -->
+            <div class="headerbar-left">
+                <a href="/Home/Index" class="logo">
+                    <img alt="Logo" src="~/Content/assets/images/logo.png" />
+                    <span>ORDER MONITORING SYSTEM </span>
+                </a>
+            </div>
+           
+            <nav class="navbar-custom">
+                <ul class="list-inline float-right mb-0">
+
+                    <li class="list-inline-item dropdown notif">
+                        <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" aria-haspopup="false" aria-expanded="false">
+                            <i class="far fa-envelope"></i>
+                            <span class="notif-bullet"></span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
+                            <!-- item-->
+                            <div class="dropdown-item noti-title">
+                                <h5>
+                                    <small>
+                                        <span class="label label-danger pull-xs-right">12</span>Mailbox
+                                    </small>
+                                </h5>
+                            </div>
+
+                            <!-- item-->
+                            <a href="mail-all.html" class="dropdown-item notify-item">
+                                <p class="notify-details ml-0">
+                                    <b>John Doe</b>
+                                    <span>New message received</span>
+                                    <small class="text-muted">3 minutes ago</small>
+                                </p>
+                            </a>
+
+                            <!-- item-->
+                            <a href="mail-all.html" class="dropdown-item notify-item">
+                                <p class="notify-details ml-0">
+                                    <b>Michael Smith</b>
+                                    <span>New message received</span>
+                                    <small class="text-muted">18 minutes ago</small>
+                                </p>
+                            </a>
+
+                            <!-- item-->
+                            <a href="mail-all.html" class="dropdown-item notify-item">
+                                <p class="notify-details ml-0">
+                                    <b>John Lenons</b>
+                                    <span>New message received</span>
+                                    <small class="text-muted">Yesterday, 18:27</small>
+                                </p>
+                            </a>
+
+                            <!-- All-->
+                            <a href="mail-all.html" class="dropdown-item notify-item notify-all">
+                                View All Messages
+                            </a>
+
+                        </div>
+
+                    </li>
+
+                    <li class="list-inline-item dropdown notif">
+                        <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" aria-haspopup="false" aria-expanded="false">
+                            <i class="far fa-bell"></i>
+                            <span class="notif-bullet"></span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
+                            <!-- item-->
+                            <div class="dropdown-item noti-title">
+                                <h5>
+                                    <small>
+                                        <span class="label label-danger pull-xs-right">5</span>Allerts
+                                    </small>
+                                </h5>
+                            </div>
+
+                            <!-- item-->
+                            <a href="#" class="dropdown-item notify-item">
+                                <div class="notify-icon bg-faded">
+                                    <img src="~/Content/assets/images/avatars/avatar2.png" alt="img" class="rounded-circle img-fluid">
+                                </div>
+                                <p class="notify-details">
+                                    <b>John Doe</b>
+                                    <span>User registration</span>
+                                    <small class="text-muted">3 minutes ago</small>
+                                </p>
+                            </a>
+
+                            <!-- item-->
+                            <a href="#" class="dropdown-item notify-item">
+                                <div class="notify-icon bg-faded">
+                                    <img src="assets/images/avatars/avatar3.png" alt="img" class="rounded-circle img-fluid">
+                                </div>
+                                <p class="notify-details">
+                                    <b>Michael Cox</b>
+                                    <span>Task 2 completed</span>
+                                    <small class="text-muted">12 minutes ago</small>
+                                </p>
+                            </a>
+
+                            <!-- item-->
+                            <a href="#" class="dropdown-item notify-item">
+                                <div class="notify-icon bg-faded">
+                                    <img src="assets/images/avatars/avatar4.png" alt="img" class="rounded-circle img-fluid">
+                                </div>
+                                <p class="notify-details">
+                                    <b>Michelle Dolores</b>
+                                    <span>New job completed</span>
+                                    <small class="text-muted">35 minutes ago</small>
+                                </p>
+                            </a>
+
+                            <!-- All-->
+                            <a href="#" class="dropdown-item notify-item notify-all">
+                                View All Allerts
+                            </a>
+
+                        </div>
+                    </li>
+
+
+                    <li class="list-inline-item dropdown notif">
+                        <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" aria-haspopup="false" aria-expanded="false" title="Settings">
+                            <i class="fas fa-cog"></i>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-sm">
+                            <!-- item-->
+                            <div class="dropdown-item noti-title" title="Settings">
+                                <h5>
+                                    <small>Settings</small>
+                                </h5>
+                            </div>
+
+                            <!-- item-->
+                            <a href="#" class="dropdown-item notify-item">
+                                <p class="notify-details ml-0">
+                                    <i class="fas fa-cog"></i>
+                                    <b>Settings 1</b>
+                                </p>
+                            </a>
+
+                            <!-- item-->
+                            <a href="#" class="dropdown-item notify-item">
+                                <p class="notify-details ml-0">
+                                    <i class="fas fa-cog"></i>
+                                    <b>Settings 2</b>
+                                </p>
+                            </a>
+
+                            <!-- item-->
+                            <a href="#" class="dropdown-item notify-item">
+                                <p class="notify-details ml-0">
+                                    <i class="fas fa-cog"></i>
+                                    <b>Settings 3</b>
+                                </p>
+                            </a>
+
+                        </div>
+
+                    </li>
+
+                 
+                    <li class="list-inline-item dropdown notif">
+                        <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" aria-haspopup="false" aria-expanded="false">
+                            <img src="@Url.Content(HttpContext.Current.Session["uImg"].ToString())" alt="Profile image" class="avatar-rounded" style="border: 1px solid white;">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                            <!-- item-->
+                            <div class="dropdown-item noti-title">
+                                <h5 class="text-overflow">
+                                    <small>Hello, @HttpContext.Current.Session["FullName"]</small >
+                                </h5>
+                            </div>
+
+                            <!-- item-->
+                            <a href="/Home/Profile" class="dropdown-item notify-item">
+                                <i class="fas fa-user"></i>
+                                <span>Profile</span>
+                            </a>
+
+                            <!-- item-->
+                            <span onclick="onConfirmLogout()" style="cursor:pointer;" class="dropdown-item notify-item">
+                                <i class="fas fa-power-off"></i>
+                                <span>Logout</span>
+                            </span>
+                        </div>
+                    </li>
+
+                </ul>
+
+                <ul class="list-inline menu-left mb-0">
+                    <li class="float-left">
+                        <button class="button-menu-mobile open-left">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </li>
+                </ul>
+            
+            </nav>
+        </div>
+     
+        <!-- Left Sidebar -->
+        <div class="left main-sidebar">
+
+            <div class="sidebar-inner leftscroll">
+
+                <div id="sidebar-menu">
+
+                    <ul>
+                        <li class="submenu">
+                            <a class="@(ViewBag.Title == "Dashboard" ? "active" : "")" href="/Home/Index">
+                                <i class="fas fa-bars"></i>
+                                <span> Dashboard </span>
+                            </a>
+                        </li>
+
+                        <li class="submenu">
+                            <a href="#">
+                                <i class="fa fa-cogs" aria-hidden="true"></i>
+                                <span> Maintenance </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li class="@(ViewBag.Title == "Accounts" ? "active" : "")">
+                                    <a class="@(ViewBag.Title == "Accounts" ? "active" : "")" style="color: @(ViewBag.Title == "Accounts" ? "white" : "gray")" href="/User/UserManagement"><i class="fa fa-user-cog fa-xs"></i>Accounts</a>
+                                </li>
+                                <li class="@(ViewBag.Title == "Agents" ? "active" : "")">
+                                    <a class="@(ViewBag.Title == "Agents" ? "active" : "")" style="color: @(ViewBag.Title == "Agents" ? "white" : "gray")" href="/Agent/Index"><i class="fa fa-user-shield fa-xs"></i>Agents</a>
+                                </li>
+                                <li class="@(ViewBag.Title == "CommercialProducts" ? "active" : "")">
+                                    <a class="@(ViewBag.Title == "CommercialProducts" ? "active" : "")" style="color: @(ViewBag.Title == "CommercialProducts" ? "white" : "gray")" href="/Product/CommercialProducts"><i class="fa fa-cubes fa-xs"></i>Commercial Products</a>
+                                </li>
+                                <li class="@(ViewBag.Title == "Customers" ? "active" : "")">
+                                    <a class="@(ViewBag.Title == "Customers" ? "active" : "")" style="color: @(ViewBag.Title == "Customers" ? "white" : "gray")" href="/Customer/Index"><i class="fa fa-users fa-xs"></i>Customers</a>
+                                </li>
+                                <li class="@(ViewBag.Title == "JobProduct" ? "active" : "")">
+                                    <a class="@(ViewBag.Title == "JobProduct" ? "active" : "")" style="color: @(ViewBag.Title == "JobProduct" ? "white" : "gray")" href="/Job/JobProduct"><i class="fa fa-briefcase fa-xs"></i>Job Products</a>
+                                </li>
+                                <li class="@(ViewBag.Title == "Ships" ? "active" : "")">
+                                    <a class="@(ViewBag.Title == "Ships" ? "active" : "")" style="color: @(ViewBag.Title == "Ships" ? "white" : "gray")" href="/Ship/Index"><i class="fa fa-ship fa-xs"></i>Ships</a>
+                                </li>
+                                <li class="@(ViewBag.Title == "Trucks" ? "active" : "")">
+                                    <a class="@(ViewBag.Title == "Trucks" ? "active" : "")" style="color: @(ViewBag.Title == "Trucks" ? "white" : "gray")" href="/Truck/Index"><i class="fa fa-truck fa-xs"></i>Trucks</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="submenu">
+                            <a href="#" >
+                                <i class="fas fa-exchange-alt"></i>
+                                <span> Transaction </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul>
+                                <li class="@(ViewBag.Title == "Sale" ? "subdrop" : "")">
+                                    <a class="@(ViewBag.Title == "Sale" ? "active" : "")" style="color: @(ViewBag.Title == "Sale" ? "white" : "gray")" href="/Order/Sale"><i class="fa fa-cubes fa-xs"></i>Sales Orders</a>
+                                </li>
+
+                                <li class="submenu" >
+                                    <input type="hidden" id="ViewBagTitle" data-value="@ViewBag.Title" />
+                                    <a href="#" style="color: gray;" class="@(ViewBag.Title == "JobOrder" ? "active" : "")">
+                                        <i class="fa fa-cubes fa-xs"></i><span>Job Order</span>
+                                        <span class="menu-arrow" hidden></span>
+                                    </a>
+                                    <ul id="jobOrder">
+                                        <li class="@(ViewBag.TabTitle == "Polybag" ? "active" : "")">
+                                            <a href="/JobOrder/Polybag"  style="color: @(ViewBag.TabTitle == "Polybag" || ViewBag.TabTitle == "Create Polybag" || ViewBag.TabTitle == "UpdatePolybag"? "white" : "gray")">
+                                                <span>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-hand-point-right"></i> Polybag</span>
+                                            </a>
+                                        </li>
+                                        <li  class="@(ViewBag.TabTitle == "Flexible" ? "active" : "")">
+                                            <a href="/JobOrder/Flexible" style="color: @(ViewBag.TabTitle == "Flexible" || ViewBag.TabTitle == "Create Flexible" || ViewBag.TabTitle == "UpdateFlexible"? "white" : "gray")">
+                                                <span>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-hand-point-right"></i> Flexible</span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                    
+                                <li class="@(ViewBag.Title == "PurchaseControl" ? "active" : "")">
+                                    <a  style="color: gray; color: @(ViewBag.Title == "PurchaseControl" ? "white" : "gray")" class="@(ViewBag.Title == "PurchaseControl" ? "active" : "")" href="#" onclick="onPurchaseControl()">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <span> Purchase Control</span>
+                                    </a>
+                                </li>
+                                @*<li class="@(ViewBag.Title == "Sale" ? "active" : "")">
+                                    <a class="@(ViewBag.Title == "na" ? "active" : "")" style="color: @(ViewBag.Title == "na" ? "white" : "gray")" href="/Order/Sales"><i class="fa fa-cubes fa-xs"></i>Polybag Control Locals</a>
+                                </li>
+                                <li class="@(ViewBag.Title == "Sale" ? "active" : "")">
+                                    <a class="@(ViewBag.Title == "na" ? "active" : "")" style="color: @(ViewBag.Title == "na" ? "white" : "gray")" href="/Order/Sales"><i class="fa fa-cubes fa-xs"></i>Polybag Control Out of Town</a>
+                                </li>
+                                <li>
+                                    <a class="@(ViewBag.Title == "na" ? "active" : "")" style="color: @(ViewBag.Title == "na" ? "white" : "gray")" href="/Order/Sales"><i class="fa fa-cubes fa-xs"></i>Flexible Control Locals</a>
+                                </li>
+                                <li>
+                                    <a class="@(ViewBag.Title == "na" ? "active" : "")" style="color: @(ViewBag.Title == "na" ? "white" : "gray")" href="/Order/Sales"><i class="fa fa-cubes fa-xs"></i>Flexible Control Out of Town</a>
+                                </li>
+                                <li>
+                                    <a class="@(ViewBag.Title == "na" ? "active" : "")" style="color: @(ViewBag.Title == "na" ? "white" : "gray")" href="/Order/Sales"><i class="fa fa-cubes fa-xs"></i>Return Control Polybag/Flexible</a>
+                                </li>*@
+                            </ul>
+                        </li>
+
+                        <li class="submenu">
+                            <a href="#">
+                                <i class="fas fa-cookie"></i>
+                                <span> Product Control </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul>
+                                <li class="@(ViewBag.Title == "Local" ? "subdrop" : "")">
+                                    <a class="@(ViewBag.Title == "Local" ? "active" : "")" style="color: @(ViewBag.Title == "Local" ? "white" : "gray")" href="/Control/Local"><i class="fa fa-cubes fa-xs"></i>Control - Local</a>
+                                </li>
+                                <li class="@(ViewBag.Title == "Local" ? "subdrop" : "")">
+                                    <a class="@(ViewBag.Title == "Local" ? "active" : "")" style="color: @(ViewBag.Title == "Local" ? "white" : "gray")" href="/Control/OutOfTown"><i class="fa fa-cubes fa-xs"></i>Control - Out of Town</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        @*<li class="submenu">
+                            <a href="blog.html">
+                                <i class="fas fa-user"></i>
+                                <span> Agent File</span>
+                            </a>
+                        </li>
+
+                        <li class="submenu">
+                            <a href="blog.html">
+                                <i class="fas fa-address-book"></i>
+                                <span> Commercial Product File</span>
+                            </a>
+                        </li>
+
+                        <li class="submenu">
+                            <a href="#">
+                                <i class="fas fa-print"></i>
+                                <span> Reports </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="ui-alerts.html">Returns</a>
+                                </li>
+                                <li>
+                                    <a href="ui-buttons.html">Control</a>
+                                </li>
+                                <li>
+                                    <a href="ui-cards.html">P.O Report</a>
+                                </li>
+                            </ul>
+                        </li>*@
+
+                    </ul>
+
+                    <div class="clearfix"></div>
+
+                </div>
+
+                <div class="clearfix"></div>
+
+            </div>
+
+        </div>
+        <!-- End Sidebar -->
+        
+
+        <div class="content-page">
+
+            <!-- Start content -->
+            <div class="content">
+
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-xl-12">
+                            @RenderBody()
+                        </div>
+                    </div>
+              
+
+                </div>
+                <!-- END container-fluid -->
+
+            </div>
+            <!-- END content -->
+
+        </div>
+        <!-- END content-page -->
+    </div>
+        <!-- End Navigation -->
+
+        <footer>
+            <center>
+                <p>&copy; @DateTime.Now.Year - GT Order Monitoring System</p>
+            </center>
+        </footer>
+
+        <script src="~/Content/assets/js/modernizr.min.js"></script>
+        <script src="~/Content/assets/js/jquery.min.js"></script>
+        <script src="assets/js/moment.min.js"></script>
+
+        <script src="~/Content/assets/js/popper.min.js"></script>
+        <script src="~/Content/assets/js/bootstrap.min.js"></script>
+
+        <script src="~/Content/assets/js/detect.js"></script>
+        <script src="~/Content/assets/js/fastclick.js"></script>
+        <script src="~/Content/assets/js/jquery.blockUI.js"></script>
+        <script src="~/Content/assets/js/jquery.nicescroll.js"></script>
+
+        <!-- App js -->
+        <script src="~/Content/assets/js/admin.js"></script>
+
+        <!-- BEGIN Java Script for this page -->
+        <script src="~/Content/assets/plugins/chart.js/Chart.min.js"></script>
+        <script src="~/Content/assets/plugins/datatables/datatables.min.js"></script>
+
+        <!-- Counter-Up-->
+        <script src="~/Content/assets/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
+        <script src="~/Content/assets/plugins/counterup/jquery.counterup.min.js"></script>
+
+        <!-- dataTabled data -->
+        <script src="~/Content/assets/data/data_datatables.js"></script>
+
+        <!-- Charts data -->
+        <script src="~/Content/assets/data/data_charts_dashboard.js"></script>
+
+        <!-- BEGIN Java Script for this page -->
+        <script src="~/Content/assets/plugins/sweetalert/sweetalert.min.js"></script>
+        <script>
+            function onConfirmLogout() {
+                //if (confirm("Are you sure you want to logout?")) {
+                //    window.location.href = "/Home/Logout";
+                //}
+
+                swal({
+                    title: "Confirmation",
+                    text: "Are you sure you want to logout?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                    closeOnClickOutside: false
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("Successfully Logout!", {
+                            icon: "success",
+                            closeOnClickOutside: false
+                        }).then((ok) => {
+                            if (ok)
+                            {
+                                window.location.href = "/Home/Logout";
+                            }
+                        });
+                    } 
+                });
+            }
+
+            function onPurchaseControl()
+            {
+                // this is a Node object    
+                var div = document.createElement("div");
+                div.innerHTML = "<select id='selectType' class='form-control'><option value='Polybag'>Polybag</option><option value='Flexible'>Flexible</option></select><br/><select id='selectctl' class='form-control'><option value='local'>Local</option><option value='outoftown'>Out of Town</option></select>";
+
+                swal({
+                      title: "Please Select : ", 
+                      content: div,
+                      confirmButtonText: "OK", 
+                      allowOutsideClick: "false",
+                      closeOnClickOutside: false
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        var selectctl = document.getElementById("selectctl").value;
+                        var type = document.getElementById("selectType").value;
+                        //alert(selectType);
+                        window.location.href = "/Order/PurchaseControl/" + selectctl + "-" + type;
+                    }
+                });
+            }
+
+        </script>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+
+     </body>
+</html>

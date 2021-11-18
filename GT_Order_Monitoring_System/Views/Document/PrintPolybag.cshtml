@@ -1,0 +1,271 @@
+﻿
+@{
+    ViewBag.Title = "PrintPolybag";
+    Layout = null;
+}
+@model GT_Order_Monitoring_System.Models.MyModel
+<link href="~/Content/print/documentStyle.css" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+<link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+<!-- Font Awesome CSS -->
+<link href="~/Content/assets/font-awesome/css/all.css" rel="stylesheet" type="text/css" />
+
+<!-- Custom CSS -->
+<link href="~/Content/assets/css/style.css" rel="stylesheet" type="text/css" />
+
+<!-- BEGIN CSS for this page -->
+<link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/chart.js/Chart.min.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/datatables/datatables.min.css" />
+<link href="~/Content/assets/css/custom/loader.css" rel="stylesheet" />
+
+@*<h2>Print Polybag</h2>*@
+<br /><br />
+
+<page size="A4">
+    <div class="col-12 row">
+        <div class="col-sm-12" style="margin-top: 20px;">
+            <center>
+                <h2 class="font-weight-bold">GT Industrial Developpment Inc.</h2>
+                <h4 class="font-weight-bold">Poly Bags Job Order Form</h4>
+            </center>
+        </div>
+    </div>
+    <div class="col-12" style="font-size: 12px; margin-left: 20px; margin-right: 20px; margin-top: 20px;">
+        <div class="row">
+            <div class="col-2">
+                <span>Customer Name :</span>
+            </div>
+            <div class="col-4">
+                <label class="font-weight-bold">@Model.Customer.customer_name</label>
+            </div>
+            <div class="col">
+                <span style="float: right;">Balance   :</span>
+            </div>
+            <div class="col">
+                <label class="font-weight-bold">@Model.Customer.balance.Value.ToString("n2")</label>
+            </div>
+            <div class="col-1">
+                Terms :
+            </div>
+            <div class="col">
+                <label class="font-weight-bold">@Model.Customer.credit_terms Day/s</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <span>Address :</span>
+            </div>
+            <div class="col-4">
+                <label class="font-weight-bold">@Model.Customer.address</label>
+            </div>
+            <div class="col">
+                <span style="float: right;">Credit Limit   :</span>
+            </div>
+            <div class="col">
+                <label class="font-weight-bold">@Model.Customer.credit_limit.Value.ToString("n2")</label>
+            </div>
+            <div class="col-1">
+                JO Date:
+            </div>
+            <div class="col">
+                <label class="font-weight-bold">@Model.JobOrderPolybags.jo_date.ToShortDateString()</label>
+            </div>
+        </div>
+        <div class="col-sm-12 row">
+            <br />
+            <table border="1" style="width: 100%; font-size: 12px; border: 1px solid black; margin-right: 10px;">
+                <tr style="text-align: center;">
+                    <td style="width: 10%;">Prod Code</td>
+                    <td style="width: 15%;">Revision Code</td>
+                    <td>Description</td>
+                    <td style="width: 10%;">Po No</td>
+                    <td style="width: 10%;">Plate No</td>
+                    <td style="width: 10%;">Jo No</td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td><label class="font-weight-bold">@Model.JobOrderPolybags.prod_code</label></td>
+                    <td><label class="font-weight-bold">@Model.JobOrderPolybags.revision_code</label></td>
+                    <td><label class="font-weight-bold">@Model.JobOrderPolybags.description</label></td>
+                    <td><label class="font-weight-bold">@Model.JobOrderPolybags.po_no</label></td>
+                    <td><label class="font-weight-bold">@Model.JobOrderPolybags.plate_no</label></td>
+                    <td><label class="font-weight-bold">PJ-@Model.JobOrderPolybags.jo_no</label></td>
+                </tr>
+            </table>
+            <br />
+            <table border="1" style="width: 100%; font-size: 12px; border: 1px solid black; margin-right: 10px;">
+                <tr style="text-align: center;">
+                    <td rowspan="2" style="width: 10%;">Polymer Type</td>
+                    <td rowspan="2" style="width: 10%;">Plastic Color</td>
+                    <td colspan="3">Fold(mm)</td>
+                    <td rowspan="2" style="width: 10%;">Width(mm)</td>
+                    <td rowspan="2" style="width: 10%;">Length(mm)</td>
+                    <td rowspan="2" colspan="2" style="width: 10%;">Thickness(π)</td>
+                    <td rowspan="2" style="width: 10%;">Weight Per Pc(g)</td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td style="width: 10%;">Bottom</td>
+                    <td style="width: 10%;">Left</td>
+                    <td style="width: 10%;">Right</td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td rowspan="2"><label class="font-weight-bold">@Model.JobOrderPolybags.ptype</label></td>
+                    <td rowspan="2"><label class="font-weight-bold">@Model.JobOrderPolybags.plastic_color</label></td>
+                    <td rowspan="2"><label class="font-weight-bold">@Model.JobOrderPolybags.bottom_fold</label></td>
+                    <td rowspan="2"><label class="font-weight-bold">@Model.JobOrderPolybags.left_fold</label></td>
+                    <td rowspan="2"><label class="font-weight-bold">@Model.JobOrderPolybags.right_fold</label></td>
+                    <td rowspan="2"><label class="font-weight-bold">@Model.JobOrderPolybags.width</label></td>
+                    <td rowspan="2"><label class="font-weight-bold">@Model.JobOrderPolybags.length</label></td>
+                    <td><label class="font-weight-bold">@Model.JobOrderPolybags.thickness_single</label></td>
+                    <td style="width: 10%;">&nbsp;&nbsp;<input type="checkbox" name="name" @(Model.JobOrderPolybags.plastic_type == "SHEET" ? "checked" : "" ) disabled /> Single</td>
+                    <td rowspan="2"><label class="font-weight-bold">@Model.JobOrderPolybags.weight_per_pc</label></td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td style="width: 10%;"><label class="font-weight-bold">@Model.JobOrderPolybags.thickness_tube</label></td>
+                    <td style="width: 10%;"><input type="checkbox" name="name" @(Model.JobOrderPolybags.plastic_type == "TUBE" || Model.JobOrderPolybags.plastic_type == "TUBE W/ FOLD" ? "checked" : "" ) disabled /> Tube</td>
+                </tr>
+            </table>
+            <br />
+            <table border="1" style="width: 100%; font-size: 12px; border: 1px solid black; margin-right: 10px;">
+                <tr style="text-align: center;">
+                    <td style="width: 10%;">Checking Based</td>
+                    <td style="width: 10%;">Plastic Type</td>
+                    <td style="width: 10%;">Plastic Category</td>
+                    <td style="width: 10%;">Print Style</td>
+                    <td style="width: 15%;">Front Print</td>
+                    <td style="width: 15%;">Back Print</td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td><label class="font-weight-bold">@Model.JobOrderPolybags.checking_based</label></td>
+                    <td><label class="font-weight-bold">@Model.JobOrderPolybags.plastic_type</label></td>
+                    <td><label class="font-weight-bold">@Model.JobOrderPolybags.plastic_category</label></td>
+                    <td><label class="font-weight-bold">@Model.JobOrderPolybags.print_style</label></td>
+                    <td><label class="font-weight-bold">@Model.JobOrderPolybags.front_print</label></td>
+                    <td><label class="font-weight-bold">@Model.JobOrderPolybags.back_print</label></td>
+                </tr>
+            </table>
+            <br />
+            <table border="1" style="width: 100%; font-size: 12px; border: 1px solid black; margin-right: 10px;">
+                <tr style="text-align: center;">
+                    <td style="width: 10%;">Order Qty</td>
+                    <td style="width: 10%;">Unit</td>
+                    <td style="width: 15%;">Inpuuted Qty(KGS)</td>
+                    <td>Remarks</td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td><label class="font-weight-bold">@Model.JobOrderPolybags.ordered_qty</label></td>
+                    <td><label class="font-weight-bold">@Model.JobOrderPolybags.unit</label></td>
+                    <td><label class="font-weight-bold">@Model.JobOrderPolybags.inputted_qty</label></td>
+                    <td><label class="font-weight-bold">@Model.JobOrderPolybags.remarks</label></td>
+                </tr>
+            </table>
+        </div>
+        <br />
+        <div class="col-sm-12 row">
+            <div class="col">
+                Prepared by:
+            </div>
+            <div class="col">
+                Noted by:
+            </div>
+            <div class="col">
+                Verified by:
+            </div>
+            <div class="col">
+                Approved by:
+            </div>
+        </div>
+        <div class="col-sm-12 row">
+            <div class="col" style="text-align:center;">
+                <center>
+                    <table style="width: 100%;">
+                        <tr>
+                            <td>
+                                <img src="~/Uploads/no_signature.png" width="30" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="font-weight-bold">@(Model.JobOrderPolybags.created_by == null ? "" : Model.JobOrderPolybags.created_by.ToUpper())</label></td>
+                        </tr>
+                        <tr style="border: 1px solid black;"></tr>
+                        <tr>
+                            <td>
+                                <label class="font-weight-bolder">SALES IN-CHARGE</label>
+                                <label class="font-weight-bold" style="font-size: 10px;">PRINT NAME AND SIGNATURE</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </table>
+                </center>
+            </div>
+            <div class="col" style="text-align:center;">
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            <img src="~/Uploads/no_signature.png" width="30" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="font-weight-bold">@(@Model.JobOrderPolybags.noted_by == null ? "" : Model.JobOrderPolybags.noted_by.ToUpper())</label></td>
+                    </tr>
+                    <tr style="border: 1px solid black;"></tr>
+                    <tr>
+                        <td>
+                            <label class="font-weight-bolder">ACCOUNTING HEAD</label>
+                            <label class="font-weight-bold" style="font-size: 10px;">PRINT NAME AND SIGNATURE</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col" style="text-align:center;">
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            <img src="~/Uploads/no_signature.png" width="30" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="font-weight-bold">@(Model.JobOrderPolybags.verified_by == null ? "" : Model.JobOrderPolybags.verified_by.ToUpper())</label></td>
+                    </tr>
+                    <tr style="border: 1px solid black;"></tr>
+                    <tr>
+                        <td>
+                            <label class="font-weight-bolder">ARTIST/DESIGNER</label>
+                            <label class="font-weight-bold" style="font-size: 10px;">PRINT NAME AND SIGNATURE</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col" style="text-align:center;">
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            <img src="~/Uploads/no_signature.png" width="30" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="font-weight-bold">@(Model.JobOrderPolybags.approved_by == null ? "" : Model.JobOrderPolybags.approved_by.ToUpper())</label></td>
+                    </tr>
+                    <tr style="border: 1px solid black;"></tr>
+                    <tr>
+                        <td>
+                            <label class="font-weight-bolder">GENERAL MANAGER</label>
+                            <label class="font-weight-bold" style="font-size: 10px;">PRINT NAME AND SIGNATURE</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</page>

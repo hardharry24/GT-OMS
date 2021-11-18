@@ -1,0 +1,46 @@
+﻿@model GT_Order_Monitoring_System.Models.MyModel
+
+<div class="form-group row">
+    <div class="col-sm-12">
+        <table id="dataTableMain" class="table table-bordered table-hover display" style="margin-top: 10px;font-size: 12px; overflow-y: scroll;">
+            <thead>
+                <tr id="tableHeader" style="background-color: #5ba2e6;color: white;">
+                    <th>Code</th>
+                    <th>Prod Code</th>
+                    <th>Description</th>
+                    <th>Product Category</th>
+                    <th>Status</th>
+                    <th>Order Status</th>
+                    <th>Control Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ListSalesOrderDetails)
+                {
+                    <tr style="cursor: pointer; " onclick="onSelectItemPo(@item.item_id)" data-dismiss="modal">
+                        <td>@item.code</td>
+                        <td>@item.prod_code</td>
+                        <td>
+                            @{ int StrLength = item.description.Length; }
+                            @if (StrLength > 15)
+                            {
+                                <div title="@item.description.ToString()">@item.description.Substring(0, 15) <span class="badge badge-success" style="cursor: pointer;" onclick="swal('@item.description')">(cont..)</span></div>
+                            }
+                            else
+                            {
+                                <div>@item.description.ToString()</div>
+                            }
+                        </td>
+                        <td>@item.product_category</td>
+                        <td>@item.status</td>
+                        <td>@item.order_status</td>
+                        <td>@item.control_type</td>
+                    </tr>
+                                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+

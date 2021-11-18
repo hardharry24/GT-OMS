@@ -1,0 +1,284 @@
+﻿
+@{
+    ViewBag.TabTitle = "Agents";
+    ViewBag.Title = "Agents";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model GT_Order_Monitoring_System.Models.MyModel
+<br />
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="breadcrumb-holder">
+                <h1 class="main-title float-left"><i class="fa fa-user-shield"></i> Agents</h1>
+                <ol class="breadcrumb float-right">
+                    <li class="breadcrumb-item">Agent</li>
+                    <li class="breadcrumb-item active">Index</li>
+                </ol>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <span class="pull-right">
+                        <a href="/Agent/Create" class="btn btn-primary btn-sm">
+                            <i class="fas fa-plus" aria-hidden="true"></i> New Agent
+                        </a>
+                    </span>
+
+                    <h3>
+                        <i class="fa-2x mr-2 fas fa-clipboard-list"></i> All Agents
+                    </h3>
+                    <hr />
+                    <div class="form-group">
+                    @using (Html.BeginForm("Index", "Agent", FormMethod.Post))
+                    {
+                        <div class="col-lg-12">
+                            <div class="form-group row">
+                                    <div class="form-group form-inline">
+                                        <label>Agent Search : &nbsp;</label> &nbsp;
+                                        <select name="a_criteria1" class="form-control select2-arrow">
+                                            <option value="agent_name" @(ViewBag.a_criteria1 == "agent_name" ? "selected" : "")>Agent Name</option>
+                                            <option value="agent_code" @(ViewBag.a_criteria1 == "agent_code" ? "selected" : "")>Agent Code</option>
+                                            <option value="address" @(ViewBag.a_criteria1 == "address" ? "selected" : "")>Address</option>
+                                            <option value="email_add" @(ViewBag.a_criteria1 == "email_add" ? "selected" : "")>Email</option>
+                                            <option value="phone_no" @(ViewBag.a_criteria1 == "phone_no" ? "selected" : "")>Phone No</option>
+                                            <option value="status" @(ViewBag.a_criteria1 == "status" ? "selected" : "")>Status</option>
+                                            <option value="commission" @(ViewBag.a_criteria1 == "commission" ? "selected" : "")>Commission</option>
+                                        </select>&nbsp;
+                                        <select name="a_criteria2" class="form-control select2-arrow">
+                                            <option value="Equal" @(ViewBag.a_criteria2 == "Equals" ? "selected" : "")>Equals</option>
+                                            <option value="Contains" @(ViewBag.a_criteria2 == "Contains" ? "selected" : "")>Contains</option>
+                                            <option value="Startswith" @(ViewBag.a_criteria2 == "Startswith" ? "selected" : "")>Starts with</option>
+                                            <option value="Endswith" @(ViewBag.a_criteria2 == "Endswith" ? "selected" : "")>Ends with</option>
+                                            <option value="IsGreaterthan" @(ViewBag.a_criteria2 == "IsGreaterthan" ? "selected" : "")>Is Greater than</option>
+                                            <option value="IsLessthan" @(ViewBag.a_criteria2 == "IsLessthan" ? "selected" : "")>Is Less than</option>
+                                        </select>&nbsp;
+                                        <input type="text" name="a_criteria3" value="@(ViewBag.a_criteria3 != "" ? ViewBag.a_criteria3 : "")" placeholder="Enter text here.." class="form-control" required />&nbsp;
+                                        <input type="submit" name="name" value="Search" class="btn btn-primary" />&nbsp;
+                                        <span>Total # of Records: <span class="@(Model.ListAgent.Count > 0 ? "badge badge-info" : "badge badge-danger")">@Model.ListAgent.Count</span></span> &nbsp;
+                                        <span>Active : @{ int countActive = 0; foreach (var item in Model.ListAgent) { if (item.status.ToLower().Equals("active")) { countActive++; } } }<span class="@(countActive > 0 ? "badge badge-success" : "badge badge-danger")">@countActive</span></span>&nbsp;
+                                        <span>InActive : @{ int countInActive = 0; foreach (var item in Model.ListAgent) { if (item.status.ToLower().Equals("inactive")) { countInActive++; } } }<span class="@(countInActive > 0 ? "badge badge-danger" : "badge badge-danger")">@countInActive</span></span>&nbsp;
+                                        <a href="/Agent/Index" class="btn btn-success btn-sm" title="Refresh">
+                                            <i class="fas fa-sync" aria-hidden="true"></i>
+                                        </a>&nbsp;
+                                        <label style="cursor:pointer"><input type="checkbox" id="ckTxtSearch" name="manualSearch" value="false" onchange="onCheckChange()">&nbsp; Manual Search</label>&nbsp;
+                                        <input type="text" id="txtSearch" name="a_criteria3" value="" placeholder="Enter search here.." class="form-control" onkeyup="onchangeSearch()" hidden />
+                                    </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="dataTable" class="table table-bordered table-hover display" style="width:100%">
+                            <thead>
+                                <tr id="tableHeader">
+                                    <th>ID</th>
+                                    <th>Agent Name</th>
+                                    <th>Agent Code</th>
+                                    <th>Address</th>
+                                    <th>Phone No</th>
+                                    <th>Email Add</th>
+                                    <th>Status</th>
+                                    <th>Commission</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>@{ int counter = 0; }
+                            @foreach (var objProd in Model.ListAgent)
+                            {
+                                counter++;
+                                <tr id="tableRow">
+                                    <td>@objProd.id</td>
+                                    <td>
+                                        @{ int StrLength1 = objProd.agent_name.Length; }
+                                        @if (StrLength1 > 30)
+                                        {
+                                            <div title="@objProd.agent_name">@objProd.agent_name.Substring(0, 21) (cont..)</div>
+                                        }
+                                        else
+                                        {
+                                            <div>@objProd.agent_name.ToString()</div>
+                                        }
+                                    </td>
+                                    <td>
+                                        @{ int StrLength = objProd.agent_code.Length; }
+                                        @if (StrLength > 21)
+                                        {
+                                            <div title="@objProd.agent_code">@objProd.address.Substring(0, 21) (cont..)</div>
+                                        }
+                                        else
+                                        {
+                                            <div>@objProd.agent_code.ToString()</div>
+                                        }
+                                    </td>
+                                    <td>
+                                        @{ int StrLength2 = objProd.address.Length; }
+                                        @if (StrLength2 > 21)
+                                        {
+                                            <div title="@objProd.address">@objProd.address.Substring(0, 21) (cont..)</div>
+                                        }
+                                        else
+                                        {
+                                            <div>@objProd.address.ToString()</div>
+                                        }
+                                    </td>
+                                    <td>@objProd.phone_no</td>
+                                    <td>@objProd.email_add</td>
+                                    <td>
+                                        @if (objProd.status.ToLower() == "active")
+                                        {
+                                            <div class="badge badge-success">Active</div>
+                                        }
+                                        else
+                                        {
+                                            <div class="badge badge-danger">InActive</div>
+                                        }
+                                    </td>
+                                    <td>@objProd.commission.ToString("N2")</td>
+                                    <td>
+                                        <a href="#" data-toggle="modal" data-target="#modalViewDetails@(counter)" style="color: green;"> VIEW </a> | <a href="/Agent/Update?id=@objProd.id"> UPDATE </a> | <a href="#" onclick="onDelete(@objProd.id)" style="color: red;"> DELETE </a>
+                                    </td>
+                                </tr>
+
+                                <div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_user" aria-hidden="true" id="modalViewDetails@(counter)">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <form action="#" method="post" enctype="multipart/form-data">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;Agent Detail</h5>
+                                                    <button type="button" class="close" data-dismiss="modal">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        <span class="sr-only">Close</span>
+                                                    </button>
+                                                </div>
+
+                                                <div class="modal-body">
+
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-6">
+                                                                    <label>Agent Name&nbsp;</label>
+                                                                    <input class="form-control" name="name" type="text" value="@objProd.agent_name" readonly />
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <label>Agent Code &nbsp;</label>
+                                                                    <input class="form-control" name="name" type="text" value="@objProd.agent_code" readonly />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-12">
+                                                                    <label>Address &nbsp;</label>
+                                                                    <input class="form-control" name="name" type="text" value="@objProd.address" readonly />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-6">
+                                                                    <label>Phone No &nbsp;</label>
+                                                                    <input class="form-control" name="name" type="text" value="@objProd.phone_no" readonly />
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <label>Email Address &nbsp;</label>
+                                                                    <input class="form-control" name="name" type="text" value="@objProd.email_add" readonly />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-6">
+                                                                    <label>Status &nbsp;</label>
+                                                                    <input class="form-control" name="name" type="text" value="@objProd.status" readonly />
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <label>Commission &nbsp;</label>
+                                                                    <input class="form-control" name="name" type="text" value="@string.Format("{0:n2}", objProd.commission)" readonly />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                </div>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                            }
+
+                        </table>
+
+                    </div>
+                    <!-- end table-responsive-->
+
+                </div>
+                <!-- end card-body-->
+            </div>
+            <!-- end card-->
+
+        </div>
+                </div>
+
+</div>
+
+<link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.min.css" rel="stylesheet"></link>
+<script src="https://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
+<script src="~/Content/assets/js/customer.js"></script>
+
+<script type="text/javascript">
+    function onDelete(id) {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this record!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+      .then((willDelete) => {
+          if (willDelete) {
+
+              var request = new XMLHttpRequest();
+              request.open('POST', "/Agent/Delete?id=" + id);
+
+              request.onreadystatechange = function () {
+                  if (this.readyState == 4 && this.status == 200) {
+                      console.log(this.responseText);
+                      //console.log(request.responseText);
+
+                      var resObj = JSON.parse(this.responseText);
+
+
+                      if (resObj.code == 1) {
+                          swal("Successfully Deleted!", {
+                              icon: "success",
+                              closeOnClickOutside: false
+                          }).then((ok) => {
+                              if (ok) {
+                                  window.location.href = "/Agent/Index";
+                              }
+                          });
+                      }
+                      else {
+                          swal(resObj.message, {
+                              icon: "error",
+                              closeOnClickOutside: false
+                          })
+
+                      }
+                  }
+              };
+
+              request.send();
+
+          }
+      });
+    }
+</script>

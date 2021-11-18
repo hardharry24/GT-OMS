@@ -1,0 +1,193 @@
+﻿@{
+    ViewBag.TabTitle = "Create Customer";
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using GT_Order_Monitoring_System.Entity;
+@model GT_Order_Monitoring_System.Entity.tbl_customer
+    <br />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="breadcrumb-holder">
+                <h1 class="main-title float-left"><i class="fa fa-user-plus"></i> New Customer</h1>
+                <ol class="breadcrumb float-right">
+                    <li class="breadcrumb-item">Customer</li>
+                    <li class="breadcrumb-item active">New Customer</li>
+                </ol>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card mb-5">
+                <div class="card-header">
+                    <a href="/Customer/Index"><i class="fa fa-reply" aria-hidden="true"></i> Back</a>
+                </div>
+                <div class="card-body">
+                    <div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_show_agent" aria-hidden="true" id="modal_add_show_agent">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form action="#" method="post" enctype="multipart/form-data">
+
+                                    <div class="modal-header">
+                                        <h5 class="modal-title"><i class="fas fa-edit"></i>&nbsp;Select Agent</h5>
+                                        <button type="button" class="close" data-dismiss="modal">
+                                            <span aria-hidden="true">&times;</span>
+                                            <span class="sr-only">Close</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+
+                                        <div class="row">
+                                            <div class="col-lg-12" style="height: 300px;">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-12">
+                                                        <label>Search Agents&nbsp;</label>
+                                                        <input type="text" name="txtAgentSearch" id="txtAgentSearch" value="" placeholder="Search Here" onkeyup="onchangeSearchAgent()" class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row" style="height: 300px;">
+                                                    <div class="col-lg-12">
+                                                        <table style="width: inherit;" id="tblAgents">
+                                                            <tbody style="display: block; border: none; height: 230px; overflow-y: scroll">
+                                                                @{
+                                                                    var db = new GT_Billing_SystemEntities();
+                                                                }
+                                                                @foreach (var item in db.tbl_agent.ToList())
+                                                                {
+                                                                    <tr>
+                                                                        <td style="width: 84%;">@item.agent_name <input id="@item.agent_code" value="@item.agent_name" hidden /></td>
+                                                                        <td><div id="@item.agent_code" class="btn btn-primary" data-value="" onclick="selectedAgent('@item.agent_code',@item.id)" style="cursor:pointer;" data-dismiss="modal">Select</div></td>
+                                                                    </tr>
+                                                                }
+                                                            </tbody>
+
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    @using (Html.BeginForm("Create", "Customer", FormMethod.Post))
+                    { 
+                    <div class="col-lg-12">
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label>Customer Name&nbsp;</label>
+                                @Html.TextBoxFor(m => m.customer_name, new { @class = "form-control", @required = "true" })
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Address&nbsp;</label>
+                                @Html.TextAreaFor(m => m.address, new { @class = "form-control", @required = "true" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label>Contact Person &nbsp;</label>
+                                @Html.TextBoxFor(m => m.contact_person, new { @class = "form-control", @required = "true" })
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Phone No &nbsp;</label>
+                                @Html.TextBoxFor(m => m.phone_no, new { @class = "form-control", @required = "true" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label>Fax No&nbsp;</label>
+                                @Html.TextBoxFor(m => m.fax_no, new { @class = "form-control", @required = "true" })
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Email Address &nbsp;</label>
+                                @Html.TextBoxFor(m => m.email_add, new { @class = "form-control", @required = "true" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label>Agent Code&nbsp;</label> <div class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal_add_show_agent" style="cursor: pointer;"><i class="fa fa-search"></i></div>
+                                @Html.HiddenFor(m => m.agent_code, new {@id= "Customer_agent_code", @class = "form-control", @readonly = "true", @required = "true", data_toggle = "modal", data_target = "#modal_add_show_agent", cursor = "pointer" })
+                                <input class="form-control" id="Customer_agent_code_display" name="name" type="text" value="@(ViewBag.agentCode != "" ? ViewBag.agentCode: "")" readonly data-toggle="modal" data-target="#modal_add_show_agent" />
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Agent Name &nbsp;</label>
+                                <input class="form-control" id="Customer_agent_code_name" name="name" type="text" value="@(ViewBag.agentName != "" ? ViewBag.agentName: "")" readonly data-toggle="modal" data-target="#modal_add_show_agent" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label>Credit Limit &nbsp;</label>
+                                @Html.TextBoxFor(m => m.credit_limit, new { @class = "form-control", @type = "number", @required = "true" })
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Credit Terms &nbsp;</label>
+                                @Html.TextBoxFor(m => m.credit_terms, new { @class = "form-control", @type = "number", @required = "true" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label>Balance &nbsp;</label>
+                                @Html.TextBoxFor(m => m.balance, new { @class = "form-control", @type = "number", @required = "true" })
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Over &nbsp;</label>
+                                @Html.TextBoxFor(m => m.over_, new { @class = "form-control", @type = "number", @required = "true" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label>Status&nbsp;</label>
+                                @Html.DropDownListFor(m => m.status, new SelectList(new List<Object> { new { value = "Active", text = "Active" }, new { value = "Inactive", text = "Inactive" } }, "value", "text"), new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <input class="btn btn-success" type="submit" name="Submit" value="CREATE" />
+                            </div>
+                        </div>
+                        @if (ViewBag.errorMessage != "")
+                        {
+                            <div class="alert @(ViewBag.errorCode == "1" ? "alert-success": "alert-danger")">@ViewBag.errorMessage</div>
+                        }
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.min.css" rel="stylesheet"/>
+<script src="https://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
+<script src="~/Content/assets/js/customer.js"></script>
+<script type="text/javascript">
+    function selectedAgent(agentCode, id) {
+        console.log("AgentCode : " + agentCode);
+        console.log("id : " + id);
+        var valAgentName = document.getElementById("" + agentCode);
+        //console.log();
+        // alert(valAgentName.innerHTML);
+        document.getElementById("Customer_agent_code").value = id;
+        document.getElementById("Customer_agent_code_display").value = agentCode;
+        document.getElementById("Customer_agent_code_name").value = valAgentName.getAttribute("value");
+
+
+        // alert(value);
+    }
+</script>

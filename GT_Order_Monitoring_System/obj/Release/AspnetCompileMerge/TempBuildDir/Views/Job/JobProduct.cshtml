@@ -1,0 +1,436 @@
+﻿@{
+    ViewBag.TabTitle = "Job Product";
+    ViewBag.Title = "JobProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model GT_Order_Monitoring_System.Models.MyModel
+<div class="row">
+    <div class="col-xl-12">
+        <div class="breadcrumb-holder">
+            <h1 class="main-title float-left">Job Product</h1>
+            <ol class="breadcrumb float-right">
+                <li class="breadcrumb-item">Job</li>
+                <li class="breadcrumb-item active">Job Product</li>
+            </ol>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card mb-3">
+            <div class="card-header">
+                <span class="pull-right">
+                    <a href="/Job/Create" class="btn btn-primary btn-sm">
+                        <i class="fas fa-briefcase" aria-hidden="true"></i> New Job Product
+                    </a>
+                </span>
+
+                <!--Add Job Product Modal-->
+                <div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_product" aria-hidden="true" id="modal_add_product">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form method="POST" enctype="multipart/form-data" id="form-create">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title"><i class="fas fa-briefcase"></i>&nbsp;New Job Product</h5>
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">&times;</span>
+                                        <span class="sr-only">Close</span>
+                                    </button>
+                                </div>
+
+                                <div class="modal-body">
+
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <label>Customer &nbsp;</label> <div class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal_add_show_customer" style="cursor: pointer;"><i class="fa fa-search"></i></div>
+                                                    @Html.TextBoxFor(m => m.JobProduct.customer_id, new { @class = "form-control", @hidden = "true" })
+                                                    <input class="form-control" name="name" id="customer_name" type="text" value="" readonly />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label>Code &nbsp;</label>
+                                                    @Html.TextBoxFor(m => m.JobProduct.code, new { @class = "form-control" })
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label>Product Code &nbsp;</label>
+                                                    @Html.TextBoxFor(m => m.JobProduct.prod_code, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <label>Description &nbsp;</label>
+                                                    @Html.TextBoxFor(m => m.JobProduct.description, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label>Unit Price &nbsp;</label>
+                                                    @Html.TextBoxFor(m => m.JobProduct.unit_price, new { @class = "form-control", @type = "number" })
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label>Unit Priceth &nbsp;</label>
+                                                    @Html.TextBoxFor(m => m.JobProduct.unit_priceth, new { @class = "form-control", @type = "number" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label>Unit Pricepck &nbsp;</label>
+                                                    @Html.TextBoxFor(m => m.JobProduct.unit_pricepck, new { @class = "form-control", @type = "number" })
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label>Unit Pricekg &nbsp;</label>
+                                                    @Html.TextBoxFor(m => m.JobProduct.unit_pricekg, new { @class = "form-control", @type = "number" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label>Date Last Order&nbsp;</label>
+                                                    @Html.TextBoxFor(m => m.JobProduct.datelast_order, new { @class = "form-control" })
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label>Number of Days Inaactive &nbsp;</label>
+                                                    @Html.TextBoxFor(m => m.JobProduct.noofdays_inactive, new { @class = "form-control", @type = "number" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label>Status&nbsp;</label>
+                                                    @Html.DropDownListFor(m => m.JobProduct.status, new SelectList(new List<Object> { new { value = "Active", text = "Active" }, new { value = "Inactive", text = "Inactive" } }, "value", "text"), new { @class = "form-control" })
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label>Plastic Category &nbsp;</label>
+                                                    @Html.DropDownListFor(m => m.JobProduct.plastic_category, new SelectList(new List<Object> { new { value = "Plain", text = "Plain" }, new { value = "Printed", text = "Printed" } }, "value", "text"), new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">SAVE</button>
+                                </div>
+
+                            </form>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <h3>
+                    <i class="fa-2x mr-2 fas fa-clipboard-list"></i> All Job Products
+                </h3>
+                <hr />
+                <div class="form-group">
+                    @using (Html.BeginForm("JobProduct", "Job", FormMethod.Post))
+                    {
+                        <div class="col-lg-12">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-inline">
+                                        <label>Job Product Search :</label>&nbsp;
+                                        <select name="a_criteria1" class="form-control select2-arrow">
+                                            <option value="prod_code" @(ViewBag.a_criteria1 == "prod_code" ? "selected" : "")>Product Code</option>
+                                            <option value="description" @(ViewBag.a_criteria1 == "description" ? "selected" : "")>Description</option>
+                                            <option value="customer_name" @(ViewBag.a_criteria1 == "customer_name" ? "selected" : "")>Customer Name</option>
+                                            <option value="category" @(ViewBag.a_criteria1 == "category" ? "selected" : "")>Category</option>
+                                            <option value="status" @(ViewBag.a_criteria1 == "status" ? "selected" : "")>Status</option>
+                                        </select>&nbsp;
+                                        <select name="a_criteria2" class="form-control select2-arrow">
+                                            <option value="Equals" @(ViewBag.a_criteria2 == "Equals" ? "selected" : "")>Equals</option>
+                                            <option value="Contains" @(ViewBag.a_criteria2 == "Contains" ? "selected" : "")>Contains</option>
+                                            <option value="Startswith" @(ViewBag.a_criteria2 == "Startswith" ? "selected" : "")>Starts with</option>
+                                            <option value="Endswith" @(ViewBag.a_criteria2 == "Endswith" ? "selected" : "")>Ends with</option>
+                                            <option value="IsGreaterthan" @(ViewBag.a_criteria2 == "IsGreaterthan" ? "selected" : "")>Is Greater than</option>
+                                            <option value="IsLessthan" @(ViewBag.a_criteria2 == "IsLessthan" ? "selected" : "")>Is Less than</option>
+                                        </select>&nbsp;
+                                        <input type="text" name="a_criteria3" value="@(ViewBag.a_criteria3 != "" ? ViewBag.a_criteria3 : "")" placeholder="Enter text here.." class="form-control" required />&nbsp;
+                                        <span>Total # of Records: <span class="@(Model.ListJobProduct.Count > 0 ? "badge badge-info" : "badge badge-danger")">@Model.ListJobProduct.Count</span></span>&nbsp;
+                                        <span>Active : @{ int countActive = 0; foreach (var item in Model.ListJobProduct) { if (item.status.ToLower().Equals("active")) { countActive++; } } }<span class="@(countActive > 0 ? "badge badge-success" : "badge badge-danger")">@countActive</span></span>&nbsp;
+                                        <span>InActive : @{ int countInActive = 0; foreach (var item in Model.ListJobProduct) { if (item.status.ToLower().Equals("inactive")) { countInActive++; } } }<span class="@(countInActive > 0 ? "badge badge-danger" : "badge badge-danger")">@countInActive</span></span>&nbsp;
+                                        <a href="/Job/JobProduct" class="btn btn-success btn-sm" title="Refresh">
+                                            <i class="fas fa-sync" aria-hidden="true"></i>
+                                        </a>&nbsp;
+                                        <label style="cursor:pointer"><input type="checkbox" id="ckTxtSearch" name="manualSearch" value="false" onchange="onCheckChange()">&nbsp; Manual Search</label>&nbsp;
+                                        <input type="text" id="txtSearch" name="a_criteria3" value="" placeholder="Enter search here.." class="form-control" onkeyup="onchangeSearch()" hidden />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                                            }
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="dataTable" class="table table-bordered table-hover display" style="width:100%">
+                        <thead>
+                            <tr id="tableHeader">
+                                <th>Code</th>
+                                <th>Customer</th>
+                                <th>Product Code</th>
+                                <th>Description</th>
+                                <th>Unit Price</th>
+                                <th>Unit Priceth</th>
+                                <th>Unit Pricepck</th>
+                                <th>Unit Pricekg</th>
+                                <th>Status</th>
+                                <th style="text-align:center;">Action</th>
+                            </tr>
+                        </thead>@{ int counter = 0; }
+                        @foreach (var objProd in Model.ListJobProduct)
+                        {
+                            counter++;
+                            <tr>
+                                <td>@objProd.code</td>
+                                <td>
+                                    @{ int StrLengthCustName = objProd.customer_name.Length; }
+                                    @if (StrLengthCustName > 21)
+                                    {
+                                        <div>@objProd.customer_name.Substring(0, 21) (cont..)</div>
+                                    }
+                                    else
+                                    {
+                                        <div>@objProd.customer_name.ToString()</div>
+                                    }
+                                </td>
+                                <td>@objProd.prod_code</td>
+                                <td>
+                                    @{ int StrLength = objProd.description.Length; }
+                                    @if (StrLength > 21)
+                                    {
+                                        <div>@objProd.description.Substring(0, 21) (cont..)</div>
+                                    }
+                                    else
+                                    {
+                                        <div>@objProd.description.ToString()</div>
+                                    }
+                                </td>
+                                <td>@string.Format("{0:n2}", objProd.unit_price)</td>
+                                <td>@string.Format("{0:n2}", objProd.unit_priceth)</td>
+                                <td>@string.Format("{0:n2}", objProd.unit_pricepck)</td>
+                                <td>@string.Format("{0:n2}", objProd.unit_pricekg)</td>
+                                <td>
+                                    @if (objProd.status.ToLower() == "active")
+                                    {
+                                        <div class="badge badge-success">Active</div>
+                                    }
+                                    else
+                                    {
+                                        <div class="badge badge-danger">InActive</div>
+                                    }
+                                </td>
+                                <td style="text-align:center;">
+                                    <a href="#" data-toggle="modal" data-target="#modalViewDetails@(counter)" style="color: green;"> VIEW </a> | <a href="/Job/Update?id=@objProd.id"> UPDATE </a> | <a href="#" onclick="onDelete(@objProd.id)" style="color: red;"> DELETE </a>
+                                </td>
+                            </tr>
+
+                                    <div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_user" aria-hidden="true" id="modalViewDetails@(counter)">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <form action="#" method="post" enctype="multipart/form-data">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;Job Product Details</h5>
+                                                        <button type="button" class="close" data-dismiss="modal">
+                                                            <span aria-hidden="true">&times;</span>
+                                                            <span class="sr-only">Close</span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="form-group row">
+                                                                    <div class="col-sm-12">
+                                                                        <label>Customer &nbsp;</label>
+                                                                        <input class="form-control" name="name" type="text" value="@objProd.customer_name" readonly />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <div class="col-sm-6">
+                                                                        <label>Code &nbsp;</label>
+                                                                        <input class="form-control" name="name" type="text" value="@objProd.code" readonly />
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <label>Product Code &nbsp;</label>
+                                                                        <input class="form-control" name="name" type="text" value="@objProd.prod_code" readonly />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <div class="col-sm-12">
+                                                                        <label>Description &nbsp;</label>
+                                                                        <input class="form-control" name="name" type="text" value="@objProd.description" readonly />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <div class="col-sm-6">
+                                                                        <label>Unit Price &nbsp;</label>
+                                                                        <input class="form-control" name="name" type="text" value="@string.Format("{0:n2}", objProd.unit_price)" readonly />
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <label>Unit Priceth &nbsp;</label>
+                                                                        <input class="form-control" name="name" type="text" value="@objProd.unit_priceth" readonly />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <div class="col-sm-6">
+                                                                        <label>Unit Pricepck &nbsp;</label>
+                                                                        <input class="form-control" name="name" type="text" value="@string.Format("{0:n2}", objProd.unit_pricepck)" readonly />
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <label>Unit Pricekg &nbsp;</label>
+                                                                        <input class="form-control" name="name" type="text" value="@objProd.unit_pricekg" readonly />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <div class="col-sm-6">
+                                                                        <label>Date Last Order&nbsp;</label>
+                                                                        <input class="form-control" name="name" type="text" value="@objProd.datelast_order" readonly />
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <label>Number of Days Inaactive &nbsp;</label>
+                                                                        <input class="form-control" name="name" type="text" value="@objProd.noofdays_inactive" readonly />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <div class="col-sm-6">
+                                                                        <label>Status&nbsp;</label>
+                                                                        <input class="form-control" name="name" type="text" value="@objProd.status" readonly />
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <label>Category &nbsp;</label>
+                                                                        <input class="form-control" name="name" type="text" value="@objProd.category" readonly />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                    </div>
+
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                        }
+
+                    </table>
+
+                </div>
+                <!-- end table-responsive-->
+
+            </div>
+            <!-- end card-body-->
+        </div>
+        <!-- end card-->
+
+    </div>
+</div>
+
+
+
+<script src="~/Content/assets/js/customer.js"></script>
+<script type="text/javascript">
+    function selectedCustomer(id)
+    {
+        document.getElementById("JobProduct_customer_id").value = id;
+        console.log(id);
+
+        var custName = document.getElementById("lblCustomerName" + id).value;
+        console.log(custName);
+
+        document.getElementById("customer_name").value = custName;
+        
+    }
+
+    var testForm = document.getElementById('form-create');
+    testForm.onsubmit = function (event) {
+        event.preventDefault();
+
+     var request = new XMLHttpRequest();
+     // POST to any url
+     request.open('POST', "/Job/Create", false);
+
+     var formData = new FormData(document.getElementById('form-create'));
+     console.log(formData);
+     request.send(formData);
+
+     var resObj = JSON.parse(request.response);
+
+     if (resObj.code == 1) {
+         swal("Successfully Saved!", {
+             icon: "success",
+             closeOnClickOutside: false
+         }).then((ok) => {
+             if (ok) {
+                 window.location.href = "/Product/CommercialProducts";
+             }
+         });
+     }
+     else {
+         swal(resObj.message, {
+             icon: "error",
+             closeOnClickOutside: false
+         })
+     }
+
+    }
+
+    function onDelete(id) {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this product!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+      .then((willDelete) => {
+          if (willDelete) {
+
+              var request = new XMLHttpRequest();
+              request.open('POST', "/Job/Delete?id=" + id);
+
+              request.onreadystatechange = function () {
+                  if (this.readyState == 4 && this.status == 200) {
+                      console.log(this.responseText);
+                      //console.log(request.responseText);
+
+                      var resObj = JSON.parse(this.responseText);
+
+
+                      if (resObj.code == 1) {
+                          swal("Successfully Deleted!", {
+                              icon: "success",
+                              closeOnClickOutside: false
+                          }).then((ok) => {
+                              if (ok) {
+                                  window.location.href = "/Job/JobProduct";
+                              }
+                          });
+                      }
+                      else {
+                          swal(resObj.message, {
+                              icon: "error",
+                              closeOnClickOutside: false
+                          })
+
+                      }
+                  }
+              };
+
+              request.send();
+
+          } 
+      });
+    }
+</script>

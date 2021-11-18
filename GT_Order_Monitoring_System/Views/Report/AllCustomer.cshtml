@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.TabTitle = "Report";
+    ViewBag.Title = "Report";
+    Layout = null;
+}
+
+@model GT_Order_Monitoring_System.Models.MyModel
+
+<div class="table-responsive">
+    <table id="dataTable" class="table table-bordered" style="width:100%; border: 1px solid black;">
+        <thead>
+            <tr id="tableHeader" style="background-color: #5ba2e6;color: white; border: 1px solid black;">
+                <th>ID</th>
+                <th>Customer Name</th>
+                <th>Address</th>
+                <th>Contact Person</th>
+                <th>Phone No</th>
+                <th>Status</th>
+            </tr>
+        </thead>@{ int counter = 0; }
+        @foreach (var objProd in Model.ListCustomer)
+        {
+            counter++;
+            <tr id="tableRow" style="border: 1px solid black;">
+                <td>@objProd.customer_id</td>
+                <td><div>@objProd.customer_name.ToString()</div>
+                </td>
+                <td><div>@objProd.address.ToString()</div>
+                <td><div>@objProd.contact_person.ToString()</div>
+                </td>
+                <td>@objProd.phone_no</td>
+                <td><div class="badge badge-danger">InActive</div>
+                </td>
+            </tr>
+
+                          
+                        }
+
+    </table>
+
+</div>
+
+
+
+
+

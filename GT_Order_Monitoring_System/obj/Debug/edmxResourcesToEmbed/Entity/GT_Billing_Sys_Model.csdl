@@ -1,0 +1,707 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GT_Billing_SystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="GT_Billing_SystemEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(GT_Billing_SystemModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(GT_Billing_SystemModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="getCustomerDetails" ReturnType="Collection(GT_Billing_SystemModel.getCustomerDetails_Result)">
+      <Parameter Name="criteria1" Mode="In" Type="String" />
+      <Parameter Name="criteria2" Mode="In" Type="String" />
+      <Parameter Name="criteria3" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_billing_search_customer" ReturnType="Collection(GT_Billing_SystemModel.sp_billing_search_customer_Result)">
+      <Parameter Name="criteria1" Mode="In" Type="String" />
+      <Parameter Name="criteria2" Mode="In" Type="String" />
+      <Parameter Name="criteria3" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_billing_search_job_product" ReturnType="Collection(GT_Billing_SystemModel.sp_billing_search_job_product_Result)">
+      <Parameter Name="criteria1" Mode="In" Type="String" />
+      <Parameter Name="criteria2" Mode="In" Type="String" />
+      <Parameter Name="criteria3" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_billing_search_commercial_product" ReturnType="Collection(GT_Billing_SystemModel.sp_billing_search_commercial_product_Result)">
+      <Parameter Name="criteria1" Mode="In" Type="String" />
+      <Parameter Name="criteria2" Mode="In" Type="String" />
+      <Parameter Name="criteria3" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_billing_delete_commercial_product">
+      <Parameter Name="criteria1" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_billing_commercial_product_delete">
+      <Parameter Name="criteria1" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_billing_commercial_product_update">
+      <Parameter Name="code" Mode="In" Type="String" />
+      <Parameter Name="description" Mode="In" Type="String" />
+      <Parameter Name="unit_price" Mode="In" Type="Decimal" />
+      <Parameter Name="unit_pricekg" Mode="In" Type="Decimal" />
+      <Parameter Name="unit_pricepck" Mode="In" Type="Decimal" />
+      <Parameter Name="unit_priceth" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <EntitySet Name="sysdiagrams" EntityType="GT_Billing_SystemModel.sysdiagrams" />
+    <EntitySet Name="dtproperties" EntityType="GT_Billing_SystemModel.dtproperties" />
+    <EntitySet Name="tbl_agent" EntityType="GT_Billing_SystemModel.tbl_agent" />
+    <EntitySet Name="tbl_agent_detail" EntityType="GT_Billing_SystemModel.tbl_agent_detail" />
+    <EntitySet Name="tbl_commercial_product" EntityType="GT_Billing_SystemModel.tbl_commercial_product" />
+    <EntitySet Name="tbl_commercial_produnit" EntityType="GT_Billing_SystemModel.tbl_commercial_produnit" />
+    <EntitySet Name="tbl_commission_detail" EntityType="GT_Billing_SystemModel.tbl_commission_detail" />
+    <EntitySet Name="tbl_commission_master" EntityType="GT_Billing_SystemModel.tbl_commission_master" />
+    <EntitySet Name="tbl_counterreceipt_detail" EntityType="GT_Billing_SystemModel.tbl_counterreceipt_detail" />
+    <EntitySet Name="tbl_counterreceipt_master" EntityType="GT_Billing_SystemModel.tbl_counterreceipt_master" />
+    <EntitySet Name="tbl_customer" EntityType="GT_Billing_SystemModel.tbl_customer" />
+    <EntitySet Name="tbl_invoice_detail" EntityType="GT_Billing_SystemModel.tbl_invoice_detail" />
+    <EntitySet Name="tbl_job_product" EntityType="GT_Billing_SystemModel.tbl_job_product" />
+    <EntitySet Name="tbl_job_produnit" EntityType="GT_Billing_SystemModel.tbl_job_produnit" />
+    <EntitySet Name="tbl_payment_bank" EntityType="GT_Billing_SystemModel.tbl_payment_bank" />
+    <EntitySet Name="tbl_payment_check" EntityType="GT_Billing_SystemModel.tbl_payment_check" />
+    <EntitySet Name="tbl_payment_detail" EntityType="GT_Billing_SystemModel.tbl_payment_detail" />
+    <EntitySet Name="tbl_payment_master" EntityType="GT_Billing_SystemModel.tbl_payment_master" />
+    <EntitySet Name="tbl_payment_pmo" EntityType="GT_Billing_SystemModel.tbl_payment_pmo" />
+    <EntitySet Name="tbl_returnslip_detail" EntityType="GT_Billing_SystemModel.tbl_returnslip_detail" />
+    <EntitySet Name="tbl_returnslip_master" EntityType="GT_Billing_SystemModel.tbl_returnslip_master" />
+    <EntitySet Name="tbl_sales_invoice" EntityType="GT_Billing_SystemModel.tbl_sales_invoice" />
+    <EntitySet Name="tbl_user" EntityType="GT_Billing_SystemModel.tbl_user" />
+    <EntitySet Name="pbcatedt" EntityType="GT_Billing_SystemModel.pbcatedt" />
+    <EntitySet Name="pbcatfmt" EntityType="GT_Billing_SystemModel.pbcatfmt" />
+    <EntitySet Name="pbcatvld" EntityType="GT_Billing_SystemModel.pbcatvld" />
+    <EntitySet Name="tbl_avail_list" EntityType="GT_Billing_SystemModel.tbl_avail_list" />
+    <EntitySet Name="tbl_transactions" EntityType="GT_Billing_SystemModel.tbl_transactions" />
+    <EntitySet Name="vw_job_product_customer" EntityType="GT_Billing_SystemModel.vw_job_product_customer" />
+    <AssociationSet Name="tbl_commission_detail_FK_tbl_commission_detail_tbl_commission_master" Association="GT_Billing_SystemModel.tbl_commission_detail_FK_tbl_commission_detail_tbl_commission_master">
+      <End Role="tbl_commission_master" EntitySet="tbl_commission_master" />
+      <End Role="tbl_commission_detail" EntitySet="tbl_commission_detail" />
+    </AssociationSet>
+    <AssociationSet Name="tbl_counterreceipt_detail_FK_tbl_counterreceipt_detail_tbl_counterreceipt_master" Association="GT_Billing_SystemModel.tbl_counterreceipt_detail_FK_tbl_counterreceipt_detail_tbl_counterreceipt_master">
+      <End Role="tbl_counterreceipt_master" EntitySet="tbl_counterreceipt_master" />
+      <End Role="tbl_counterreceipt_detail" EntitySet="tbl_counterreceipt_detail" />
+    </AssociationSet>
+    <AssociationSet Name="tbl_payment_check_FK_tbl_payment_check_tbl_payment_bank" Association="GT_Billing_SystemModel.tbl_payment_check_FK_tbl_payment_check_tbl_payment_bank">
+      <End Role="tbl_payment_bank" EntitySet="tbl_payment_bank" />
+      <End Role="tbl_payment_check" EntitySet="tbl_payment_check" />
+    </AssociationSet>
+    <AssociationSet Name="tbl_payment_pmo_FK_tbl_payment_pmo_tbl_payment_bank" Association="GT_Billing_SystemModel.tbl_payment_pmo_FK_tbl_payment_pmo_tbl_payment_bank">
+      <End Role="tbl_payment_bank" EntitySet="tbl_payment_bank" />
+      <End Role="tbl_payment_pmo" EntitySet="tbl_payment_pmo" />
+    </AssociationSet>
+    <AssociationSet Name="tbl_returnslip_detail_FK_tbl_returnslip_detail_tbl_returnslip_master" Association="GT_Billing_SystemModel.tbl_returnslip_detail_FK_tbl_returnslip_detail_tbl_returnslip_master">
+      <End Role="tbl_returnslip_master" EntitySet="tbl_returnslip_master" />
+      <End Role="tbl_returnslip_detail" EntitySet="tbl_returnslip_detail" />
+    </AssociationSet>
+    <FunctionImport Name="sp_billing_search_agent" ReturnType="Collection(GT_Billing_SystemModel.sp_billing_search_agent_Result)">
+      <Parameter Name="criteria1" Mode="In" Type="String" />
+      <Parameter Name="criteria2" Mode="In" Type="String" />
+      <Parameter Name="criteria3" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="getCustomerDetails_Result">
+    <Property Type="Int64" Name="customer_id" Nullable="false" />
+    <Property Type="String" Name="customer_name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="code" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="description" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="unit_price" Nullable="true" Precision="19" Scale="4" />
+    <Property Type="String" Name="status" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="category" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="datelast_order" Nullable="false" />
+    <Property Type="Int64" Name="noofdays_inactive" Nullable="false" />
+    <Property Type="Decimal" Name="unit_priceth" Nullable="true" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="unit_pricepck" Nullable="true" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="unit_pricekg" Nullable="true" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="unit_priceroll" Nullable="true" Precision="19" Scale="4" />
+    <Property Type="String" Name="plate_no" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="revision_code" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="revision_desc" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="prod_code" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="revision_id" Nullable="true" />
+    <Property Type="String" Name="revision_status" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="plastic_category" Nullable="true" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="sp_billing_search_customer_Result">
+    <Property Type="Int64" Name="customer_id" Nullable="false" />
+    <Property Type="String" Name="customer_name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="contact_person" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="address" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="phone_no" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="fax_no" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="email_add" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="agent_code" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="status" Nullable="true" MaxLength="10" />
+    <Property Type="Decimal" Name="balance" Nullable="true" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="over_" Nullable="true" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="credit_limit" Nullable="true" Precision="19" Scale="4" />
+    <Property Type="Int32" Name="credit_terms" Nullable="true" />
+    <Property Type="String" Name="business_style" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="tin_no" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_billing_search_job_product_Result">
+    <Property Type="Int64" Name="customer_id" Nullable="false" />
+    <Property Type="String" Name="customer_name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="code" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="description" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="unit_price" Nullable="true" Precision="19" Scale="4" />
+    <Property Type="String" Name="status" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="category" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="datelast_order" Nullable="false" />
+    <Property Type="Int64" Name="noofdays_inactive" Nullable="false" />
+    <Property Type="Decimal" Name="unit_priceth" Nullable="true" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="unit_pricepck" Nullable="true" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="unit_pricekg" Nullable="true" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="unit_priceroll" Nullable="true" Precision="19" Scale="4" />
+    <Property Type="String" Name="plate_no" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="revision_code" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="revision_desc" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="prod_code" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="revision_id" Nullable="true" />
+    <Property Type="String" Name="revision_status" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="plastic_category" Nullable="true" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="sp_billing_search_commercial_product_Result">
+    <Property Type="String" Name="code" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="description" Nullable="false" MaxLength="100" />
+    <Property Type="Decimal" Name="unit_price" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="String" Name="category" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="unit_priceth" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="unit_pricepck" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="unit_pricekg" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="unit_priceroll" Nullable="true" Precision="19" Scale="4" />
+  </ComplexType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="dtproperties">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="property" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="objectid" Type="Int32" />
+    <Property Name="property" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="value" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="uvalue" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="lvalue" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="version" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_agent">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="agent_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="agent_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="phone_no" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="email_add" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="commission" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="tbl_agent_detail">
+    <Key>
+      <PropertyRef Name="agent_code" />
+      <PropertyRef Name="si_no" />
+      <PropertyRef Name="si_type" />
+    </Key>
+    <Property Name="agent_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="si_no" Type="Int64" Nullable="false" />
+    <Property Name="si_type" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_commercial_product">
+    <Key>
+      <PropertyRef Name="code" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="unit_price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="category" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="unit_priceth" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="unit_pricepck" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="unit_pricekg" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="unit_priceroll" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="tbl_commercial_produnit">
+    <Key>
+      <PropertyRef Name="code" />
+      <PropertyRef Name="unit" />
+    </Key>
+    <Property Name="code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="unit" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="unitprice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="tbl_commission_detail">
+    <Key>
+      <PropertyRef Name="comm_id" />
+    </Key>
+    <Property Name="comm_id" Type="Int64" Nullable="false" />
+    <Property Name="comm_no" Type="Int64" Nullable="false" />
+    <Property Name="si_no" Type="Int64" Nullable="false" />
+    <Property Name="si_type" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_commission_master" Relationship="GT_Billing_SystemModel.tbl_commission_detail_FK_tbl_commission_detail_tbl_commission_master" FromRole="tbl_commission_detail" ToRole="tbl_commission_master" />
+  </EntityType>
+  <EntityType Name="tbl_commission_master">
+    <Key>
+      <PropertyRef Name="comm_no" />
+    </Key>
+    <Property Name="comm_no" Type="Int64" Nullable="false" />
+    <Property Name="comm_date" Type="DateTime" Nullable="false" Precision="6" />
+    <Property Name="agent_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_commission_detail" Relationship="GT_Billing_SystemModel.tbl_commission_detail_FK_tbl_commission_detail_tbl_commission_master" FromRole="tbl_commission_master" ToRole="tbl_commission_detail" />
+  </EntityType>
+  <EntityType Name="tbl_counterreceipt_detail">
+    <Key>
+      <PropertyRef Name="invoice_id" />
+    </Key>
+    <Property Name="invoice_id" Type="Int64" Nullable="false" />
+    <Property Name="cr_no" Type="Int64" Nullable="false" />
+    <Property Name="si_no" Type="Int64" Nullable="false" />
+    <Property Name="si_type" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="si_date" Type="DateTime" Nullable="false" Precision="6" />
+    <Property Name="particulars" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="satus" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="adjustment" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="total" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <NavigationProperty Name="tbl_counterreceipt_master" Relationship="GT_Billing_SystemModel.tbl_counterreceipt_detail_FK_tbl_counterreceipt_detail_tbl_counterreceipt_master" FromRole="tbl_counterreceipt_detail" ToRole="tbl_counterreceipt_master" />
+  </EntityType>
+  <EntityType Name="tbl_counterreceipt_master">
+    <Key>
+      <PropertyRef Name="cr_no" />
+    </Key>
+    <Property Name="cr_no" Type="Int64" Nullable="false" />
+    <Property Name="customer_id" Type="Int64" Nullable="false" />
+    <Property Name="cr_date" Type="DateTime" Nullable="false" Precision="6" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="totalamount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="agent_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="notes" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_counterreceipt_detail" Relationship="GT_Billing_SystemModel.tbl_counterreceipt_detail_FK_tbl_counterreceipt_detail_tbl_counterreceipt_master" FromRole="tbl_counterreceipt_master" ToRole="tbl_counterreceipt_detail" />
+  </EntityType>
+  <EntityType Name="tbl_customer">
+    <Key>
+      <PropertyRef Name="customer_id" />
+    </Key>
+    <Property Name="customer_id" Type="Int64" Nullable="false" />
+    <Property Name="customer_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="contact_person" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="phone_no" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="fax_no" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="email_add" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="agent_code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="balance" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="over_" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="credit_limit" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="credit_terms" Type="Int32" />
+    <Property Name="business_style" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tin_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_invoice_detail">
+    <Key>
+      <PropertyRef Name="item_id" />
+    </Key>
+    <Property Name="item_id" Type="Int64" Nullable="false" />
+    <Property Name="invoice_id" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="qty" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="unit" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="disc" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="category" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_job_product">
+    <Key>
+      <PropertyRef Name="code" />
+      <PropertyRef Name="customer_id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="unit_price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="customer_id" Type="Int64" Nullable="false" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="category" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="datelast_order" Type="DateTime" Nullable="false" Precision="6" />
+    <Property Name="noofdays_inactive" Type="Int64" Nullable="false" />
+    <Property Name="unit_priceth" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="unit_pricepck" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="unit_pricekg" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="unit_priceroll" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="plate_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="revision_code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="revision_desc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="prod_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="revision_id" Type="Int32" />
+    <Property Name="revision_status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="plastic_category" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_job_produnit">
+    <Key>
+      <PropertyRef Name="code" />
+      <PropertyRef Name="unit" />
+    </Key>
+    <Property Name="code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="unit" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="unitprice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="tbl_payment_bank">
+    <Key>
+      <PropertyRef Name="bank_name" />
+      <PropertyRef Name="branch" />
+    </Key>
+    <Property Name="bank_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="branch" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_payment_check" Relationship="GT_Billing_SystemModel.tbl_payment_check_FK_tbl_payment_check_tbl_payment_bank" FromRole="tbl_payment_bank" ToRole="tbl_payment_check" />
+    <NavigationProperty Name="tbl_payment_pmo" Relationship="GT_Billing_SystemModel.tbl_payment_pmo_FK_tbl_payment_pmo_tbl_payment_bank" FromRole="tbl_payment_bank" ToRole="tbl_payment_pmo" />
+  </EntityType>
+  <EntityType Name="tbl_payment_check">
+    <Key>
+      <PropertyRef Name="bank_name" />
+      <PropertyRef Name="branch" />
+      <PropertyRef Name="check_no" />
+    </Key>
+    <Property Name="bank_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="branch" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="check_no" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="check_date" Type="DateTime" Nullable="false" Precision="6" />
+    <Property Name="payment_id" Type="Int64" Nullable="false" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="balance" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="tbl_payment_bank" Relationship="GT_Billing_SystemModel.tbl_payment_check_FK_tbl_payment_check_tbl_payment_bank" FromRole="tbl_payment_check" ToRole="tbl_payment_bank" />
+  </EntityType>
+  <EntityType Name="tbl_payment_detail">
+    <Key>
+      <PropertyRef Name="invoice_id" />
+    </Key>
+    <Property Name="invoice_id" Type="Int64" Nullable="false" />
+    <Property Name="payment_id" Type="Int64" Nullable="false" />
+    <Property Name="si_no" Type="Int64" Nullable="false" />
+    <Property Name="si_type" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="si_date" Type="DateTime" Nullable="false" Precision="6" />
+    <Property Name="si_amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="adjustment" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="payment" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="notes" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="adjustment_type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_payment_master">
+    <Key>
+      <PropertyRef Name="or_no" />
+      <PropertyRef Name="or_type" />
+    </Key>
+    <Property Name="or_no" Type="Int64" Nullable="false" />
+    <Property Name="or_type" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="or_date" Type="DateTime" Nullable="false" Precision="6" />
+    <Property Name="payment_id" Type="Int64" Nullable="false" />
+    <Property Name="customer_id" Type="Int64" Nullable="false" />
+    <Property Name="payment_form" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="amt_applied" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="tbl_payment_pmo">
+    <Key>
+      <PropertyRef Name="payment_id" />
+    </Key>
+    <Property Name="bank_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="branch" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="acct_no" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="pmo_date" Type="DateTime" Nullable="false" Precision="6" />
+    <Property Name="payment_id" Type="Int64" Nullable="false" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_payment_bank" Relationship="GT_Billing_SystemModel.tbl_payment_pmo_FK_tbl_payment_pmo_tbl_payment_bank" FromRole="tbl_payment_pmo" ToRole="tbl_payment_bank" />
+  </EntityType>
+  <EntityType Name="tbl_returnslip_detail">
+    <Key>
+      <PropertyRef Name="item_no" />
+      <PropertyRef Name="rs_no" />
+    </Key>
+    <Property Name="item_no" Type="Int64" Nullable="false" />
+    <Property Name="rs_no" Type="Int64" Nullable="false" />
+    <Property Name="qty" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="unit" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="disc" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="category" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_returnslip_master" Relationship="GT_Billing_SystemModel.tbl_returnslip_detail_FK_tbl_returnslip_detail_tbl_returnslip_master" FromRole="tbl_returnslip_detail" ToRole="tbl_returnslip_master" />
+  </EntityType>
+  <EntityType Name="tbl_returnslip_master">
+    <Key>
+      <PropertyRef Name="rs_no" />
+    </Key>
+    <Property Name="rs_no" Type="Int64" Nullable="false" />
+    <Property Name="si_no" Type="Int64" Nullable="false" />
+    <Property Name="customer_id" Type="Int64" Nullable="false" />
+    <Property Name="rs_date" Type="DateTime" Nullable="false" Precision="6" />
+    <Property Name="totalamount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="notes" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="si_type" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_returnslip_detail" Relationship="GT_Billing_SystemModel.tbl_returnslip_detail_FK_tbl_returnslip_detail_tbl_returnslip_master" FromRole="tbl_returnslip_master" ToRole="tbl_returnslip_detail" />
+  </EntityType>
+  <EntityType Name="tbl_sales_invoice">
+    <Key>
+      <PropertyRef Name="si_no" />
+      <PropertyRef Name="si_type" />
+    </Key>
+    <Property Name="si_no" Type="Int64" Nullable="false" />
+    <Property Name="si_type" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="invoice_id" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="control_no" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="customer_id" Type="Int64" Nullable="false" />
+    <Property Name="po_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sales_area" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="terms" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="si_date" Type="DateTime" Nullable="false" Precision="6" />
+    <Property Name="due_date" Type="DateTime" Nullable="false" Precision="6" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="via" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="vessel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="vge_no" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="bill_no" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="freight" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="handling" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="ppa" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="subtotal" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="tax" Type="Decimal" Nullable="false" Precision="19" Scale="2" />
+    <Property Name="totalamount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="agent_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="agent_percent" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="agent_commission" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="notes" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="balance" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="adjustment" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="adjustment_type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="dr_no_copy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_user">
+    <Key>
+      <PropertyRef Name="code" />
+    </Key>
+    <Property Name="code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="acc_level" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="pbcatedt">
+    <Key>
+      <PropertyRef Name="pbe_name" />
+      <PropertyRef Name="pbe_type" />
+      <PropertyRef Name="pbe_seqn" />
+    </Key>
+    <Property Name="pbe_name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="pbe_edit" Type="String" MaxLength="254" FixedLength="false" Unicode="true" />
+    <Property Name="pbe_type" Type="Int16" Nullable="false" />
+    <Property Name="pbe_cntr" Type="Int32" />
+    <Property Name="pbe_seqn" Type="Int16" Nullable="false" />
+    <Property Name="pbe_flag" Type="Int32" />
+    <Property Name="pbe_work" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="pbcatfmt">
+    <Key>
+      <PropertyRef Name="pbf_name" />
+      <PropertyRef Name="pbf_frmt" />
+      <PropertyRef Name="pbf_type" />
+    </Key>
+    <Property Name="pbf_name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="pbf_frmt" Type="String" Nullable="false" MaxLength="254" FixedLength="false" Unicode="true" />
+    <Property Name="pbf_type" Type="Int16" Nullable="false" />
+    <Property Name="pbf_cntr" Type="Int32" />
+  </EntityType>
+  <EntityType Name="pbcatvld">
+    <Key>
+      <PropertyRef Name="pbv_name" />
+      <PropertyRef Name="pbv_vald" />
+      <PropertyRef Name="pbv_type" />
+    </Key>
+    <Property Name="pbv_name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="pbv_vald" Type="String" Nullable="false" MaxLength="254" FixedLength="false" Unicode="true" />
+    <Property Name="pbv_type" Type="Int16" Nullable="false" />
+    <Property Name="pbv_cntr" Type="Int32" />
+    <Property Name="pbv_msg" Type="String" MaxLength="254" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_avail_list">
+    <Key>
+      <PropertyRef Name="id_code" />
+      <PropertyRef Name="avail_id" />
+      <PropertyRef Name="group_code" />
+    </Key>
+    <Property Name="id_code" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="avail_id" Type="Int64" Nullable="false" />
+    <Property Name="group_code" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_transactions">
+    <Key>
+      <PropertyRef Name="trans_id" />
+    </Key>
+    <Property Name="trans_id" Type="Int32" Nullable="false" />
+    <Property Name="trans_date" Type="DateTime" Precision="6" />
+    <Property Name="trans_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="trans_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="trans_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="trans_action" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vw_job_product_customer">
+    <Key>
+      <PropertyRef Name="customer_id" />
+      <PropertyRef Name="customer_name" />
+      <PropertyRef Name="code" />
+      <PropertyRef Name="status" />
+      <PropertyRef Name="category" />
+      <PropertyRef Name="datelast_order" />
+      <PropertyRef Name="noofdays_inactive" />
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="customer_id" Type="Int64" Nullable="false" />
+    <Property Name="customer_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="code" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="unit_price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="category" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="datelast_order" Type="DateTime" Nullable="false" Precision="6" />
+    <Property Name="noofdays_inactive" Type="Int64" Nullable="false" />
+    <Property Name="unit_priceth" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="unit_pricepck" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="unit_pricekg" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="unit_priceroll" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="plate_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="revision_code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="revision_desc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="prod_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="revision_id" Type="Int32" />
+    <Property Name="revision_status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="plastic_category" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="tbl_commission_detail_FK_tbl_commission_detail_tbl_commission_master">
+    <End Type="GT_Billing_SystemModel.tbl_commission_master" Role="tbl_commission_master" Multiplicity="1" />
+    <End Type="GT_Billing_SystemModel.tbl_commission_detail" Role="tbl_commission_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_commission_master">
+        <PropertyRef Name="comm_no" />
+      </Principal>
+      <Dependent Role="tbl_commission_detail">
+        <PropertyRef Name="comm_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tbl_counterreceipt_detail_FK_tbl_counterreceipt_detail_tbl_counterreceipt_master">
+    <End Type="GT_Billing_SystemModel.tbl_counterreceipt_master" Role="tbl_counterreceipt_master" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="GT_Billing_SystemModel.tbl_counterreceipt_detail" Role="tbl_counterreceipt_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_counterreceipt_master">
+        <PropertyRef Name="cr_no" />
+      </Principal>
+      <Dependent Role="tbl_counterreceipt_detail">
+        <PropertyRef Name="cr_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tbl_payment_check_FK_tbl_payment_check_tbl_payment_bank">
+    <End Type="GT_Billing_SystemModel.tbl_payment_bank" Role="tbl_payment_bank" Multiplicity="1" />
+    <End Type="GT_Billing_SystemModel.tbl_payment_check" Role="tbl_payment_check" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_payment_bank">
+        <PropertyRef Name="bank_name" />
+        <PropertyRef Name="branch" />
+      </Principal>
+      <Dependent Role="tbl_payment_check">
+        <PropertyRef Name="bank_name" />
+        <PropertyRef Name="branch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tbl_payment_pmo_FK_tbl_payment_pmo_tbl_payment_bank">
+    <End Type="GT_Billing_SystemModel.tbl_payment_bank" Role="tbl_payment_bank" Multiplicity="1" />
+    <End Type="GT_Billing_SystemModel.tbl_payment_pmo" Role="tbl_payment_pmo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_payment_bank">
+        <PropertyRef Name="bank_name" />
+        <PropertyRef Name="branch" />
+      </Principal>
+      <Dependent Role="tbl_payment_pmo">
+        <PropertyRef Name="bank_name" />
+        <PropertyRef Name="branch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tbl_returnslip_detail_FK_tbl_returnslip_detail_tbl_returnslip_master">
+    <End Type="GT_Billing_SystemModel.tbl_returnslip_master" Role="tbl_returnslip_master" Multiplicity="1" />
+    <End Type="GT_Billing_SystemModel.tbl_returnslip_detail" Role="tbl_returnslip_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_returnslip_master">
+        <PropertyRef Name="rs_no" />
+      </Principal>
+      <Dependent Role="tbl_returnslip_detail">
+        <PropertyRef Name="rs_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="sp_billing_search_agent_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="agent_name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="agent_code" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="address" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="phone_no" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="email_add" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="status" Nullable="false" MaxLength="10" />
+    <Property Type="Decimal" Name="commission" Nullable="false" Precision="19" Scale="4" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,196 @@
+﻿
+@{
+    ViewBag.TabTitle = "Ships";
+    ViewBag.Title = "Ships";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model GT_Order_Monitoring_System.Models.MyModel
+<div class="row">
+    <div class="col-xl-12">
+        <div class="breadcrumb-holder">
+            <h1 class="main-title float-left"><i class="fa fa-ship"></i> Ships</h1>
+            <ol class="breadcrumb float-right">
+                <li class="breadcrumb-item">Ship</li>
+                <li class="breadcrumb-item active">Index</li>
+            </ol>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card mb-3">
+            <div class="card-header">
+                <span class="pull-right">
+                    <a href="/Ship/Create" class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus" aria-hidden="true"></i> New Ship
+                    </a>
+                </span>
+
+                <h3>
+                    <i class="fa-2x mr-2 fas fa-clipboard-list"></i> All Ship
+                </h3>
+                <hr />
+                <div class="form-group">
+                    @using (Html.BeginForm("Index", "Ship", FormMethod.Post))
+                    {
+                        <div class="col-lg-12">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-inline">
+                                        <label>Ship Search :</label>&nbsp;
+                                        <select name="a_criteria1" class="form-control select2-arrow">
+                                            <option value="via" @(ViewBag.a_criteria1 == "via" ? "selected" : "")>Ship Name (via)</option>
+                                        </select>&nbsp;
+                                        <select name="a_criteria2" class="form-control select2-arrow">
+                                            <option value="Equal" @(ViewBag.a_criteria2 == "Equals" ? "selected" : "")>Equals</option>
+                                            <option value="Contains" @(ViewBag.a_criteria2 == "Contains" ? "selected" : "")>Contains</option>
+                                            <option value="Startswith" @(ViewBag.a_criteria2 == "Startswith" ? "selected" : "")>Starts with</option>
+                                            <option value="Endswith" @(ViewBag.a_criteria2 == "Endswith" ? "selected" : "")>Ends with</option>
+                                            <option value="IsGreaterthan" @(ViewBag.a_criteria2 == "IsGreaterthan" ? "selected" : "")>Is Greater than</option>
+                                            <option value="IsLessthan" @(ViewBag.a_criteria2 == "IsLessthan" ? "selected" : "")>Is Less than</option>
+                                        </select>&nbsp;
+                                        <input type="text" name="a_criteria3" value="@(ViewBag.a_criteria3 != "" ? ViewBag.a_criteria3 : "")" placeholder="Enter text here.." class="form-control" required />&nbsp;
+                                        <input type="submit" name="name" value="Search" class="btn btn-primary" />&nbsp;
+                                        <span>Total # of Records: <span class="@(Model.ListShips.Count > 0 ? "badge badge-info" : "badge badge-danger")">@Model.ListShips.Count</span></span>&nbsp;
+                                        <a href="/Ship/Index" class="btn btn-success btn-sm" title="Refresh">
+                                            <i class="fas fa-sync" aria-hidden="true"></i>
+                                        </a>&nbsp;
+                                        <label style="cursor:pointer"><input type="checkbox" id="ckTxtSearch" name="manualSearch" value="false" onchange="onCheckChange()">&nbsp; Manual Search</label>&nbsp;
+                                        <input type="text" id="txtSearch" name="a_criteria3" value="" placeholder="Enter search here.." class="form-control" onkeyup="onchangeSearch()" hidden />&nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="dataTable" class="table table-bordered table-hover display" style="width:100%">
+                        <thead>
+                            <tr id="tableHeader">
+                                <th>ID</th>
+                                <th style="text-align:center">Truck Name/No</th>
+                                <th style="text-align:center">Action</th>
+                            </tr>
+                        </thead>@{ int counter = 0; }
+                        @foreach (var objProd in Model.ListShips)
+                        {
+                            counter++;
+                            <tr id="tableRow">
+                                <td>@objProd.id</td>
+                                <td style="text-align:center">@objProd.via</td>
+                                <td style="text-align:center">
+                                    <a href="#" data-toggle="modal" data-target="#modalViewDetails@(counter)" style="color: green;"> VIEW </a> | <a href="/Ship/Update?id=@objProd.id"> UPDATE </a> | <a href="#" onclick="onDelete(@objProd.id)" style="color: red;"> DELETE </a>
+                                </td>
+                            </tr>
+
+                                <div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_user" aria-hidden="true" id="modalViewDetails@(counter)">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <form action="#" method="post" enctype="multipart/form-data">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;Ship Detail</h5>
+                                                    <button type="button" class="close" data-dismiss="modal">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        <span class="sr-only">Close</span>
+                                                    </button>
+                                                </div>
+
+                                                <div class="modal-body">
+
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-12">
+                                                                    <label>Truck Name&nbsp;</label>
+                                                                    <input class="form-control" name="name" type="text" value="@objProd.via" readonly />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                </div>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                        }
+
+                    </table>
+
+                </div>
+                <!-- end table-responsive-->
+
+            </div>
+            <!-- end card-body-->
+        </div>
+        <!-- end card-->
+
+    </div>
+</div>
+
+
+
+<link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.min.css" rel="stylesheet"></link>
+<script src="https://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
+<script src="~/Content/assets/js/customer.js"></script>
+
+<script type="text/javascript">
+    function onDelete(id) {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this record!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+      .then((willDelete) => {
+          if (willDelete) {
+
+              var request = new XMLHttpRequest();
+              request.open('POST', "/Ship/Delete?id=" + id);
+
+              request.onreadystatechange = function () {
+                  if (this.readyState == 4 && this.status == 200) {
+                      console.log(this.responseText);
+                      //console.log(request.responseText);
+
+                      var resObj = JSON.parse(this.responseText);
+
+
+                      if (resObj.code == 1) {
+                          swal("Successfully Deleted!", {
+                              icon: "success",
+                              closeOnClickOutside: false
+                          }).then((ok) => {
+                              if (ok) {
+                                  window.location.href = "/Ship/Index";
+                              }
+                          });
+                      }
+                      else {
+                          swal(resObj.message, {
+                              icon: "error",
+                              closeOnClickOutside: false
+                          })
+
+                      }
+                  }
+              };
+
+              request.send();
+
+          }
+      });
+    }
+</script>
+
+

@@ -1,0 +1,387 @@
+﻿@{
+    ViewBag.TabTitle = "Commercial Products";
+    ViewBag.Title = "CommercialProducts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model GT_Order_Monitoring_System.Models.MyModel
+<div class="row">
+    <div class="col-xl-12">
+        <div class="breadcrumb-holder">
+            <h1 class="main-title float-left"><i class="fa fa-cubes"></i> Commercial Products</h1>
+            <ol class="breadcrumb float-right">
+                <li class="breadcrumb-item">Product</li>
+                <li class="breadcrumb-item active">Commercial Products</li>
+            </ol>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card mb-3">
+            <div class="card-header">
+                <span class="pull-right">
+                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_add_commercial">
+                        <i class="fas fa-plus" aria-hidden="true"></i> New Commercial Product
+                    </button>
+                </span>
+
+                <div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_commercial" aria-hidden="true" id="modal_add_commercial">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form method="POST" enctype="multipart/form-data" id="form-create">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title"><i class="fas fa-briefcase"></i>&nbsp;New Commercial Product</h5>
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">&times;</span>
+                                        <span class="sr-only">Close</span>
+                                    </button>
+                                </div>
+
+                                <div class="modal-body">
+
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <label>Code &nbsp;</label>
+                                                    <span id="errortxt"></span>
+                                                    @Html.TextBoxFor(m => m.CommercialProduct.code, new { @class = "form-control", @required = "true", @id = "ComProdcode", @onkeyup = "validateCode()" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <label>Description &nbsp;</label>
+                                                    @Html.TextBoxFor(m => m.CommercialProduct.description, new { @class = "form-control", @required = "true" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label>Price per PC &nbsp;</label>
+                                                    @Html.TextBoxFor(m => m.CommercialProduct.unit_price, new { @class = "form-control", @type = "number", @required = "true" })
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label>Price per TH &nbsp;</label>
+                                                    @Html.TextBoxFor(m => m.CommercialProduct.unit_priceth, new { @class = "form-control", @type = "number", @required = "true" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <label>Price per PCK &nbsp;</label>
+                                                    @Html.TextBoxFor(m => m.CommercialProduct.unit_pricepck, new { @class = "form-control", @type = "number", @required = "true" })
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label>Price per KG &nbsp;</label>
+                                                    @Html.TextBoxFor(m => m.CommercialProduct.unit_pricekg, new { @class = "form-control", @type = "number", @required = "true" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">SAVE</button>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <h3>
+                    <i class="fa-2x mr-2 fas fa-clipboard-list"></i> All Commercial Products
+                </h3>
+                <hr />
+                <div class="form-group">
+                    @using (Html.BeginForm("CommercialProducts", "Product", FormMethod.Post))
+                    {
+
+                        <div class="col-lg-12">
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-inline">
+                                        <label>Product Search :</label>&nbsp;
+                                        <select name="a_criteria1" class="form-control select2-arrow">
+                                            <option value="code" @(ViewBag.a_criteria1 == "code" ? "selected" : "")>Code</option>
+                                            <option value="description" @(ViewBag.a_criteria1 == "description" ? "selected" : "")>Description</option>
+                                        </select>&nbsp;
+                                        <select name="a_criteria2" class="form-control select2-arrow">
+                                            <option value="Equals" @(ViewBag.a_criteria2 == "Equals" ? "selected" : "")>Equals</option>
+                                            <option value="Contains" @(ViewBag.a_criteria2 == "Contains" ? "selected" : "")>Contains</option>
+                                            <option value="Startswith" @(ViewBag.a_criteria2 == "Startswith" ? "selected" : "")>Starts with</option>
+                                            <option value="Endswith" @(ViewBag.a_criteria2 == "Endswith" ? "selected" : "")>Ends with</option>
+                                            <option value="IsGreaterthan" @(ViewBag.a_criteria2 == "IsGreaterthan" ? "selected" : "")>Is Greater than</option>
+                                            <option value="IsLessthan" @(ViewBag.a_criteria2 == "IsLessthan" ? "selected" : "")>Is Less than</option>
+                                        </select>&nbsp;
+                                        <input type="text" name="a_criteria3" value="@(ViewBag.a_criteria3 != "" ? ViewBag.a_criteria3 : "")" placeholder="Enter text here.." class="form-control" required />&nbsp;
+                                        <input type="submit" name="name" value="Search" class="btn btn-primary" />&nbsp;
+                                        <span>Total # of Records: <span class="@(Model.ListCommercialProducts.Count > 0 ? "badge badge-info" : "badge badge-danger")">@Model.ListCommercialProducts.Count</span></span>&nbsp;
+                                        <a href="/Product/CommercialProducts" class="btn btn-success btn-sm" title="Refresh">
+                                            <i class="fas fa-sync" aria-hidden="true"></i>
+                                        </a>&nbsp;
+                                        <label style="cursor:pointer"><input type="checkbox" id="ckTxtSearch" name="manualSearch" value="false" onchange="onCheckChange()">&nbsp; Manual Search</label>&nbsp;
+                                        <input type="text" id="txtSearch" name="a_criteria3" value="" placeholder="Enter search here.." class="form-control" onkeyup="onchangeSearch()" hidden />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="dataTable" class="table table-bordered table-hover">
+                        <thead>
+                            <tr id="tableHeader">
+                                <th>Code</th>
+                                <th>Description</th>
+                                <th>Price per PC</th>
+                                <th>Price per TH</th>
+                                <th>Price per PCK</th>
+                                <th>Price per KG</th>
+                                <th style="text-align:center;">Action</th>
+                            </tr>
+                        </thead>@{ int counter = 0; }
+                        @foreach (var objProd in Model.ListCommercialProducts)
+                        {
+                            counter++;
+                            <tr>
+                                <td>@objProd.code</td>
+                                <td>@objProd.description</td>
+                                <td><i class="fa fa-php"></i> @string.Format("{0:n2}", objProd.unit_price)</td>
+                                <td>@string.Format("{0:n2}", objProd.unit_priceth)</td>
+                                <td>@string.Format("{0:n2}", objProd.unit_pricepck)</td>
+                                <td>@string.Format("{0:n2}", objProd.unit_pricekg)</td>
+                                <td style="text-align:center;">
+                                    @*data-toggle="modal" data-target="#modalViewUpdate@(counter)"*@
+                                <a href="#" data-toggle="modal" data-target="#modalViewDetails@(counter)" style="color: green;"> VIEW </a> | <a href="/Product/Update?id=@objProd.id"> UPDATE </a> | <a href="#" onclick="onDelete(@objProd.id)" style="color: red;"> DELETE </a>
+                            </td>
+                        </tr>
+                                   <!--VIEW-->
+                                <div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_user" aria-hidden="true" id="modalViewDetails@(counter)">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <form action="#" method="post" enctype="multipart/form-data">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title"><i class="fas fa-info-circle"></i>&nbsp;&nbsp;Commercial Product Details</h5>
+                                                    <button type="button" class="close" data-dismiss="modal">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        <span class="sr-only">Close</span>
+                                                    </button>
+                                                </div>
+
+                                                <div class="modal-body">
+
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-12">
+                                                                    <label>Code &nbsp;</label>
+                                                                    <input class="form-control" name="name" type="text" value="@objProd.code" readonly />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-12">
+                                                                    <label>Description &nbsp;</label>
+                                                                    <input class="form-control" name="name" type="text" value="@objProd.description" readonly />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-6">
+                                                                    <label>Price per PC &nbsp;</label>
+                                                                    <input class="form-control" name="name" type="text" value="@string.Format("{0:n2}", objProd.unit_price)" readonly />
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <label>Price per TH &nbsp;</label>
+                                                                    <input class="form-control" name="name" type="text" value="@objProd.unit_priceth" readonly />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-6">
+                                                                    <label>Price per PCK &nbsp;</label>
+                                                                    <input class="form-control" name="name" type="text" value="@string.Format("{0:n2}", objProd.unit_pricepck)" readonly />
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <label>Price per KG &nbsp;</label>
+                                                                    <input class="form-control" name="name" type="text" value="@objProd.unit_pricekg" readonly />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                </div>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                    <!--EDIT-->
+                                    <div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_user" aria-hidden="true" id="modalViewUpdate@(counter)">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <form method="POST" enctype="multipart/form-data" id="update-product" class="@(counter)">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title"><i class="fas fa-edit"></i>&nbsp;&nbsp;Update Commercial Product</h5>
+                                                        <button type="button" class="close" data-dismiss="modal">
+                                                            <span aria-hidden="true">&times;</span>
+                                                            <span class="sr-only">Close</span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+
+
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary">UPDATE</button>
+                                                    </div>
+
+                                                </form>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                   <!--Delete-->
+                                    <div class="modal fade custom-modal" tabindex="-1" role="dialog" aria-labelledby="modal_add_user" aria-hidden="true" id="modalViewDetailsDelete@(counter)">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <form action="#" method="post" enctype="multipart/form-data">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title"><i class="fas fa-trash"></i>&nbsp;&nbsp;DELETE</h5>
+                                                        <button type="button" class="close" data-dismiss="modal">
+                                                            <span aria-hidden="true">&times;</span>
+                                                            <span class="sr-only">Close</span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="form-group row">
+                                                                    <div class="col-sm-12">
+                                                                        <label>Code &nbsp;</label>
+                                                                        <input class="form-control" id="lblCode@(counter)" name="name" type="text" value="@objProd.code" readonly />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <div class="col-sm-12">
+                                                                        <label>Description &nbsp;</label>
+                                                                        <input class="form-control" name="name" type="text" value="@objProd.description" readonly />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <div class="col-sm-6">
+                                                                        <label>Price per PC &nbsp;</label>
+                                                                        <input class="form-control" name="name" type="text" value="@string.Format("{0:n2}", objProd.unit_price)" readonly />
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <label>Price per TH &nbsp;</label>
+                                                                        <input class="form-control" name="name" type="text" value="@string.Format("{0:n2}", objProd.unit_priceth)" readonly />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <div class="col-sm-6">
+                                                                        <label>Price per PCK &nbsp;</label>
+                                                                        <input class="form-control" name="name" type="text" value="@string.Format("{0:n2}", objProd.unit_pricepck)" readonly />
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <label>Price per KG &nbsp;</label>
+                                                                        <input class="form-control" name="name" type="text" value="@string.Format("{0:n2}", objProd.unit_pricekg)" readonly />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger" onclick="deleteProd(@counter)">DELETE</button>
+                                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                                    </div>
+
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                        }
+
+                    </table>
+
+                </div>
+                <!-- end table-responsive-->
+
+            </div>
+            <!-- end card-body-->
+        </div>
+        <!-- end card-->
+
+    </div>
+</div>
+
+<script src="~/Content/assets/js/SearchTextbox.js"></script>
+<link href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.min.css" rel="stylesheet"></link>
+<script src="https://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
+<script src="~/Content/assets/js/customer.js"></script>
+<script src="~/Content/assets/js/commercialproduct.js"></script>
+
+<script type="text/javascript">
+    function onDelete(id) {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this product!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+      .then((willDelete) => {
+          if (willDelete) {
+
+              var request = new XMLHttpRequest();
+              request.open('POST', "/Product/Delete?id=" + id);
+
+              request.onreadystatechange = function () {
+                  if (this.readyState == 4 && this.status == 200) {
+                      console.log(this.responseText);
+                      //console.log(request.responseText);
+
+                      var resObj = JSON.parse(this.responseText);
+
+
+                      if (resObj.code == 1) {
+                          swal("Successfully Deleted!", {
+                              icon: "success",
+                              closeOnClickOutside: false
+                          }).then((ok) => {
+                              if (ok) {
+                                  window.location.href = "/Product/CommercialProducts";
+                              }
+                          });
+                      }
+                      else {
+                          swal(resObj.message, {
+                              icon: "error",
+                              closeOnClickOutside: false
+                          })
+
+                      }
+                  }
+              };
+
+              request.send();
+
+          } 
+      });
+    }
+</script>

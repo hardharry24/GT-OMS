@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.TabTitle = "Admin";
+    ViewBag.Title = "ADMIN";
+    Layout = null;
+}
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" rel="stylesheet" />
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" data-toggle="tab" href="#one">One</a>
+            <a class="dropdown-item" data-toggle="tab" href="#two">Two</a>
+            <a class="dropdown-item" data-toggle="tab" href="#three">Three</a>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#contact">Contact</a>
+    </li>
+</ul>
+
+<div class="container-fluid">
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade in active" id="home">
+            <div class="alert alert-info">Home</div>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="one">
+            <div class="alert alert-info">One</div>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="two">
+            <div class="alert alert-info">Two</div>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="three">
+            <div class="alert alert-info">Three</div>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="contact">
+            <div class="alert alert-info">Contact</div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.4/js/tether.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js"></script>

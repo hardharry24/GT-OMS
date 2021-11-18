@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.TabTitle = "Dashboard";
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@model GT_Order_Monitoring_System.Models.MyModel
+<div class="row">
+    <div class="col-xl-12">
+        <div class="breadcrumb-holder">
+            <h1 class="main-title float-left">Welcome Back @Session["FullName"] !</h1>
+            <ol class="breadcrumb float-right">
+                <li class="breadcrumb-item">Home</li>
+                <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+@{
+    int countShips = Model.ListShips.Count;
+    int countTrucks = Model.ListTruck.Count;
+    int countCustomer = Model.ListCustomer.Count;
+    int countPO = Model.ListPurchaseOrder.Count;
+
+    int countActiveCust = 0, countTodaysPo = 0;
+    foreach (var item in Model.ListCustomer)
+    {
+        if (item.status.ToLower().Equals("active")) { countActiveCust++; }
+    }
+
+    foreach (var item in Model.ListPurchaseOrder)
+    {
+        if (item.po_date.Date.ToShortDateString() == DateTime.Now.ToShortDateString()) { countTodaysPo++; }
+    }
+}
+<!--Card-->
+<div class="row">
+    <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+        <div class="card-box noradius noborder bg-danger">
+            <i class="fas fa-users float-right text-white"></i>
+            <h6 class="text-white text-uppercase m-b-20">Customers</h6>
+            <h1 class="m-b-20 text-white counter">@countCustomer</h1>
+            <span class="text-white">@countActiveCust Active</span>
+        </div>
+    </div>
+
+
+
+    <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+        <div class="card-box noradius noborder bg-warning">
+            <i class="fas fa-shopping-cart float-right text-white"></i>
+            <h6 class="text-white text-uppercase m-b-20">Purchase Orders</h6>
+            <h1 class="m-b-20 text-white counter">@countPO</h1>
+            <span class="text-white">@countTodaysPo Today</span>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+        <div class="card-box noradius noborder bg-purple">
+            <i class="fas fa-ship float-right text-white"></i>
+            <h6 class="text-white text-uppercase m-b-20">Shipping Lines/VIA</h6>
+            <h1 class="m-b-20 text-white counter">@countShips</h1>
+            <span class="text-white">Active</span>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-6 col-lg-6 col-xl-3">
+        <div class="card-box noradius noborder bg-info">
+            <i class="fas fa-truck float-right text-white"></i>
+            <h6 class="text-white text-uppercase m-b-20">Trucks</h6>
+            <h1 class="m-b-20 text-white counter">@countTrucks</h1>
+            <span class="text-white">Active</span>
+        </div>
+    </div>
+</div>
+<!-- end row -->
+<div hidden>
+    <input type="text" id="returnUrl" name="name" value="@Session["ReturnUrl"]" />
+</div>
+    <!-- BEGIN Java Script for this page -->
+<script src="assets/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
+<script src="assets/plugins/counterup/jquery.counterup.min.js"></script>
+<script>
+     
+    var returnUrl = document.getElementById("returnUrl").value;
+    var nullURUL = returnUrl.trim().replace("/","");
+    if (returnUrl != "" && returnUrl.toUpperCase() != "/HOME/INDEX")
+    {
+        window.location.href = returnUrl;
+    }
+</script>

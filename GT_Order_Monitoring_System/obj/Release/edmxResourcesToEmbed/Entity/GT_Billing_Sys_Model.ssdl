@@ -1,0 +1,723 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GT_Billing_SystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="dtproperties">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="property" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="objectid" Type="int" />
+    <Property Name="property" Type="nvarchar" MaxLength="64" Nullable="false" />
+    <Property Name="value" Type="nvarchar" MaxLength="255" />
+    <Property Name="uvalue" Type="nvarchar" MaxLength="255" />
+    <Property Name="lvalue" Type="varbinary(max)" />
+    <Property Name="version" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'gt_billing_system_2008_r.gt_billing_system_2008_r.pbcatcol' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="pbcatcol">
+          <Property Name="pbc_tnam" Type="nchar" MaxLength="30" />
+          <Property Name="pbc_tid" Type="int" />
+          <Property Name="pbc_ownr" Type="nchar" MaxLength="30" />
+          <Property Name="pbc_cnam" Type="nchar" MaxLength="30" />
+          <Property Name="pbc_cid" Type="smallint" />
+          <Property Name="pbc_labl" Type="nvarchar" MaxLength="254" />
+          <Property Name="pbc_lpos" Type="smallint" />
+          <Property Name="pbc_hdr" Type="nvarchar" MaxLength="254" />
+          <Property Name="pbc_hpos" Type="smallint" />
+          <Property Name="pbc_jtfy" Type="smallint" />
+          <Property Name="pbc_mask" Type="nvarchar" MaxLength="31" />
+          <Property Name="pbc_case" Type="smallint" />
+          <Property Name="pbc_hght" Type="smallint" />
+          <Property Name="pbc_wdth" Type="smallint" />
+          <Property Name="pbc_ptrn" Type="nvarchar" MaxLength="31" />
+          <Property Name="pbc_bmap" Type="nchar" MaxLength="1" />
+          <Property Name="pbc_init" Type="nvarchar" MaxLength="254" />
+          <Property Name="pbc_cmnt" Type="nvarchar" MaxLength="254" />
+          <Property Name="pbc_edit" Type="nvarchar" MaxLength="31" />
+          <Property Name="pbc_tag" Type="nvarchar" MaxLength="254" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'gt_billing_system_2008_r.gt_billing_system_2008_r.pbcatedt' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="pbcatedt">
+    <Key>
+      <PropertyRef Name="pbe_name" />
+      <PropertyRef Name="pbe_type" />
+      <PropertyRef Name="pbe_seqn" />
+    </Key>
+    <Property Name="pbe_name" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="pbe_edit" Type="nvarchar" MaxLength="254" />
+    <Property Name="pbe_type" Type="smallint" Nullable="false" />
+    <Property Name="pbe_cntr" Type="int" />
+    <Property Name="pbe_seqn" Type="smallint" Nullable="false" />
+    <Property Name="pbe_flag" Type="int" />
+    <Property Name="pbe_work" Type="nchar" MaxLength="32" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'gt_billing_system_2008_r.gt_billing_system_2008_r.pbcatfmt' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="pbcatfmt">
+    <Key>
+      <PropertyRef Name="pbf_name" />
+      <PropertyRef Name="pbf_frmt" />
+      <PropertyRef Name="pbf_type" />
+    </Key>
+    <Property Name="pbf_name" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="pbf_frmt" Type="nvarchar" MaxLength="254" Nullable="false" />
+    <Property Name="pbf_type" Type="smallint" Nullable="false" />
+    <Property Name="pbf_cntr" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'gt_billing_system_2008_r.gt_billing_system_2008_r.pbcattbl' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="pbcattbl">
+          <Property Name="pbt_tnam" Type="nchar" MaxLength="30" />
+          <Property Name="pbt_tid" Type="int" />
+          <Property Name="pbt_ownr" Type="nchar" MaxLength="30" />
+          <Property Name="pbd_fhgt" Type="smallint" />
+          <Property Name="pbd_fwgt" Type="smallint" />
+          <Property Name="pbd_fitl" Type="nchar" MaxLength="1" />
+          <Property Name="pbd_funl" Type="nchar" MaxLength="1" />
+          <Property Name="pbd_fchr" Type="smallint" />
+          <Property Name="pbd_fptc" Type="smallint" />
+          <Property Name="pbd_ffce" Type="nchar" MaxLength="32" />
+          <Property Name="pbh_fhgt" Type="smallint" />
+          <Property Name="pbh_fwgt" Type="smallint" />
+          <Property Name="pbh_fitl" Type="nchar" MaxLength="1" />
+          <Property Name="pbh_funl" Type="nchar" MaxLength="1" />
+          <Property Name="pbh_fchr" Type="smallint" />
+          <Property Name="pbh_fptc" Type="smallint" />
+          <Property Name="pbh_ffce" Type="nchar" MaxLength="32" />
+          <Property Name="pbl_fhgt" Type="smallint" />
+          <Property Name="pbl_fwgt" Type="smallint" />
+          <Property Name="pbl_fitl" Type="nchar" MaxLength="1" />
+          <Property Name="pbl_funl" Type="nchar" MaxLength="1" />
+          <Property Name="pbl_fchr" Type="smallint" />
+          <Property Name="pbl_fptc" Type="smallint" />
+          <Property Name="pbl_ffce" Type="nchar" MaxLength="32" />
+          <Property Name="pbt_cmnt" Type="nvarchar" MaxLength="254" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'gt_billing_system_2008_r.gt_billing_system_2008_r.pbcatvld' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="pbcatvld">
+    <Key>
+      <PropertyRef Name="pbv_name" />
+      <PropertyRef Name="pbv_vald" />
+      <PropertyRef Name="pbv_type" />
+    </Key>
+    <Property Name="pbv_name" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="pbv_vald" Type="nvarchar" MaxLength="254" Nullable="false" />
+    <Property Name="pbv_type" Type="smallint" Nullable="false" />
+    <Property Name="pbv_cntr" Type="int" />
+    <Property Name="pbv_msg" Type="nvarchar" MaxLength="254" />
+  </EntityType>
+  <EntityType Name="tbl_agent">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="agent_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="agent_code" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="phone_no" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="email_add" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="status" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="commission" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_agent_detail">
+    <Key>
+      <PropertyRef Name="agent_code" />
+      <PropertyRef Name="si_no" />
+      <PropertyRef Name="si_type" />
+    </Key>
+    <Property Name="agent_code" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="si_no" Type="bigint" Nullable="false" />
+    <Property Name="si_type" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="status" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'gt_billing_system_2008_r.gt_billing_system_2008_r.tbl_avail_list' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tbl_avail_list">
+    <Key>
+      <PropertyRef Name="id_code" />
+      <PropertyRef Name="avail_id" />
+      <PropertyRef Name="group_code" />
+    </Key>
+    <Property Name="id_code" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="avail_id" Type="bigint" Nullable="false" />
+    <Property Name="group_code" Type="nchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_commercial_product">
+    <Key>
+      <PropertyRef Name="code" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="code" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="unit_price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="category" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="unit_priceth" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="unit_pricepck" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="unit_pricekg" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="unit_priceroll" Type="decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="tbl_commercial_produnit">
+    <Key>
+      <PropertyRef Name="code" />
+      <PropertyRef Name="unit" />
+    </Key>
+    <Property Name="code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="unit" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="unitprice" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_commission_detail">
+    <Key>
+      <PropertyRef Name="comm_id" />
+    </Key>
+    <Property Name="comm_id" Type="bigint" Nullable="false" />
+    <Property Name="comm_no" Type="bigint" Nullable="false" />
+    <Property Name="si_no" Type="bigint" Nullable="false" />
+    <Property Name="si_type" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_commission_master">
+    <Key>
+      <PropertyRef Name="comm_no" />
+    </Key>
+    <Property Name="comm_no" Type="bigint" Nullable="false" />
+    <Property Name="comm_date" Type="datetime2" Precision="6" Nullable="false" />
+    <Property Name="agent_code" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="status" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_counterreceipt_detail">
+    <Key>
+      <PropertyRef Name="invoice_id" />
+    </Key>
+    <Property Name="invoice_id" Type="bigint" Nullable="false" />
+    <Property Name="cr_no" Type="bigint" Nullable="false" />
+    <Property Name="si_no" Type="bigint" Nullable="false" />
+    <Property Name="si_type" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="si_date" Type="datetime2" Precision="6" Nullable="false" />
+    <Property Name="particulars" Type="nvarchar" MaxLength="100" />
+    <Property Name="satus" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="adjustment" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="total" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_counterreceipt_master">
+    <Key>
+      <PropertyRef Name="cr_no" />
+    </Key>
+    <Property Name="cr_no" Type="bigint" Nullable="false" />
+    <Property Name="customer_id" Type="bigint" Nullable="false" />
+    <Property Name="cr_date" Type="datetime2" Precision="6" Nullable="false" />
+    <Property Name="status" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="totalamount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="agent_code" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="notes" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="tbl_customer">
+    <Key>
+      <PropertyRef Name="customer_id" />
+    </Key>
+    <Property Name="customer_id" Type="bigint" Nullable="false" />
+    <Property Name="customer_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="contact_person" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="address" Type="nvarchar" MaxLength="100" />
+    <Property Name="phone_no" Type="nvarchar" MaxLength="20" />
+    <Property Name="fax_no" Type="nvarchar" MaxLength="20" />
+    <Property Name="email_add" Type="nvarchar" MaxLength="100" />
+    <Property Name="agent_code" Type="nvarchar" MaxLength="10" />
+    <Property Name="status" Type="nvarchar" MaxLength="10" />
+    <Property Name="balance" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="over_" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="credit_limit" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="credit_terms" Type="int" />
+    <Property Name="business_style" Type="nvarchar" MaxLength="50" />
+    <Property Name="tin_no" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tbl_invoice_detail">
+    <Key>
+      <PropertyRef Name="item_id" />
+    </Key>
+    <Property Name="item_id" Type="bigint" Nullable="false" />
+    <Property Name="invoice_id" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="qty" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="unit" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="code" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="disc" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="category" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="status" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_job_product">
+    <Key>
+      <PropertyRef Name="code" />
+      <PropertyRef Name="customer_id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="code" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="100" />
+    <Property Name="unit_price" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="customer_id" Type="bigint" Nullable="false" />
+    <Property Name="status" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="category" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="datelast_order" Type="datetime2" Precision="6" Nullable="false" />
+    <Property Name="noofdays_inactive" Type="bigint" Nullable="false" />
+    <Property Name="unit_priceth" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="unit_pricepck" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="unit_pricekg" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="unit_priceroll" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="plate_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="revision_code" Type="nvarchar" MaxLength="20" />
+    <Property Name="revision_desc" Type="nvarchar" MaxLength="100" />
+    <Property Name="prod_code" Type="nvarchar" MaxLength="50" />
+    <Property Name="revision_id" Type="int" />
+    <Property Name="revision_status" Type="nvarchar" MaxLength="20" />
+    <Property Name="plastic_category" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="tbl_job_produnit">
+    <Key>
+      <PropertyRef Name="code" />
+      <PropertyRef Name="unit" />
+    </Key>
+    <Property Name="code" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="unit" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="unitprice" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_payment_bank">
+    <Key>
+      <PropertyRef Name="bank_name" />
+      <PropertyRef Name="branch" />
+    </Key>
+    <Property Name="bank_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="branch" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_payment_check">
+    <Key>
+      <PropertyRef Name="bank_name" />
+      <PropertyRef Name="branch" />
+      <PropertyRef Name="check_no" />
+    </Key>
+    <Property Name="bank_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="branch" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="check_no" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="check_date" Type="datetime2" Precision="6" Nullable="false" />
+    <Property Name="payment_id" Type="bigint" Nullable="false" />
+    <Property Name="status" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="balance" Type="decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="tbl_payment_detail">
+    <Key>
+      <PropertyRef Name="invoice_id" />
+    </Key>
+    <Property Name="invoice_id" Type="bigint" Nullable="false" />
+    <Property Name="payment_id" Type="bigint" Nullable="false" />
+    <Property Name="si_no" Type="bigint" Nullable="false" />
+    <Property Name="si_type" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="si_date" Type="datetime2" Precision="6" Nullable="false" />
+    <Property Name="si_amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="adjustment" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="payment" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="status" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="notes" Type="nvarchar" MaxLength="100" />
+    <Property Name="adjustment_type" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="tbl_payment_master">
+    <Key>
+      <PropertyRef Name="or_no" />
+      <PropertyRef Name="or_type" />
+    </Key>
+    <Property Name="or_no" Type="bigint" Nullable="false" />
+    <Property Name="or_type" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="or_date" Type="datetime2" Precision="6" Nullable="false" />
+    <Property Name="payment_id" Type="bigint" Nullable="false" />
+    <Property Name="customer_id" Type="bigint" Nullable="false" />
+    <Property Name="payment_form" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="status" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="amt_applied" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_payment_pmo">
+    <Key>
+      <PropertyRef Name="payment_id" />
+    </Key>
+    <Property Name="bank_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="branch" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="acct_no" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="pmo_date" Type="datetime2" Precision="6" Nullable="false" />
+    <Property Name="payment_id" Type="bigint" Nullable="false" />
+    <Property Name="status" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_returnslip_detail">
+    <Key>
+      <PropertyRef Name="item_no" />
+      <PropertyRef Name="rs_no" />
+    </Key>
+    <Property Name="item_no" Type="bigint" Nullable="false" />
+    <Property Name="rs_no" Type="bigint" Nullable="false" />
+    <Property Name="qty" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="unit" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="code" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="disc" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="amount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="category" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="status" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_returnslip_master">
+    <Key>
+      <PropertyRef Name="rs_no" />
+    </Key>
+    <Property Name="rs_no" Type="bigint" Nullable="false" />
+    <Property Name="si_no" Type="bigint" Nullable="false" />
+    <Property Name="customer_id" Type="bigint" Nullable="false" />
+    <Property Name="rs_date" Type="datetime2" Precision="6" Nullable="false" />
+    <Property Name="totalamount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="notes" Type="nvarchar" MaxLength="1000" />
+    <Property Name="si_type" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="status" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_sales_invoice">
+    <Key>
+      <PropertyRef Name="si_no" />
+      <PropertyRef Name="si_type" />
+    </Key>
+    <Property Name="si_no" Type="bigint" Nullable="false" />
+    <Property Name="si_type" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="invoice_id" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="control_no" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="customer_id" Type="bigint" Nullable="false" />
+    <Property Name="po_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="sales_area" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="terms" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="si_date" Type="datetime2" Precision="6" Nullable="false" />
+    <Property Name="due_date" Type="datetime2" Precision="6" Nullable="false" />
+    <Property Name="status" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="via" Type="nvarchar" MaxLength="100" />
+    <Property Name="vessel" Type="nvarchar" MaxLength="100" />
+    <Property Name="vge_no" Type="nvarchar" MaxLength="10" />
+    <Property Name="bill_no" Type="nvarchar" MaxLength="10" />
+    <Property Name="freight" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="handling" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="ppa" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="subtotal" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="tax" Type="decimal" Precision="19" Scale="2" Nullable="false" />
+    <Property Name="totalamount" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="agent_code" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="agent_percent" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="agent_commission" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="notes" Type="nvarchar" MaxLength="1000" />
+    <Property Name="balance" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="adjustment" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="adjustment_type" Type="nchar" MaxLength="10" />
+    <Property Name="dr_no_copy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'gt_billing_system_2008_r.gt_billing_system_2008_r.tbl_transactions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tbl_transactions">
+    <Key>
+      <PropertyRef Name="trans_id" />
+    </Key>
+    <Property Name="trans_id" Type="int" Nullable="false" />
+    <Property Name="trans_date" Type="datetime2" Precision="6" />
+    <Property Name="trans_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="trans_number" Type="nvarchar" MaxLength="50" />
+    <Property Name="trans_type" Type="nvarchar" MaxLength="50" />
+    <Property Name="user_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="trans_action" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="tbl_user">
+    <Key>
+      <PropertyRef Name="code" />
+    </Key>
+    <Property Name="code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="acc_level" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'gt_billing_system_2008_r.dbo.vw_job_product_customer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_job_product_customer">
+    <Key>
+      <PropertyRef Name="customer_id" />
+      <PropertyRef Name="customer_name" />
+      <PropertyRef Name="code" />
+      <PropertyRef Name="status" />
+      <PropertyRef Name="category" />
+      <PropertyRef Name="datelast_order" />
+      <PropertyRef Name="noofdays_inactive" />
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="customer_id" Type="bigint" Nullable="false" />
+    <Property Name="customer_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="code" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="100" />
+    <Property Name="unit_price" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="status" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="category" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="datelast_order" Type="datetime2" Precision="6" Nullable="false" />
+    <Property Name="noofdays_inactive" Type="bigint" Nullable="false" />
+    <Property Name="unit_priceth" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="unit_pricepck" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="unit_pricekg" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="unit_priceroll" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="plate_no" Type="nvarchar" MaxLength="50" />
+    <Property Name="revision_code" Type="nvarchar" MaxLength="20" />
+    <Property Name="revision_desc" Type="nvarchar" MaxLength="100" />
+    <Property Name="prod_code" Type="nvarchar" MaxLength="50" />
+    <Property Name="revision_id" Type="int" />
+    <Property Name="revision_status" Type="nvarchar" MaxLength="20" />
+    <Property Name="plastic_category" Type="nvarchar" MaxLength="15" />
+    <Property Name="id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="tbl_commission_detail$FK_tbl_commission_detail_tbl_commission_master">
+    <End Role="tbl_commission_master" Type="Self.tbl_commission_master" Multiplicity="1" />
+    <End Role="tbl_commission_detail" Type="Self.tbl_commission_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_commission_master">
+        <PropertyRef Name="comm_no" />
+      </Principal>
+      <Dependent Role="tbl_commission_detail">
+        <PropertyRef Name="comm_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tbl_counterreceipt_detail$FK_tbl_counterreceipt_detail_tbl_counterreceipt_master">
+    <End Role="tbl_counterreceipt_master" Type="Self.tbl_counterreceipt_master" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_counterreceipt_detail" Type="Self.tbl_counterreceipt_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_counterreceipt_master">
+        <PropertyRef Name="cr_no" />
+      </Principal>
+      <Dependent Role="tbl_counterreceipt_detail">
+        <PropertyRef Name="cr_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'tbl_invoice_detail$FK_tbl_invoice_detail_tbl_sales_invoice' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="tbl_invoice_detail$FK_tbl_invoice_detail_tbl_sales_invoice" />-->
+  <Association Name="tbl_payment_check$FK_tbl_payment_check_tbl_payment_bank">
+    <End Role="tbl_payment_bank" Type="Self.tbl_payment_bank" Multiplicity="1" />
+    <End Role="tbl_payment_check" Type="Self.tbl_payment_check" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_payment_bank">
+        <PropertyRef Name="bank_name" />
+        <PropertyRef Name="branch" />
+      </Principal>
+      <Dependent Role="tbl_payment_check">
+        <PropertyRef Name="bank_name" />
+        <PropertyRef Name="branch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'tbl_payment_detail$FK_tbl_payment_detail_tbl_payment_master' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="tbl_payment_detail$FK_tbl_payment_detail_tbl_payment_master" />-->
+  <Association Name="tbl_payment_pmo$FK_tbl_payment_pmo_tbl_payment_bank">
+    <End Role="tbl_payment_bank" Type="Self.tbl_payment_bank" Multiplicity="1" />
+    <End Role="tbl_payment_pmo" Type="Self.tbl_payment_pmo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_payment_bank">
+        <PropertyRef Name="bank_name" />
+        <PropertyRef Name="branch" />
+      </Principal>
+      <Dependent Role="tbl_payment_pmo">
+        <PropertyRef Name="bank_name" />
+        <PropertyRef Name="branch" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tbl_returnslip_detail$FK_tbl_returnslip_detail_tbl_returnslip_master">
+    <End Role="tbl_returnslip_master" Type="Self.tbl_returnslip_master" Multiplicity="1" />
+    <End Role="tbl_returnslip_detail" Type="Self.tbl_returnslip_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_returnslip_master">
+        <PropertyRef Name="rs_no" />
+      </Principal>
+      <Dependent Role="tbl_returnslip_detail">
+        <PropertyRef Name="rs_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_billing_search_agent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="criteria1" Type="nvarchar" Mode="In" />
+    <Parameter Name="criteria2" Type="nvarchar" Mode="In" />
+    <Parameter Name="criteria3" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_billing_search_commercial_product" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="criteria1" Type="nvarchar" Mode="In" />
+    <Parameter Name="criteria2" Type="nvarchar" Mode="In" />
+    <Parameter Name="criteria3" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_billing_search_customer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="criteria1" Type="nvarchar" Mode="In" />
+    <Parameter Name="criteria2" Type="nvarchar" Mode="In" />
+    <Parameter Name="criteria3" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_billing_search_job_product" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="criteria1" Type="nvarchar" Mode="In" />
+    <Parameter Name="criteria2" Type="nvarchar" Mode="In" />
+    <Parameter Name="criteria3" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="GT_Billing_SystemModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="dtproperties" EntityType="Self.dtproperties" Schema="gt_billing_system_2008_r" store:Type="Tables" />
+    <EntitySet Name="tbl_agent" EntityType="Self.tbl_agent" Schema="gt_billing_system_2008_r" store:Type="Tables" />
+    <EntitySet Name="tbl_agent_detail" EntityType="Self.tbl_agent_detail" Schema="gt_billing_system_2008_r" store:Type="Tables" />
+    <EntitySet Name="tbl_commercial_product" EntityType="Self.tbl_commercial_product" Schema="gt_billing_system_2008_r" store:Type="Tables" />
+    <EntitySet Name="tbl_commercial_produnit" EntityType="Self.tbl_commercial_produnit" Schema="gt_billing_system_2008_r" store:Type="Tables" />
+    <EntitySet Name="tbl_commission_detail" EntityType="Self.tbl_commission_detail" Schema="gt_billing_system_2008_r" store:Type="Tables" />
+    <EntitySet Name="tbl_commission_master" EntityType="Self.tbl_commission_master" Schema="gt_billing_system_2008_r" store:Type="Tables" />
+    <EntitySet Name="tbl_counterreceipt_detail" EntityType="Self.tbl_counterreceipt_detail" Schema="gt_billing_system_2008_r" store:Type="Tables" />
+    <EntitySet Name="tbl_counterreceipt_master" EntityType="Self.tbl_counterreceipt_master" Schema="gt_billing_system_2008_r" store:Type="Tables" />
+    <EntitySet Name="tbl_customer" EntityType="Self.tbl_customer" Schema="gt_billing_system_2008_r" store:Type="Tables" />
+    <EntitySet Name="tbl_invoice_detail" EntityType="Self.tbl_invoice_detail" Schema="gt_billing_system_2008_r" store:Type="Tables" />
+    <EntitySet Name="tbl_job_product" EntityType="Self.tbl_job_product" Schema="gt_billing_system_2008_r" store:Type="Tables" />
+    <EntitySet Name="tbl_job_produnit" EntityType="Self.tbl_job_produnit" Schema="gt_billing_system_2008_r" store:Type="Tables" />
+    <EntitySet Name="tbl_payment_bank" EntityType="Self.tbl_payment_bank" Schema="gt_billing_system_2008_r" store:Type="Tables" />
+    <EntitySet Name="tbl_payment_check" EntityType="Self.tbl_payment_check" Schema="gt_billing_system_2008_r" store:Type="Tables" />
+    <EntitySet Name="tbl_payment_detail" EntityType="Self.tbl_payment_detail" Schema="gt_billing_system_2008_r" store:Type="Tables" />
+    <EntitySet Name="tbl_payment_master" EntityType="Self.tbl_payment_master" Schema="gt_billing_system_2008_r" store:Type="Tables" />
+    <EntitySet Name="tbl_payment_pmo" EntityType="Self.tbl_payment_pmo" Schema="gt_billing_system_2008_r" store:Type="Tables" />
+    <EntitySet Name="tbl_returnslip_detail" EntityType="Self.tbl_returnslip_detail" Schema="gt_billing_system_2008_r" store:Type="Tables" />
+    <EntitySet Name="tbl_returnslip_master" EntityType="Self.tbl_returnslip_master" Schema="gt_billing_system_2008_r" store:Type="Tables" />
+    <EntitySet Name="tbl_sales_invoice" EntityType="Self.tbl_sales_invoice" Schema="gt_billing_system_2008_r" store:Type="Tables" />
+    <EntitySet Name="tbl_user" EntityType="Self.tbl_user" Schema="gt_billing_system_2008_r" store:Type="Tables" />
+    <EntitySet Name="pbcatedt" EntityType="Self.pbcatedt" store:Type="Tables" store:Schema="gt_billing_system_2008_r">
+      <DefiningQuery>SELECT 
+[pbcatedt].[pbe_name] AS [pbe_name], 
+[pbcatedt].[pbe_edit] AS [pbe_edit], 
+[pbcatedt].[pbe_type] AS [pbe_type], 
+[pbcatedt].[pbe_cntr] AS [pbe_cntr], 
+[pbcatedt].[pbe_seqn] AS [pbe_seqn], 
+[pbcatedt].[pbe_flag] AS [pbe_flag], 
+[pbcatedt].[pbe_work] AS [pbe_work]
+FROM [gt_billing_system_2008_r].[pbcatedt] AS [pbcatedt]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="pbcatfmt" EntityType="Self.pbcatfmt" store:Type="Tables" store:Schema="gt_billing_system_2008_r">
+      <DefiningQuery>SELECT 
+[pbcatfmt].[pbf_name] AS [pbf_name], 
+[pbcatfmt].[pbf_frmt] AS [pbf_frmt], 
+[pbcatfmt].[pbf_type] AS [pbf_type], 
+[pbcatfmt].[pbf_cntr] AS [pbf_cntr]
+FROM [gt_billing_system_2008_r].[pbcatfmt] AS [pbcatfmt]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="pbcatvld" EntityType="Self.pbcatvld" store:Type="Tables" store:Schema="gt_billing_system_2008_r">
+      <DefiningQuery>SELECT 
+[pbcatvld].[pbv_name] AS [pbv_name], 
+[pbcatvld].[pbv_vald] AS [pbv_vald], 
+[pbcatvld].[pbv_type] AS [pbv_type], 
+[pbcatvld].[pbv_cntr] AS [pbv_cntr], 
+[pbcatvld].[pbv_msg] AS [pbv_msg]
+FROM [gt_billing_system_2008_r].[pbcatvld] AS [pbcatvld]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tbl_avail_list" EntityType="Self.tbl_avail_list" store:Type="Tables" store:Schema="gt_billing_system_2008_r">
+      <DefiningQuery>SELECT 
+[tbl_avail_list].[id_code] AS [id_code], 
+[tbl_avail_list].[avail_id] AS [avail_id], 
+[tbl_avail_list].[group_code] AS [group_code]
+FROM [gt_billing_system_2008_r].[tbl_avail_list] AS [tbl_avail_list]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tbl_transactions" EntityType="Self.tbl_transactions" store:Type="Tables" store:Schema="gt_billing_system_2008_r">
+      <DefiningQuery>SELECT 
+[tbl_transactions].[trans_id] AS [trans_id], 
+[tbl_transactions].[trans_date] AS [trans_date], 
+[tbl_transactions].[trans_name] AS [trans_name], 
+[tbl_transactions].[trans_number] AS [trans_number], 
+[tbl_transactions].[trans_type] AS [trans_type], 
+[tbl_transactions].[user_name] AS [user_name], 
+[tbl_transactions].[trans_action] AS [trans_action]
+FROM [gt_billing_system_2008_r].[tbl_transactions] AS [tbl_transactions]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_job_product_customer" EntityType="Self.vw_job_product_customer" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[vw_job_product_customer].[customer_id] AS [customer_id], 
+[vw_job_product_customer].[customer_name] AS [customer_name], 
+[vw_job_product_customer].[code] AS [code], 
+[vw_job_product_customer].[description] AS [description], 
+[vw_job_product_customer].[unit_price] AS [unit_price], 
+[vw_job_product_customer].[status] AS [status], 
+[vw_job_product_customer].[category] AS [category], 
+[vw_job_product_customer].[datelast_order] AS [datelast_order], 
+[vw_job_product_customer].[noofdays_inactive] AS [noofdays_inactive], 
+[vw_job_product_customer].[unit_priceth] AS [unit_priceth], 
+[vw_job_product_customer].[unit_pricepck] AS [unit_pricepck], 
+[vw_job_product_customer].[unit_pricekg] AS [unit_pricekg], 
+[vw_job_product_customer].[unit_priceroll] AS [unit_priceroll], 
+[vw_job_product_customer].[plate_no] AS [plate_no], 
+[vw_job_product_customer].[revision_code] AS [revision_code], 
+[vw_job_product_customer].[revision_desc] AS [revision_desc], 
+[vw_job_product_customer].[prod_code] AS [prod_code], 
+[vw_job_product_customer].[revision_id] AS [revision_id], 
+[vw_job_product_customer].[revision_status] AS [revision_status], 
+[vw_job_product_customer].[plastic_category] AS [plastic_category], 
+[vw_job_product_customer].[id] AS [id]
+FROM [dbo].[vw_job_product_customer] AS [vw_job_product_customer]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="tbl_commission_detail$FK_tbl_commission_detail_tbl_commission_master" Association="Self.tbl_commission_detail$FK_tbl_commission_detail_tbl_commission_master">
+      <End Role="tbl_commission_master" EntitySet="tbl_commission_master" />
+      <End Role="tbl_commission_detail" EntitySet="tbl_commission_detail" />
+    </AssociationSet>
+    <AssociationSet Name="tbl_counterreceipt_detail$FK_tbl_counterreceipt_detail_tbl_counterreceipt_master" Association="Self.tbl_counterreceipt_detail$FK_tbl_counterreceipt_detail_tbl_counterreceipt_master">
+      <End Role="tbl_counterreceipt_master" EntitySet="tbl_counterreceipt_master" />
+      <End Role="tbl_counterreceipt_detail" EntitySet="tbl_counterreceipt_detail" />
+    </AssociationSet>
+    <AssociationSet Name="tbl_payment_check$FK_tbl_payment_check_tbl_payment_bank" Association="Self.tbl_payment_check$FK_tbl_payment_check_tbl_payment_bank">
+      <End Role="tbl_payment_bank" EntitySet="tbl_payment_bank" />
+      <End Role="tbl_payment_check" EntitySet="tbl_payment_check" />
+    </AssociationSet>
+    <AssociationSet Name="tbl_payment_pmo$FK_tbl_payment_pmo_tbl_payment_bank" Association="Self.tbl_payment_pmo$FK_tbl_payment_pmo_tbl_payment_bank">
+      <End Role="tbl_payment_bank" EntitySet="tbl_payment_bank" />
+      <End Role="tbl_payment_pmo" EntitySet="tbl_payment_pmo" />
+    </AssociationSet>
+    <AssociationSet Name="tbl_returnslip_detail$FK_tbl_returnslip_detail_tbl_returnslip_master" Association="Self.tbl_returnslip_detail$FK_tbl_returnslip_detail_tbl_returnslip_master">
+      <End Role="tbl_returnslip_master" EntitySet="tbl_returnslip_master" />
+      <End Role="tbl_returnslip_detail" EntitySet="tbl_returnslip_detail" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

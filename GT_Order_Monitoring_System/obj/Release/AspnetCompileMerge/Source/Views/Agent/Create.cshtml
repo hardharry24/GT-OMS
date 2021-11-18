@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.TabTitle = "Create Agent";
+    ViewBag.Title = "Agents";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using GT_Order_Monitoring_System.Entity;
+@model GT_Order_Monitoring_System.Entity.tbl_agent
+<br />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="breadcrumb-holder">
+                <h1 class="main-title float-left"><i class="fa fa-user-plus"></i> New Agent</h1>
+                <ol class="breadcrumb float-right">
+                    <li class="breadcrumb-item">Customer</li>
+                    <li class="breadcrumb-item active">New Agent</li>
+                </ol>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card mb-5">
+                <div class="card-header">
+                    <a href="/Agent/Index"><i class="fa fa-reply" aria-hidden="true"></i> Back</a>
+                </div>
+                <div class="card-body">
+                    <div class="card-body">
+                        @using (Html.BeginForm("Create", "Agent", FormMethod.Post))
+                        {
+                            <div class="col-lg-12">
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label>Agent Name&nbsp;</label>
+                                        @Html.TextBoxFor(m => m.agent_name, new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>Agent Code &nbsp;</label>
+                                        @Html.TextBoxFor(m => m.agent_code, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <label>Address &nbsp;</label>
+                                        @Html.TextAreaFor(m => m.address, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label>Phone No &nbsp;</label>
+                                        @Html.TextBoxFor(m => m.phone_no, new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>Email Address &nbsp;</label>
+                                        @Html.TextBoxFor(m => m.email_add, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label>Status &nbsp;</label>
+                                        @Html.DropDownListFor(m => m.status, new SelectList(new List<Object> { new { value = "Active", text = "Active" }, new { value = "Inactive", text = "Inactive" } }, "value", "text"), new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>Commission &nbsp;</label>
+                                        @Html.TextBoxFor(m => m.commission, "{0:n2}", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <input class="btn btn-success" type="submit" name="Submit" value="CREATE" />
+                                    </div>
+                                </div>
+                                @if (ViewBag.errorMessage != "")
+                                {
+                                    <div class="alert @(ViewBag.errorCode == "1" ? "alert-success": "alert-danger")">@ViewBag.errorMessage</div>
+                                }
+                                @* Hidden *@
+                                @Html.HiddenFor(m => m.id)
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
