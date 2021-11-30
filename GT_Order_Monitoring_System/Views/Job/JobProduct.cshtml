@@ -227,7 +227,19 @@
                                     }
                                 </td>
                                 <td style="text-align:center;">
-                                    <a href="#" data-toggle="modal" data-target="#modalViewDetails@(counter)" style="color: green;"> VIEW </a> | <a href="/Job/Update/@objProd.id"> UPDATE </a> | <a href="#" onclick="onDelete(@objProd.id)" style="color: red;"> DELETE </a>
+                                    <div class="col-12 row">
+                                        <div class="col">
+                                            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#modalViewDetails@(counter)" title="DETAIL"> <i class="fa fa-info-circle"></i> </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="btn btn-primary" href="/Job/Update/@objProd.id" title="EDIT"> <i class="fa fa-edit"></i> </a>
+                                        </div>
+                                        <div class="col">
+                                            <a href="#" class="btn btn-danger"  onclick="onDelete(@objProd.id)" title="VOID"> <i class="fa fa-trash"></i> </a>
+                                        </div>
+                                      
+                                    </div>
+                                    @*<a href="#" data-toggle="modal" data-target="#modalViewDetails@(counter)" style="color: green;"> VIEW </a> | <a href="/Job/Update/@objProd.id"> UPDATE </a> | <a href="#" onclick="onDelete(@objProd.id)" style="color: red;"> DELETE </a>*@
                                 </td>
                             </tr>
 
@@ -275,24 +287,30 @@
                                                                         <input class="form-control" name="name" type="text" value="@string.Format("{0:n2}", objProd.unit_price)" readonly />
                                                                     </div>
                                                                     <div class="col-sm-6">
-                                                                        <label>Unit Priceth &nbsp;</label>
-                                                                        <input class="form-control" name="name" type="text" value="@objProd.unit_priceth" readonly />
+                                                                        <label>Unit Price per TH &nbsp;</label>
+                                                                        <input class="form-control" name="name" type="text" value="@string.Format("{0:n2}", objProd.unit_priceth)" readonly />
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">
                                                                     <div class="col-sm-6">
-                                                                        <label>Unit Pricepck &nbsp;</label>
+                                                                        <label>Unit Price per PCK &nbsp;</label>
                                                                         <input class="form-control" name="name" type="text" value="@string.Format("{0:n2}", objProd.unit_pricepck)" readonly />
                                                                     </div>
                                                                     <div class="col-sm-6">
-                                                                        <label>Unit Pricekg &nbsp;</label>
-                                                                        <input class="form-control" name="name" type="text" value="@objProd.unit_pricekg" readonly />
+                                                                        <label>Unit Price per KG &nbsp;</label>
+                                                                        <input class="form-control" name="name" type="text" value="@string.Format("{0:n2}", objProd.unit_pricekg)" readonly />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <div class="col-sm">
+                                                                        <label>Unit Price per Roll &nbsp;</label>
+                                                                        <input class="form-control" name="name" type="text" value="@string.Format("{0:n2}", objProd.unit_priceroll)" readonly />
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">
                                                                     <div class="col-sm-6">
                                                                         <label>Date Last Order&nbsp;</label>
-                                                                        <input class="form-control" name="name" type="text" value="@objProd.datelast_order" readonly />
+                                                                        <input class="form-control" name="name" type="text" value="@objProd.datelast_order.ToShortDateString()" readonly />
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <label>Number of Days Inaactive &nbsp;</label>

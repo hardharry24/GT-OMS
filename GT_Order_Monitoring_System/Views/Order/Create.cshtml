@@ -174,7 +174,7 @@
                                             </div>
                                             <div class="col-sm-4">
                                                 <label>P.O #&nbsp;: </label>
-                                                <input id="po_no" class="form-control" name="po_no" required  readonly/>
+                                                <input id="po_no" class="form-control" name="po_no" required/>
                                             </div>
                                             <div class="col-sm-4">
                                                 <label>Type&nbsp;: </label>
@@ -1104,6 +1104,11 @@
     function getPONO()
     {
         var poIdValue = document.getElementById("poIdValue").value;
+
+        if (poIdValue == "PO") {
+            document.getElementById("po_no").value = "";
+            return;
+        }
 
         if (poIdValue != "")
         {

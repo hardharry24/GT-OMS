@@ -127,28 +127,32 @@
                             <div class="col-sm-6">
                                 <label>Agent Name &nbsp;</label>
                                 <input class="form-control" id="Customer_agent_code_name" name="name" type="text" value="@(ViewBag.agentName != "" ? ViewBag.agentName: "")" readonly data-toggle="modal" data-target="#modal_add_show_agent" />
+                                <input type="text" name="a_agentCode" value="" id="a_agentCode" />
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <div class="col-sm-6">
-                                <label>Credit Limit &nbsp;</label>
-                                @Html.TextBoxFor(m => m.credit_limit, new { @class = "form-control", @type = "number", @required = "true" })
+                                <label>Credit Limit &nbsp;</label><!--String creditLimit, String balance, String over)-->
+                                @*@Html.TextBoxFor(m => m.credit_limit, new { @class = "form-control", @type = "text", @required = "true", @onblur = "onChangeValueAmout(this)", @name = "creditLimit" })*@
+                                <input type="text" name="creditLimit" class = "form-control" value="" onblur = "onChangeValueAmout(this)" required />
                             </div>
                             <div class="col-sm-6">
                                 <label>Credit Terms &nbsp;</label>
-                                @Html.TextBoxFor(m => m.credit_terms, new { @class = "form-control", @type = "number", @required = "true" })
+                                @Html.TextBoxFor(m => m.credit_terms, new { @class = "form-control", @type = "number", @required = "true"})
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <label>Balance &nbsp;</label>
-                                @Html.TextBoxFor(m => m.balance, new { @class = "form-control", @type = "number", @required = "true" })
+                                @*@Html.TextBoxFor(m => m.balance, new { @class = "form-control", @type = "text", @required = "true", onblur = "onChangeValueAmout(this)", @name = "balance" })*@
+                                <input type="text" name="balance" class="form-control" value="" onblur="onChangeValueAmout(this)" required />
                             </div>
                             <div class="col-sm-6">
                                 <label>Over &nbsp;</label>
-                                @Html.TextBoxFor(m => m.over_, new { @class = "form-control", @type = "number", @required = "true" })
+                                @*@Html.TextBoxFor(m => m.over_, new { @class = "form-control", @type = "number", @required = "true", onblur = "onChangeValueAmout(this)", @name = "over" })*@
+                                <input type="text" name="over" class="form-control" value="" onblur="onChangeValueAmout(this)" required />
                             </div>
                         </div>
                         <div class="form-group row">
@@ -183,11 +187,34 @@
         var valAgentName = document.getElementById("" + agentCode);
         //console.log();
         // alert(valAgentName.innerHTML);
-        document.getElementById("Customer_agent_code").value = id;
+        document.getElementById("Customer_agent_code").value = agentCode;
         document.getElementById("Customer_agent_code_display").value = agentCode;
         document.getElementById("Customer_agent_code_name").value = valAgentName.getAttribute("value");
+        document.getElementById("a_agentCode").value = id;
 
-
+        
         // alert(value);
+    }
+
+    function onChangeValueAmout(input)
+    {
+        try {
+            if (input.value.includes(","))
+            {
+                input.value = input.value.replace(",", "");
+            }
+        } catch (e) {
+
+        }
+
+        try {
+            var amt = input.value;
+            var parts = parseFloat(amt).toFixed(2).split(".");
+            var num = parts[0].replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") +
+                (parts[1] ? "." + parts[1] : "");
+            input.value = num;
+        } catch (e) {
+            console.log(e);
+        }
     }
 </script>

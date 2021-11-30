@@ -62,11 +62,14 @@ namespace GT_Order_Monitoring_System.Controllers
             ViewBag.errorCode = "0";
             ViewBag.errorMessage = "";
             Session["ListCustomer"] = listCust;
+            ViewBag.autoCode = "";
+
+            //var JobProdCode = d
 
             return View();
         }
         [HttpPost]
-        public ActionResult Create(tbl_job_product a_jobprod, String customer_name)
+        public ActionResult Create(tbl_job_product a_jobprod, String customer_name, String pc, String pth, String pck, String pkg, String proll)
         {
             var response = new Response();
             try
@@ -79,8 +82,14 @@ namespace GT_Order_Monitoring_System.Controllers
                     ViewBag.SelectedCustomer = customer_name;
 
 
+
                     a_jobprod.category = "Job";
-                   // a_jobprod.datelast_order = null;//dtPick.ToString("dddd, dd MMMM yyyy HH:mm:ss");
+                    // a_jobprod.datelast_order = null;//dtPick.ToString("dddd, dd MMMM yyyy HH:mm:ss");
+                    a_jobprod.unit_price = Convert.ToDecimal(pc.Replace(",", ""));
+                    a_jobprod.unit_priceth = Convert.ToDecimal(pth.Replace(",", ""));
+                    a_jobprod.unit_pricepck = Convert.ToDecimal(pck.Replace(",", ""));
+                    a_jobprod.unit_pricekg = Convert.ToDecimal(pkg.Replace(",", ""));
+                    a_jobprod.unit_priceroll = Convert.ToDecimal(proll.Replace(",", ""));
                     db2.tbl_job_product.Add(a_jobprod);
                     db2.SaveChanges();
                     
@@ -169,6 +178,35 @@ namespace GT_Order_Monitoring_System.Controllers
             return Json(response, JsonRequestBehavior.AllowGet);
         }
 
-        
+        public String GetCustomerCode(int id)
+        {
+            var custDetail = db2.tbl_customer.Find(id);
+            string[] arrDetailName = custDetail.customer_name.Split(' ');
+            string code = "";
+            foreach (var item in arrDetailName)
+            {
+                if (item != "")
+                {
+                    code = code + "" + item[0];
+                }
+            }
+            code = code + "-";
+
+            var result = db2.tbl_job_product.Where(m => m.code.ToLower().Contains(code)).ToList();
+            if (result.Count == 0)
+                code = code + "1";
+            else
+            {
+                var max = 0;
+                foreach (var item in result)
+                {
+                    string[] arrItem = item.code.Split('-');
+                    if (Convert.ToInt32(arrItem[1]) > max)
+                        max = Convert.ToInt32(arrItem[1]);
+                }
+                code = code + ""+(max+1);
+            }
+            return code;
+        }
     }
 }
