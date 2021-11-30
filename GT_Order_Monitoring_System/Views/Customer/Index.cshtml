@@ -88,7 +88,7 @@
                                 <th>Contact Person</th>
                                 <th>Phone No</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <th style="text-align: center;">Action</th>
                             </tr>
                         </thead>@{ int counter = 0; }
                         @foreach (var objProd in Model.ListCustomer)
@@ -141,7 +141,18 @@
                                     }
                                 </td>
                                 <td>
-                                    <a href="#" data-toggle="modal" data-target="#modalViewDetails@(counter)" style="color: green;"> VIEW </a> | <a href="/Customer/Update/@objProd.customer_id"> UPDATE </a> | <a href="#" onclick="onDelete(@objProd.customer_id)" style="color: red;"> DELETE </a>
+                                    <div class="col-12 row">
+                                        <div class="col">
+                                            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#modalViewDetails@(counter)" title="DETAILS"> <i class="fa fa-info-circle"></i> </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="btn btn-primary" href="/Customer/Update/@objProd.customer_id" title="EDIT"> <i class="fa fa-edit"></i> </a>
+                                        </div>
+                                        <div class="col">
+                                            <a href="#" class="btn btn-danger" onclick="onDelete(@objProd.customer_id)" title="VOID"> <i class="fa fa-trash"></i> </a>
+                                        </div>
+                                    </div>
+                                    @*<a href="#" data-toggle="modal" data-target="#modalViewDetails@(counter)" style="color: green;"> VIEW </a> | <a href="/Customer/Update/@objProd.customer_id"> UPDATE </a> | <a href="#" onclick="onDelete(@objProd.customer_id)" style="color: red;"> DELETE </a>*@
                                 </td>
                             </tr>
 

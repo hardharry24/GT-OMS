@@ -64,17 +64,20 @@ namespace GT_Order_Monitoring_System.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult Create(tbl_customer a_customer)
+        public ActionResult Create(tbl_customer a_customer, String creditLimit, String balance, String over, int a_agentCode)
         {
             try
             {
-                int agentId = Convert.ToInt32( a_customer.agent_code);
+                int agentId = a_agentCode;
                 var agentCode = db2.tbl_agent.Where(m => m.id == agentId).FirstOrDefault();
 
                 ViewBag.agentCode = agentCode.agent_code;
                 ViewBag.agentName = agentCode.agent_name;
 
                 a_customer.customer_id = db2.tbl_customer.Max(m => m.customer_id) + 1;
+                a_customer.credit_limit = Convert.ToDecimal(creditLimit.Replace(",", ""));
+                a_customer.balance = Convert.ToDecimal(balance.Replace(",", ""));
+                a_customer.over_ = Convert.ToDecimal(over.Replace(",", ""));
                 a_customer.agent_code = agentCode.agent_code;
                 db2.tbl_customer.Add(a_customer);
                 db2.SaveChanges();

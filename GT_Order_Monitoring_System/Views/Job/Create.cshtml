@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     
 }
+<script type='text/javascript' src='https://code.jquery.com/jquery-1.11.0.js'></script>
+<script type='text/javascript' src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
 @using GT_Order_Monitoring_System.Entity
 @model GT_Order_Monitoring_System.Entity.tbl_job_product
 <div class="row">
@@ -40,11 +42,11 @@
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <label>Code &nbsp;</label>
-                                @Html.TextBoxFor(m => m.code, new { @class = "form-control", @required = "true" })
+                                @Html.TextBoxFor(m => m.code, new { @class = "form-control", @required = "true", @id = "code", @readonly = true })
                             </div>
                             <div class="col-sm-6">
                                 <label>Product Code &nbsp;</label>
-                                @Html.TextBoxFor(m => m.prod_code, new { @class = "form-control", @required = "true" })
+                                @Html.TextBoxFor(m => m.prod_code, new { @class = "form-control", @required = "true", @id = "prod_code" })
                             </div>
                         </div>
                         <div class="form-group row">
@@ -54,24 +56,34 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-6">
-                                <label>Unit Price &nbsp;</label>
-                                @Html.TextBoxFor(m => m.unit_price, new { @class = "form-control", @type = "number", @required = "true" })
+                            <div class="col-sm">
+                                <label>Unit Price per PC &nbsp;</label><!--tring pc, String pth, String pck, String pkg, String proll)-->
+                                <input type="text" name="pc" value="" class = "form-control"  onblur = "onChangeValueAmout(this)" required/>
+                                @*@Html.TextBoxFor(m => m.unit_price, new { @class = "form-control", @type = "text", @required = "true", @onblur = "onChangeValueAmout(this)" })*@
                             </div>
-                            <div class="col-sm-6">
-                                <label>Unit Priceth &nbsp;</label>
-                                @Html.TextBoxFor(m => m.unit_priceth, new { @class = "form-control", @type = "number", @required = "true" })
+                            <div class="col-sm">
+                                <label>Unit Price per TH &nbsp;</label>
+                                <input type="text" name="pth" value="" class="form-control" onblur="onChangeValueAmout(this)" required />
+                                @*@Html.TextBoxFor(m => m.unit_priceth, new { @class = "form-control", @type = "text", @required = "true", @onblur = "onChangeValueAmout(this)" })*@
+                            </div>
+                            <div class="col-sm">
+                                <label>Unit Price per PCK &nbsp;</label>
+                                <input type="text" name="pck" value="" class="form-control" onblur="onChangeValueAmout(this)" required />
+                                @*@Html.TextBoxFor(m => m.unit_pricepck, new { @class = "form-control", @type = "text", @required = "true", @onblur = "onChangeValueAmout(this)" })*@
+                            </div>
+                            <div class="col-sm">
+                                <label>Unit Price per KG &nbsp;</label>
+                                <input type="text" name="pkg" value="" class="form-control" onblur="onChangeValueAmout(this)" required />
+                                @*@Html.TextBoxFor(m => m.unit_pricekg, new { @class = "form-control", @type = "text", @required = "true", @onblur = "onChangeValueAmout(this)" })*@
+                            </div>
+                            <div class="col-sm">
+                                <label>Unit Price per ROLL &nbsp;</label>
+                                <input type="text" name="proll" value="" class="form-control" onblur="onChangeValueAmout(this)" required />
+                                @*@Html.TextBoxFor(m => m.unit_priceroll, new { @class = "form-control", @type = "text", @required = "true", @onblur = "onChangeValueAmout(this)" })*@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-6">
-                                <label>Unit Pricepck &nbsp;</label>
-                                @Html.TextBoxFor(m => m.unit_pricepck, new { @class = "form-control", @type = "number", @required = "true" })
-                            </div>
-                            <div class="col-sm-6">
-                                <label>Unit Pricekg &nbsp;</label>
-                                @Html.TextBoxFor(m => m.unit_pricekg, new { @class = "form-control", @type = "number", @required = "true" })
-                            </div>
+                           
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6">
@@ -226,13 +238,47 @@
     function selectedCustomer(id)
     {
         document.getElementById("JobProduct_customer_id").value = id;
-        console.log(id);
+        //console.log(id);
 
         var custName = document.getElementById("lblCustomerName" + id).value;
-        console.log(custName);
+        //console.log(custName);
 
         document.getElementById("customer_name").value = custName;
 
+        getCodeByCustId(id);
     }
-   
+    function getCodeByCustId(id)
+    {
+        var request = new XMLHttpRequest();
+        // POST to any url
+        request.open('GET', "/Job/GetCustomerCode/"+id, false);
+        request.send();
+
+        var code = request.response;
+        // console.log(code);
+        document.getElementById("code").value = code;
+        document.getElementById("prod_code").value = code;
+
+    }
+    function onChangeValueAmout(input)
+    {
+        try {
+            if (input.value.includes(","))
+            {
+                input.value = input.value.replace(",", "");
+            }
+        } catch (e) {
+
+        }
+
+        try {
+            var amt = input.value;
+            var parts = parseFloat(amt).toFixed(2).split(".");
+            var num = parts[0].replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") +
+                (parts[1] ? "." + parts[1] : "");
+            input.value = num;
+        } catch (e) {
+            console.log(e);
+        }
+    }
 </script>

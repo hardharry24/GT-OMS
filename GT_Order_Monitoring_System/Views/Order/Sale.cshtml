@@ -176,7 +176,21 @@
                                 <td>@objProd.hold_type</td>
                                 <td>@objProd.holdstatus</td>
                                 <td>
-                                    <a href="#" data-toggle="modal" onclick="viewPOdetails(@objProd.po_id)" style="color: green;"> VIEW </a> | <a href="/Order/Update/@objProd.po_id"> UPDATE </a> | <a href="#" onclick="onDelete(@objProd.po_id)" style="color: red;"> VOID </a>
+                                    <div class="col-12 row">
+                                        <div class="col">
+                                            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#modalViewDetails" onclick="viewPOdetails(@objProd.po_id)" title="DETAIL"> <i class="fa fa-info-circle"></i> </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="btn btn-primary" href="/Order/Update/@objProd.po_id" title="EDIT"> <i class="fa fa-edit"></i> </a>
+                                        </div>
+                                        <div class="col">
+                                            <a href="#" class="btn btn-danger" onclick="onDelete(@objProd.po_id)" title="VOID"> <i class="fa fa-trash"></i> </a>
+                                        </div>
+                                        <div class="col">
+                                            <a href="/Document/PrintSaleOrder/@objProd.po_id" target="_blank" class="btn btn-outline-primary" onclick="onDelete(@objProd.po_id)" title="PRINT"> <i class="fa fa-print"></i> </a>
+                                        </div>
+                                    </div>
+                                   
                                 </td>
                             </tr>
 
